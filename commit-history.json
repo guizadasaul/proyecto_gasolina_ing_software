@@ -66,5 +66,22 @@
     },
     "coverage": 100,
     "test_count": 4
+  },
+  {
+    "sha": "4f56893de68a4ab3513d62df38c24fd03686eff2",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-04-24T03:33:32.000Z",
+      "message": "fear: agregar funcionalidades en el presenter(DOM)",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/4f56893de68a4ab3513d62df38c24fd03686eff2"
+    },
+    "stats": {
+      "total": 30,
+      "additions": 30,
+      "deletions": 0,
+      "date": "2025-04-24"
+    },
+    "coverage": 100,
+    "test_count": 4
   }
 ]
