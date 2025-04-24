@@ -49,5 +49,22 @@
     },
     "coverage": 100,
     "test_count": 1
+  },
+  {
+    "sha": "5ba1469a80eec878a54d38f882e27a63efdae605",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-04-24T03:31:56.000Z",
+      "message": "feat: tipo de combustible",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/5ba1469a80eec878a54d38f882e27a63efdae605"
+    },
+    "stats": {
+      "total": 34,
+      "additions": 32,
+      "deletions": 2,
+      "date": "2025-04-24"
+    },
+    "coverage": 100,
+    "test_count": 4
   }
 ]
