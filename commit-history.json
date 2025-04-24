@@ -100,5 +100,22 @@
     },
     "coverage": 100,
     "test_count": 4
+  },
+  {
+    "sha": "d662f9c013409ca47f69a82010c48e2593f4f6d2",
+    "author": "SantiSaaUCB",
+    "commit": {
+      "date": "2025-04-24T14:13:20.000Z",
+      "message": "fix:arreglo npm",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/d662f9c013409ca47f69a82010c48e2593f4f6d2"
+    },
+    "stats": {
+      "total": 2,
+      "additions": 1,
+      "deletions": 1,
+      "date": "2025-04-24"
+    },
+    "coverage": 100,
+    "test_count": 4
   }
 ]
