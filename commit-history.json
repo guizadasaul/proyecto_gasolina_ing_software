@@ -32,5 +32,22 @@
     },
     "coverage": 100,
     "test_count": 2
+  },
+  {
+    "sha": "a3e97817c79a04b42118bd3e9b5920d0c2582a8f",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-04-24T03:29:20.000Z",
+      "message": "doc: eliminacion de archivos innecesarios",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/a3e97817c79a04b42118bd3e9b5920d0c2582a8f"
+    },
+    "stats": {
+      "total": 14,
+      "additions": 0,
+      "deletions": 14,
+      "date": "2025-04-24"
+    },
+    "coverage": 100,
+    "test_count": 1
   }
 ]
