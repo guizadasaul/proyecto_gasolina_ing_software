@@ -46,4 +46,10 @@ describe('SP1.2 – Ver niveles de combustible', () => {
     ];
     expect(calcularNiveles(datos)).toEqual(esperado);
   });
+  it('debería devolver array vacío si no hay gasolineras activas', () => {
+    const datos = [
+      { nombre: 'G2', estaActiva: false, stock: { magna: 0, premium: 0, diesel: 20 } }
+    ];
+    expect(calcularNiveles(datos)).toEqual([]);
+  });
 });
