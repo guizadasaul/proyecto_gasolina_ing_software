@@ -202,5 +202,22 @@
     },
     "coverage": 100,
     "test_count": 2
+  },
+  {
+    "sha": "a787f6262e0553d03c848eefdcb2da2f5d0d73f4",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-04-29T14:20:19.000Z",
+      "message": "test: test 1.2 agregado",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/a787f6262e0553d03c848eefdcb2da2f5d0d73f4"
+    },
+    "stats": {
+      "total": 5,
+      "additions": 5,
+      "deletions": 0,
+      "date": "2025-04-29"
+    },
+    "coverage": 0,
+    "test_count": 3
   }
 ]

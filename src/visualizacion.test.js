@@ -6,6 +6,11 @@ describe('SP1.1 – Lógica de estados de gasolineras', () => {
     const esperado = [{ nombre: 'G1', estado: 'Disponible' }];
     expect(calcularEstados(datos)).toEqual(esperado);
   });
+  it('debería mostrar "No disponible" cuando la gasolinera no está activa', () => {
+    const datos = [{ nombre: 'G2', estaActiva: false }];
+    const esperado = [{ nombre: 'G2', estado: 'No disponible' }];
+    expect(calcularEstados(datos)).toEqual(esperado);
+  });
 });
 
 describe('SP1.2 – Ver niveles de combustible', () => {
