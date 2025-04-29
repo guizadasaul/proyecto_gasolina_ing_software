@@ -168,5 +168,22 @@
     },
     "coverage": 100,
     "test_count": 1
+  },
+  {
+    "sha": "90b2603e0371d947c0af5b086af36caf671d6b6d",
+    "author": "SantiSaaUCB",
+    "commit": {
+      "date": "2025-04-29T14:06:11.000Z",
+      "message": "feat: ver niveles de combustible",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/90b2603e0371d947c0af5b086af36caf671d6b6d"
+    },
+    "stats": {
+      "total": 72,
+      "additions": 60,
+      "deletions": 12,
+      "date": "2025-04-29"
+    },
+    "coverage": 0,
+    "test_count": 2
   }
 ]
