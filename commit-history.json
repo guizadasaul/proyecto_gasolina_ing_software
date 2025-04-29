@@ -151,5 +151,22 @@
     },
     "coverage": 0,
     "test_count": 0
+  },
+  {
+    "sha": "eaa593360cfc7c5b09393edb4b5cc885262f7383",
+    "author": "SantiSaaUCB",
+    "commit": {
+      "date": "2025-04-29T13:45:58.000Z",
+      "message": "feat: ver gasolineras disponibles",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/eaa593360cfc7c5b09393edb4b5cc885262f7383"
+    },
+    "stats": {
+      "total": 78,
+      "additions": 52,
+      "deletions": 26,
+      "date": "2025-04-29"
+    },
+    "coverage": 100,
+    "test_count": 1
   }
 ]

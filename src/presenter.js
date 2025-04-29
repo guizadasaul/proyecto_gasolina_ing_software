@@ -1,15 +1,34 @@
-import sumar from "./sumador";
+import { calcularEstados } from './visualizacion.js';
 
-const first = document.querySelector("#primer-numero");
-const second = document.querySelector("#segundo-numero");
-const form = document.querySelector("#sumar-form");
-const div = document.querySelector("#resultado-div");
+export function renderGasolineras(gasolineras) {
+  const contenedor = document.getElementById('gasolineras-lista');
+  if (!contenedor) return;
+  contenedor.innerHTML = '';
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
+  const estaciones = calcularEstados(gasolineras);
+  estaciones.forEach(({ nombre, estado }) => {
+    const div = document.createElement('div');
+    div.className = 'gasolinera';
 
-  const firstNumber = Number.parseInt(first.value);
-  const secondNumber = Number.parseInt(second.value);
+    const h3 = document.createElement('h3');
+    h3.textContent = nombre;
 
-  div.innerHTML = "<p>" + sumar(firstNumber, secondNumber) + "</p>";
-});
+    const p = document.createElement('p');
+    p.textContent = estado;
+
+    div.appendChild(h3);
+    div.appendChild(p);
+    contenedor.appendChild(div);
+  });
+}
+
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
+    const datosDemo = [
+      { nombre: 'Gasolinera 1', estaActiva: true },
+      { nombre: 'Gasolinera 2', estaActiva: false },
+      { nombre: 'Gasolinera 3', estaActiva: true }
+    ];
+    renderGasolineras(datosDemo);
+  });
+}
