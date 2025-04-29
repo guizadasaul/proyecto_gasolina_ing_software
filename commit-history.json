@@ -185,5 +185,22 @@
     },
     "coverage": 0,
     "test_count": 2
+  },
+  {
+    "sha": "e0e0af0f8f2d2094c9d99077b3efea31adbf3596",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-04-29T14:18:55.000Z",
+      "message": "test: cambio primer test",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/e0e0af0f8f2d2094c9d99077b3efea31adbf3596"
+    },
+    "stats": {
+      "total": 12,
+      "additions": 3,
+      "deletions": 9,
+      "date": "2025-04-29"
+    },
+    "coverage": 100,
+    "test_count": 2
   }
 ]

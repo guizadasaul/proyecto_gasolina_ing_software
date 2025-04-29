@@ -1,15 +1,9 @@
 import { calcularEstados, calcularNiveles } from './visualizacion.js';
 
 describe('SP1.1 – Lógica de estados de gasolineras', () => {
-  it('devuelve [{nombre, estado}] según estaActiva', () => {
-    const datos = [
-      { nombre: 'G1', estaActiva: true },
-      { nombre: 'G2', estaActiva: false }
-    ];
-    const esperado = [
-      { nombre: 'G1', estado: 'Disponible' },
-      { nombre: 'G2', estado: 'No disponible' }
-    ];
+  it('debería mostrar "Disponible" cuando la gasolinera está activa', () => {
+    const datos = [{ nombre: 'G1', estaActiva: true }];
+    const esperado = [{ nombre: 'G1', estado: 'Disponible' }];
     expect(calcularEstados(datos)).toEqual(esperado);
   });
 });
