@@ -321,5 +321,22 @@
     },
     "coverage": 0,
     "test_count": 7
+  },
+  {
+    "sha": "00efea31aeed045d79c9d176db3f6d4a1df6d96e",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-04-30T21:49:08.000Z",
+      "message": "style: añadimos el archivo css para poder dar color y dar mejor formato a nuestra pagina",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/00efea31aeed045d79c9d176db3f6d4a1df6d96e"
+    },
+    "stats": {
+      "total": 70,
+      "additions": 70,
+      "deletions": 0,
+      "date": "2025-04-30"
+    },
+    "coverage": 0,
+    "test_count": 7
   }
 ]

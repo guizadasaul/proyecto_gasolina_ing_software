@@ -1,0 +1,69 @@
+/* Estilos básicos */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+  }
+  
+  h1 {
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Contenedor de gasolineras */
+  #gasolineras-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Tarjeta de gasolinera */
+  .gasolinera {
+    border: 5px solid #ddd;
+    border-radius: 20px;
+    padding: 15px;
+  }
+  
+  /* Nombre de la gasolinera */
+  .gasolinera h3 {
+    margin-top: 0;
+    color: #0066cc;
+  }
+  
+  /* Estado */
+  .gasolinera p:first-of-type {
+    font-weight: bold;
+    margin: 5px 0;
+  }
+  
+  .gasolinera p:first-of-type:contains("Disponible") {
+    color: green;
+  }
+  
+  .gasolinera p:first-of-type:contains("No disponible") {
+    color: red;
+  }
+  
+  /* Dirección */
+  .gasolinera p:nth-of-type(2) {
+    color: #666;
+    margin: 5px 0 10px 0;
+  }
+  
+  /* Lista de combustibles */
+  .gasolinera ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+  }
+  
+  .gasolinera li {
+    padding: 3px 0;
+  }
+  
+  /* Combustible agotado */
+  .gasolinera li[style*="color: red"] {
+    color: red !important;
+  }
