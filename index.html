@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Gasolineras Disponibles</title>
     <link rel="stylesheet" href="./src/style.css">
-    
+
     <!-- Leaflet CSS -->
     <link
     rel="stylesheet"
@@ -17,21 +17,21 @@
     ></script>
   </head>
 
+
   <body>
     <h1>Gasolineras Disponibles</h1>
     <div id="gasolineras-lista"></div>
     <div id="mapaG1" style="height: 500px; margin-top: 1rem;"></div>
     <script type="module" src="./src/presenter.js"></script>
+
     <script>
       // Coordenadas
       const mapa = L.map('mapaG1').setView([-17.374706203158816, -66.15689669717388], 15); // latitud, longitud
-    
       // capa de mapa
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(mapa);
-      
     
       // Marcadores
       const gasolineras = [
@@ -51,13 +51,13 @@
         coords: [-17.379139442834234, -66.16575999447656]
       }
     ];
-
-  // Recorrer la lista y agregar un marcador por cada gasolinera
+  // Recorrer lista y añadimos marcador
     gasolineras.forEach(gas => {
       L.marker(gas.coords)
         .addTo(mapa)
         .bindPopup(`<strong>${gas.nombre}</strong><br>${gas.direccion}`);
     });
     </script>    
+    
   </body>
 </html>
