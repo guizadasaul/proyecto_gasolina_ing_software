@@ -287,5 +287,22 @@
     },
     "coverage": 0,
     "test_count": 6
+  },
+  {
+    "sha": "7399784ea8e4110cf2d3c2c07d0efb2a5164960c",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-04-30T19:00:46.000Z",
+      "message": "test: añadimos un test para mostrar la direccion de las gasolineras",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/7399784ea8e4110cf2d3c2c07d0efb2a5164960c"
+    },
+    "stats": {
+      "total": 17,
+      "additions": 16,
+      "deletions": 1,
+      "date": "2025-04-30"
+    },
+    "coverage": 0,
+    "test_count": 7
   }
 ]

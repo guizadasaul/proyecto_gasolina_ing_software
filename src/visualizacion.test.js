@@ -53,3 +53,17 @@ describe('SP1.2 – Ver niveles de combustible', () => {
     expect(calcularNiveles(datos)).toEqual([]);
   });
 });
+
+describe('SP1.3 – Mostrar dirección de gasolineras', () => {
+  it('debería incluir la dirección de cada gasolinera', () => {
+    const datos = [
+      { nombre: 'G1', estaActiva: true, direccion: 'Calle Falsa 123' },
+      { nombre: 'G2', estaActiva: false, direccion: 'Av. Siempre Viva 742' }
+    ];
+    const esperado = [
+      { nombre: 'G1', estado: 'Disponible', direccion: 'Calle Falsa 123' },
+      { nombre: 'G2', estado: 'No disponible', direccion: 'Av. Siempre Viva 742' }
+    ];
+    expect(calcularEstados(datos)).toEqual(esperado);
+  });
+});
