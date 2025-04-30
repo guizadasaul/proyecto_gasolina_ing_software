@@ -304,5 +304,22 @@
     },
     "coverage": 0,
     "test_count": 7
+  },
+  {
+    "sha": "0de9c52caa768ca548c12d9e2821343fc4166dd8",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-04-30T19:06:59.000Z",
+      "message": "feat: añadimos funcionalidad para mostrar la direccion de la gasolinera",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/0de9c52caa768ca548c12d9e2821343fc4166dd8"
+    },
+    "stats": {
+      "total": 10,
+      "additions": 7,
+      "deletions": 3,
+      "date": "2025-04-30"
+    },
+    "coverage": 0,
+    "test_count": 7
   }
 ]

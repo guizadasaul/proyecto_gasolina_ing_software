@@ -21,6 +21,10 @@ export function renderGasolineras(gasolineras) {
     div.appendChild(h3);
     div.appendChild(pEstado);
 
+    const pDireccion = document.createElement('p');
+    pDireccion.textContent = estacion.direccion;
+    div.appendChild(pDireccion);
+
     const ul = document.createElement('ul');
     const nivelActual = niveles.find(n => n.nombre === estacion.nombre);
 
@@ -45,9 +49,9 @@ export function renderGasolineras(gasolineras) {
 if (typeof document !== 'undefined') {
   document.addEventListener('DOMContentLoaded', () => {
     const datosDemo = [
-      { nombre: 'Gasolinera 1', estaActiva: true, stock: { magna: 10, premium: 5, diesel: 0 } },
-      { nombre: 'Gasolinera 2', estaActiva: false, stock: { magna: 0, premium: 0, diesel: 20 } },
-      { nombre: 'Gasolinera 3', estaActiva: true, stock: { magna: 7, premium: 3, diesel: 1 } },
+      { nombre: 'Gasolinera 1', estaActiva: true, direccion: 'av. santa cruz', stock: { magna: 10, premium: 5, diesel: 0 } },
+      { nombre: 'Gasolinera 2', estaActiva: false, direccion: 'av. circunvalacion',stock: { magna: 0, premium: 0, diesel: 20 } },
+      { nombre: 'Gasolinera 3', estaActiva: true, direccion: 'av. libertador',stock: { magna: 7, premium: 3, diesel: 1 } },
     ];
     renderGasolineras(datosDemo);
   });
