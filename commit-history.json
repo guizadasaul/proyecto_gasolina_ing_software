@@ -338,5 +338,22 @@
     },
     "coverage": 0,
     "test_count": 7
+  },
+  {
+    "sha": "0f837d6ab4595c4d7e4276fd9ee65d4edf3182f3",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-04-30T22:23:29.000Z",
+      "message": "style: añadimos libreria leaflet para el mapa",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/0f837d6ab4595c4d7e4276fd9ee65d4edf3182f3"
+    },
+    "stats": {
+      "total": 53,
+      "additions": 51,
+      "deletions": 2,
+      "date": "2025-04-30"
+    },
+    "coverage": 0,
+    "test_count": 7
   }
 ]

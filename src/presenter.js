@@ -50,8 +50,8 @@ if (typeof document !== 'undefined') {
   document.addEventListener('DOMContentLoaded', () => {
     const datosDemo = [
       { nombre: 'Gasolinera 1', estaActiva: true, direccion: 'av. santa cruz', stock: { magna: 10, premium: 5, diesel: 0 } },
-      { nombre: 'Gasolinera 2', estaActiva: false, direccion: 'av. circunvalacion',stock: { magna: 0, premium: 0, diesel: 20 } },
-      { nombre: 'Gasolinera 3', estaActiva: true, direccion: 'av. libertador',stock: { magna: 7, premium: 3, diesel: 1 } },
+      { nombre: 'Gasolinera 2', estaActiva: false, direccion: 'av. libertador',stock: { magna: 0, premium: 0, diesel: 20 } },
+      { nombre: 'Gasolinera 3', estaActiva: true, direccion: 'av. juan de la rosa',stock: { magna: 7, premium: 3, diesel: 1 } },
     ];
     renderGasolineras(datosDemo);
   });
