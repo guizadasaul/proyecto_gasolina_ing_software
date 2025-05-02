@@ -20,6 +20,20 @@
 
   <body>
     <h1>Gasolineras Disponibles</h1>
+    <select id="filtro-combustible">
+      <option value="todos">Todos</option>
+      <option value="magna">Magna</option>
+      <option value="premium">Premium</option>
+      <option value="diesel">Diesel</option>
+    </select>
+    
+    <select id="filtro-combustible-2">
+      <option value="">(Opcional)</option>
+      <option value="magna">Magna</option>
+      <option value="premium">Premium</option>
+      <option value="diesel">Diesel</option>
+    </select>
+    
     <div id="gasolineras-lista"></div>
     <div id="mapaG1" style="height: 500px; margin-top: 1rem;"></div>
     <script type="module" src="./src/presenter.js"></script> 
