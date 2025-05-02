@@ -1,4 +1,4 @@
-import { calcularEstados, calcularNiveles } from './visualizacion.js';
+import { calcularEstados, calcularNiveles, filtrarPorCombustible } from './visualizacion.js';
 import { datosDemo } from './datosDemo.js';
 
 
@@ -80,5 +80,17 @@ export function renderGasolineras(gasolineras) {
 if (typeof document !== 'undefined') {
   document.addEventListener('DOMContentLoaded', () => {
     renderGasolineras(datosDemo);
+    const select1 = document.getElementById('filtro-combustible');
+  const select2 = document.getElementById('filtro-combustible-2');
+
+  const aplicarFiltro = () => {
+    const tipo1 = select1.value;
+    const tipo2 = select2.value || null;
+    const filtradas = filtrarPorCombustible(datosDemo, tipo1, tipo2);
+    renderGasolineras(filtradas);
+  };
+
+  select1.addEventListener('change', aplicarFiltro);
+  select2.addEventListener('change', aplicarFiltro);
   });
 }

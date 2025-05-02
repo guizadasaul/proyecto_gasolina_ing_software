@@ -457,5 +457,22 @@
     },
     "coverage": 0,
     "test_count": 17
+  },
+  {
+    "sha": "37f80d93fbcfe3dc9995cbbbf2ccc3f279e8d8f6",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-02T22:38:09.000Z",
+      "message": "feat: funcion en presenter",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/37f80d93fbcfe3dc9995cbbbf2ccc3f279e8d8f6"
+    },
+    "stats": {
+      "total": 14,
+      "additions": 13,
+      "deletions": 1,
+      "date": "2025-05-02"
+    },
+    "coverage": 0,
+    "test_count": 17
   }
 ]
