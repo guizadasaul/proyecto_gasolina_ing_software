@@ -423,5 +423,22 @@
     },
     "coverage": 0,
     "test_count": 11
+  },
+  {
+    "sha": "f02d720bd9f79b541ae007f7a5845f04f67f383e",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-02T22:30:57.000Z",
+      "message": "feat:filtrar por combustible",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/f02d720bd9f79b541ae007f7a5845f04f67f383e"
+    },
+    "stats": {
+      "total": 56,
+      "additions": 55,
+      "deletions": 1,
+      "date": "2025-05-02"
+    },
+    "coverage": 0,
+    "test_count": 0
   }
 ]

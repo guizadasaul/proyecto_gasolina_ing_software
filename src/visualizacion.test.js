@@ -1,4 +1,4 @@
-import { calcularEstados, calcularNiveles } from './visualizacion.js';
+import { calcularEstados, calcularNiveles, filtrarPorCombustible } from './visualizacion.js';
 
 describe('SP1.1 – Lógica de estados de gasolineras', () => {
   it('debería mostrar "Disponible" cuando la gasolinera está activa', () => {
@@ -102,5 +102,46 @@ describe('SP1.3 – Mostrar dirección de gasolineras', () => {
     ];
     const resultado = calcularEstados(datos);
     expect(resultado[0]).toHaveProperty('estado');
+  });
+});
+
+describe('SP1.4 – Filtrado por tipo de combustible', () => {
+  const datos = [
+    { nombre: 'G1', estaActiva: true, stock: { magna: 10, premium: 0, diesel: 5 } },
+    { nombre: 'G2', estaActiva: true, stock: { magna: 0, premium: 10, diesel: 0 } },
+    { nombre: 'G3', estaActiva: true, stock: { magna: 5, premium: 5, diesel: 0 } },
+    { nombre: 'G4', estaActiva: false, stock: { magna: 10, premium: 10, diesel: 10 } },
+    { nombre: 'G5', estaActiva: true }  
+  ];
+
+  it('debería retornar todas si se selecciona "todos"', () => {
+    const resultado = filtrarPorCombustible(datos, 'todos');
+    expect(resultado).toHaveLength(4); 
+  });
+
+  it('debería filtrar por magna', () => {
+    const resultado = filtrarPorCombustible(datos, 'magna');
+    expect(resultado.map(g => g.nombre)).toEqual(expect.arrayContaining(['G1', 'G3']));
+  });
+
+  it('debería filtrar por premium', () => {
+    const resultado = filtrarPorCombustible(datos, 'premium');
+    expect(resultado.map(g => g.nombre)).toEqual(expect.arrayContaining(['G2', 'G3']));
+  });
+
+  it('debería filtrar por magna y premium simultáneamente', () => {
+    const resultado = filtrarPorCombustible(datos, 'magna', 'premium');
+    expect(resultado.map(g => g.nombre)).toEqual(['G3']);
+  });
+
+  it('no debería incluir gasolineras inactivas', () => {
+    const resultado = filtrarPorCombustible(datos, 'magna');
+    const nombres = resultado.map(g => g.nombre);
+    expect(nombres).not.toContain('G4');
+  });
+
+  it('debería manejar faltantes en stock como no disponibles', () => {
+    const resultado = filtrarPorCombustible(datos, 'diesel');
+    expect(resultado.map(g => g.nombre)).toEqual(['G1']);
   });
 });
