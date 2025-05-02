@@ -116,7 +116,7 @@ describe('SP1.4 – Filtrado por tipo de combustible', () => {
 
   it('debería retornar todas si se selecciona "todos"', () => {
     const resultado = filtrarPorCombustible(datos, 'todos');
-    expect(resultado).toHaveLength(4); 
+    expect(resultado).toHaveLength(5); 
   });
 
   it('debería filtrar por magna', () => {
