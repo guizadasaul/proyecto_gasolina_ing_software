@@ -372,5 +372,22 @@
     },
     "coverage": 0,
     "test_count": 7
+  },
+  {
+    "sha": "cd1a46d44b6a100e92effe465dd7f1844c9feae3",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-02T21:40:37.000Z",
+      "message": "refactor: toda manipulacion del DOM en presenter",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/cd1a46d44b6a100e92effe465dd7f1844c9feae3"
+    },
+    "stats": {
+      "total": 98,
+      "additions": 55,
+      "deletions": 43,
+      "date": "2025-05-02"
+    },
+    "coverage": 0,
+    "test_count": 7
   }
 ]

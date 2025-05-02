@@ -1,9 +1,49 @@
 import { calcularEstados, calcularNiveles } from './visualizacion.js';
 
+const datosDemo = [
+  { 
+    nombre: 'Gasolinera 1', 
+    estaActiva: true, 
+    direccion: 'av. santa cruz', 
+    coords: [-17.374706203158816, -66.15689669717388],
+    stock: { magna: 10, premium: 5, diesel: 0 } 
+  },
+  { 
+    nombre: 'Gasolinera 2', 
+    estaActiva: false, 
+    direccion: 'av. libertador',
+    coords: [-17.375544747649325, -66.16151967753312],
+    stock: { magna: 0, premium: 0, diesel: 20 } 
+  },
+  { 
+    nombre: 'Gasolinera 3', 
+    estaActiva: true, 
+    direccion: 'av. juan de la rosa',
+    coords: [-17.379139442834234, -66.16575999447656],
+    stock: { magna: 7, premium: 3, diesel: 1 } 
+  },
+];
+
 export function renderGasolineras(gasolineras) {
   const contenedor = document.getElementById('gasolineras-lista');
-  if (!contenedor) return;
+  const mapaContainer = document.getElementById('mapaG1');
+  if (!contenedor || !mapaContainer) return;
   contenedor.innerHTML = '';
+
+
+  if (!window.mapaGasolineras) {
+    window.mapaGasolineras = L.map('mapaG1').setView([-17.374706203158816, -66.15689669717388], 15);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(window.mapaGasolineras);
+  } else {
+    // Limpiar marcadores existentes
+    window.mapaGasolineras.eachLayer(layer => {
+      if (layer instanceof L.Marker) {
+        window.mapaGasolineras.removeLayer(layer);
+      }
+    });
+  }
 
   const estaciones = calcularEstados(gasolineras);
   const niveles = calcularNiveles(gasolineras);
@@ -34,11 +74,23 @@ export function renderGasolineras(gasolineras) {
         li.textContent = `${tipo.charAt(0).toUpperCase() + tipo.slice(1)}: ${litros} L`;
 
         if (litros === 0) {
-          li.style.color = 'red'; // Pintar en rojo si el nivel es 0
+          li.style.color = 'red'; 
         }
 
         ul.appendChild(li);
       }
+    }
+
+    if (estacion.coords) {
+      const marker = L.marker(estacion.coords)
+        .addTo(window.mapaGasolineras)
+        .bindPopup(`<strong>${estacion.nombre}</strong><br>${estacion.direccion}`);
+      
+      // Evento para centrar mapa al hacer clic en la tarjeta
+      div.addEventListener('click', () => {
+        window.mapaGasolineras.setView(estacion.coords, 15);
+        marker.openPopup();
+      });
     }
 
     div.appendChild(ul);
@@ -48,11 +100,6 @@ export function renderGasolineras(gasolineras) {
 
 if (typeof document !== 'undefined') {
   document.addEventListener('DOMContentLoaded', () => {
-    const datosDemo = [
-      { nombre: 'Gasolinera 1', estaActiva: true, direccion: 'av. santa cruz', stock: { magna: 10, premium: 5, diesel: 0 } },
-      { nombre: 'Gasolinera 2', estaActiva: false, direccion: 'av. libertador',stock: { magna: 0, premium: 0, diesel: 20 } },
-      { nombre: 'Gasolinera 3', estaActiva: true, direccion: 'av. juan de la rosa',stock: { magna: 7, premium: 3, diesel: 1 } },
-    ];
     renderGasolineras(datosDemo);
   });
 }

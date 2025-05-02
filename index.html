@@ -22,42 +22,7 @@
     <h1>Gasolineras Disponibles</h1>
     <div id="gasolineras-lista"></div>
     <div id="mapaG1" style="height: 500px; margin-top: 1rem;"></div>
-    <script type="module" src="./src/presenter.js"></script>
-
-    <script>
-      // Coordenadas
-      const mapa = L.map('mapaG1').setView([-17.374706203158816, -66.15689669717388], 15); // latitud, longitud
-      // capa de mapa
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-      }).addTo(mapa);
-    
-      // Marcadores
-      const gasolineras = [
-      {
-        nombre: 'Gasolinera 1',
-        direccion: 'Av. santa cruz',
-        coords: [-17.374706203158816, -66.15689669717388]
-      },
-      {
-        nombre: 'Gasolinera 2',
-        direccion: 'Av. libertador',
-        coords: [-17.375544747649325, -66.16151967753312]
-      },
-      {
-        nombre: 'Gasolinera 3',
-        direccion: 'Av. juan de la rosa',
-        coords: [-17.379139442834234, -66.16575999447656]
-      }
-    ];
-  // Recorrer lista y añadimos marcador
-    gasolineras.forEach(gas => {
-      L.marker(gas.coords)
-        .addTo(mapa)
-        .bindPopup(`<strong>${gas.nombre}</strong><br>${gas.direccion}`);
-    });
-    </script>    
+    <script type="module" src="./src/presenter.js"></script> 
     
   </body>
 </html>
