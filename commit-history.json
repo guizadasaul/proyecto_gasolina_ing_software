@@ -389,5 +389,22 @@
     },
     "coverage": 0,
     "test_count": 7
+  },
+  {
+    "sha": "ced6ccfe69aaf16973e64a25f2f480d5c8b5a53d",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-02T21:50:34.000Z",
+      "message": "refactor:creacion de datos demo",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/ced6ccfe69aaf16973e64a25f2f480d5c8b5a53d"
+    },
+    "stats": {
+      "total": 50,
+      "additions": 26,
+      "deletions": 24,
+      "date": "2025-05-02"
+    },
+    "coverage": 0,
+    "test_count": 7
   }
 ]
