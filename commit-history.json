@@ -423,5 +423,22 @@
     },
     "coverage": 0,
     "test_count": 11
+  },
+  {
+    "sha": "9d375dfc017384b9cb6f8d221919e170367e9b1c",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-04T16:18:38.000Z",
+      "message": "style: aniadimos funcion en el html y en el presenter",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/9d375dfc017384b9cb6f8d221919e170367e9b1c"
+    },
+    "stats": {
+      "total": 38,
+      "additions": 32,
+      "deletions": 6,
+      "date": "2025-05-04"
+    },
+    "coverage": 0,
+    "test_count": 11
   }
 ]
