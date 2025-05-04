@@ -19,15 +19,19 @@ export function calcularNiveles(gasolineras) {
     }));
 }
 
-export function filtrarPorCombustible(gasolineras, tipo1, tipo2 = null) {
-  if (tipo1 === 'todos') return gasolineras;
+export function filtrarPorCombustible(gasolineras, tipo = 'todos') {
+  const gasolinerasActivas = gasolineras.filter(g => g.estaActiva);
+  
+  if (tipo === 'todos') {
+    return gasolinerasActivas;
+  }
 
-  return gasolineras.filter(g => {
-    if (!g.estaActiva || !g.stock) return false;
-    const tieneTipo1 = g.stock[tipo1] > 0;
-    const tieneTipo2 = tipo2 ? g.stock[tipo2] > 0 : true;
-    return tieneTipo1 && tieneTipo2;
+  const tiposValidos = ['magna', 'premium', 'diesel'];
+  if (!tiposValidos.includes(tipo)) {
+    return gasolinerasActivas;
+  }
+  
+  return gasolinerasActivas.filter(g => {
+    return g.stock && g.stock[tipo] > 0;
   });
 }
-
-

@@ -145,3 +145,49 @@ describe('SP1.4 – Filtrado por tipo de combustible', () => {
     expect(resultado.map(g => g.nombre)).toEqual(['G1']);
   });
 });
+
+describe('SP1.4 – Filtrar gasolineras por tipo de combustible', () => {
+  const gasolineras = [
+    { nombre: 'G1', estaActiva: true, stock: { magna: 10, premium: 5, diesel: 0 } },
+    { nombre: 'G2', estaActiva: true, stock: { magna: 0, premium: 8, diesel: 12 } },
+    { nombre: 'G3', estaActiva: true, stock: { magna: 7, premium: 0, diesel: 15 } },
+    { nombre: 'G4', estaActiva: false, stock: { magna: 5, premium: 3, diesel: 2 } }
+  ];
+
+  it('debería mostrar todas las gasolineras activas cuando el filtro es "todos"', () => {
+    const resultado = filtrarPorCombustible(gasolineras, 'todos');
+    expect(resultado).toEqual([
+      { nombre: 'G1', estaActiva: true, stock: { magna: 10, premium: 5, diesel: 0 } },
+      { nombre: 'G2', estaActiva: true, stock: { magna: 0, premium: 8, diesel: 12 } },
+      { nombre: 'G3', estaActiva: true, stock: { magna: 7, premium: 0, diesel: 15 } }
+    ]);
+  });
+
+  it('debería usar "todos" como filtro predeterminado si no se especifica', () => {
+    const resultado = filtrarPorCombustible(gasolineras);
+    expect(resultado.length).toBe(3); // Solo las gasolineras activas
+    expect(resultado).toEqual([
+      { nombre: 'G1', estaActiva: true, stock: { magna: 10, premium: 5, diesel: 0 } },
+      { nombre: 'G2', estaActiva: true, stock: { magna: 0, premium: 8, diesel: 12 } },
+      { nombre: 'G3', estaActiva: true, stock: { magna: 7, premium: 0, diesel: 15 } }
+    ]);
+  });
+
+  it('debería filtrar gasolineras activas con magna disponible cuando el filtro es "magna"', () => {
+    const resultado = filtrarPorCombustible(gasolineras, 'magna');
+    expect(resultado.length).toBe(2); // Solo gasolineras activas con magna > 0
+    expect(resultado).toEqual([
+      { nombre: 'G1', estaActiva: true, stock: { magna: 10, premium: 5, diesel: 0 } },
+      { nombre: 'G3', estaActiva: true, stock: { magna: 7, premium: 0, diesel: 15 } }
+    ]);
+  });
+
+  it('debería filtrar gasolineras activas con diesel disponible cuando el filtro es "diesel"', () => {
+    const resultado = filtrarPorCombustible(gasolineras, 'diesel');
+    expect(resultado.length).toBe(2); // Solo gasolineras activas con diesel > 0
+    expect(resultado).toEqual([
+      { nombre: 'G2', estaActiva: true, stock: { magna: 0, premium: 8, diesel: 12 } },
+      { nombre: 'G3', estaActiva: true, stock: { magna: 7, premium: 0, diesel: 15 } }
+    ]);
+  });
+});

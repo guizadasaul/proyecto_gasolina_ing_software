@@ -374,122 +374,105 @@
     "test_count": 7
   },
   {
-    "sha": "cd1a46d44b6a100e92effe465dd7f1844c9feae3",
-    "author": "GatoCoder282",
+    "sha": "58698a8ab269f14896d9371164fa8ec50af74a99",
+    "author": "guizadasaul",
     "commit": {
-      "date": "2025-05-02T21:40:37.000Z",
-      "message": "refactor: toda manipulacion del DOM en presenter",
-      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/cd1a46d44b6a100e92effe465dd7f1844c9feae3"
+      "date": "2025-05-04T16:00:48.000Z",
+      "message": "filtra segun el combustible en la opcion todos",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/58698a8ab269f14896d9371164fa8ec50af74a99"
     },
     "stats": {
-      "total": 98,
-      "additions": 55,
-      "deletions": 43,
-      "date": "2025-05-02"
-    },
-    "coverage": 0,
-    "test_count": 7
-  },
-  {
-    "sha": "ced6ccfe69aaf16973e64a25f2f480d5c8b5a53d",
-    "author": "GatoCoder282",
-    "commit": {
-      "date": "2025-05-02T21:50:34.000Z",
-      "message": "refactor:creacion de datos demo",
-      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/ced6ccfe69aaf16973e64a25f2f480d5c8b5a53d"
-    },
-    "stats": {
-      "total": 50,
-      "additions": 26,
-      "deletions": 24,
-      "date": "2025-05-02"
-    },
-    "coverage": 0,
-    "test_count": 7
-  },
-  {
-    "sha": "2a26b36b079a27cfd7f844e6a6b3df9578742f47",
-    "author": "GatoCoder282",
-    "commit": {
-      "date": "2025-05-02T22:12:21.000Z",
-      "message": "test: test mas robusto",
-      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/2a26b36b079a27cfd7f844e6a6b3df9578742f47"
-    },
-    "stats": {
-      "total": 49,
-      "additions": 43,
-      "deletions": 6,
-      "date": "2025-05-02"
-    },
-    "coverage": 0,
-    "test_count": 11
-  },
-  {
-    "sha": "f02d720bd9f79b541ae007f7a5845f04f67f383e",
-    "author": "GatoCoder282",
-    "commit": {
-      "date": "2025-05-02T22:30:57.000Z",
-      "message": "feat:filtrar por combustible",
-      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/f02d720bd9f79b541ae007f7a5845f04f67f383e"
-    },
-    "stats": {
-      "total": 56,
-      "additions": 55,
+      "total": 43,
+      "additions": 42,
       "deletions": 1,
-      "date": "2025-05-02"
+      "date": "2025-05-04"
     },
     "coverage": 0,
-    "test_count": 0
+    "test_count": 9
   },
   {
-    "sha": "16b3dc4c8048d4fbd3917b5ff81a02a358c982bf",
-    "author": "GatoCoder282",
+    "sha": "a039bf1af9c9b4b0485e8b735f2e018e212ed95e",
+    "author": "guizadasaul",
     "commit": {
-      "date": "2025-05-02T22:35:20.000Z",
-      "message": "test: prueba corregida",
-      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/16b3dc4c8048d4fbd3917b5ff81a02a358c982bf"
-    },
-    "stats": {
-      "total": 2,
-      "additions": 1,
-      "deletions": 1,
-      "date": "2025-05-02"
-    },
-    "coverage": 0,
-    "test_count": 17
-  },
-  {
-    "sha": "37f80d93fbcfe3dc9995cbbbf2ccc3f279e8d8f6",
-    "author": "GatoCoder282",
-    "commit": {
-      "date": "2025-05-02T22:38:09.000Z",
-      "message": "feat: funcion en presenter",
-      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/37f80d93fbcfe3dc9995cbbbf2ccc3f279e8d8f6"
-    },
-    "stats": {
-      "total": 14,
-      "additions": 13,
-      "deletions": 1,
-      "date": "2025-05-02"
-    },
-    "coverage": 0,
-    "test_count": 17
-  },
-  {
-    "sha": "394777ee8fec465a9209104007729b3b8841a000",
-    "author": "GatoCoder282",
-    "commit": {
-      "date": "2025-05-02T22:40:42.000Z",
-      "message": "style: html modificado",
-      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/394777ee8fec465a9209104007729b3b8841a000"
+      "date": "2025-05-04T16:08:00.000Z",
+      "message": "filtra por gasolina magna",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/a039bf1af9c9b4b0485e8b735f2e018e212ed95e"
     },
     "stats": {
       "total": 14,
       "additions": 14,
       "deletions": 0,
-      "date": "2025-05-02"
+      "date": "2025-05-04"
     },
     "coverage": 0,
-    "test_count": 17
+    "test_count": 10
+  },
+  {
+    "sha": "08a05f0cc0b21bb9c33cacf0adc2ff35da34b1f6",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-04T16:11:35.000Z",
+      "message": "filtra por tipos de gasolina",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/08a05f0cc0b21bb9c33cacf0adc2ff35da34b1f6"
+    },
+    "stats": {
+      "total": 24,
+      "additions": 16,
+      "deletions": 8,
+      "date": "2025-05-04"
+    },
+    "coverage": 0,
+    "test_count": 11
+  },
+  {
+    "sha": "9d375dfc017384b9cb6f8d221919e170367e9b1c",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-04T16:18:38.000Z",
+      "message": "style: aniadimos funcion en el html y en el presenter",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/9d375dfc017384b9cb6f8d221919e170367e9b1c"
+    },
+    "stats": {
+      "total": 38,
+      "additions": 32,
+      "deletions": 6,
+      "date": "2025-05-04"
+    },
+    "coverage": 0,
+    "test_count": 11
+  },
+  {
+    "sha": "8ca106d2e8d16e660b5661c08449414c01c5ad46",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-04T16:22:39.000Z",
+      "message": "style: cambiamos el css",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/8ca106d2e8d16e660b5661c08449414c01c5ad46"
+    },
+    "stats": {
+      "total": 244,
+      "additions": 185,
+      "deletions": 59,
+      "date": "2025-05-04"
+    },
+    "coverage": 0,
+    "test_count": 11
+  },
+  {
+    "sha": "c89fc80e68cc7dcf8f279265da7bc4c9968ec5ae",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-04T23:56:39.000Z",
+      "message": "Merge branch 'main' of https://github.com/guizadasaul/proyecto_gasolina_ing_software",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/c89fc80e68cc7dcf8f279265da7bc4c9968ec5ae"
+    },
+    "stats": {
+      "total": 499,
+      "additions": 329,
+      "deletions": 170,
+      "date": "2025-05-04"
+    },
+    "coverage": 0,
+    "test_count": 0
   }
 ]
