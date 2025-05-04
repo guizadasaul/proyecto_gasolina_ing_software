@@ -389,5 +389,22 @@
     },
     "coverage": 0,
     "test_count": 9
+  },
+  {
+    "sha": "a039bf1af9c9b4b0485e8b735f2e018e212ed95e",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-04T16:08:00.000Z",
+      "message": "filtra por gasolina magna",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/a039bf1af9c9b4b0485e8b735f2e018e212ed95e"
+    },
+    "stats": {
+      "total": 14,
+      "additions": 14,
+      "deletions": 0,
+      "date": "2025-05-04"
+    },
+    "coverage": 0,
+    "test_count": 10
   }
 ]

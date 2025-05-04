@@ -94,4 +94,13 @@ describe('SP1.4 – Filtrar gasolineras por tipo de combustible', () => {
       { nombre: 'G3', estaActiva: true, stock: { magna: 7, premium: 0, diesel: 15 } }
     ]);
   });
+
+  it('debería filtrar gasolineras activas con magna disponible cuando el filtro es "magna"', () => {
+    const resultado = filtrarPorCombustible(gasolineras, 'magna');
+    expect(resultado.length).toBe(2); // Solo gasolineras activas con magna > 0
+    expect(resultado).toEqual([
+      { nombre: 'G1', estaActiva: true, stock: { magna: 10, premium: 5, diesel: 0 } },
+      { nombre: 'G3', estaActiva: true, stock: { magna: 7, premium: 0, diesel: 15 } }
+    ]);
+  });
 });

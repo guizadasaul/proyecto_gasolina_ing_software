@@ -28,6 +28,11 @@ export function filtrarPorCombustible(gasolineras, tipo = 'todos') {
     return gasolinerasActivas;
   }
   
+  // Filtrar por tipo específico de combustible
+  if (tipo === 'magna') {
+    return gasolinerasActivas.filter(g => g.stock?.magna > 0);
+  }
+  
   // Para futuros filtros por tipo específico
   return gasolinerasActivas;
 }
