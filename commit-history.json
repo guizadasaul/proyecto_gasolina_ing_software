@@ -406,5 +406,22 @@
     },
     "coverage": 0,
     "test_count": 10
+  },
+  {
+    "sha": "08a05f0cc0b21bb9c33cacf0adc2ff35da34b1f6",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-04T16:11:35.000Z",
+      "message": "filtra por tipos de gasolina",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/08a05f0cc0b21bb9c33cacf0adc2ff35da34b1f6"
+    },
+    "stats": {
+      "total": 24,
+      "additions": 16,
+      "deletions": 8,
+      "date": "2025-05-04"
+    },
+    "coverage": 0,
+    "test_count": 11
   }
 ]

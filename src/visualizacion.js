@@ -20,19 +20,18 @@ export function calcularNiveles(gasolineras) {
 }
 
 export function filtrarPorCombustible(gasolineras, tipo = 'todos') {
-  // Filtrar solo gasolineras activas
   const gasolinerasActivas = gasolineras.filter(g => g.estaActiva);
   
-  // Si el filtro es 'todos', devolver todas las gasolineras activas
   if (tipo === 'todos') {
     return gasolinerasActivas;
   }
-  
-  // Filtrar por tipo específico de combustible
-  if (tipo === 'magna') {
-    return gasolinerasActivas.filter(g => g.stock?.magna > 0);
+
+  const tiposValidos = ['magna', 'premium', 'diesel'];
+  if (!tiposValidos.includes(tipo)) {
+    return gasolinerasActivas;
   }
   
-  // Para futuros filtros por tipo específico
-  return gasolinerasActivas;
+  return gasolinerasActivas.filter(g => {
+    return g.stock && g.stock[tipo] > 0;
+  });
 }
