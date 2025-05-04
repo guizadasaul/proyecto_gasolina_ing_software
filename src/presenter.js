@@ -1,6 +1,6 @@
 import { calcularEstados, calcularNiveles } from './visualizacion.js';
 
-export function renderGasolineras(gasolineras) {
+export function renderGasolineras(gasolineras, filtro = 'todos') {
   const contenedor = document.getElementById('gasolineras-lista');
   if (!contenedor) return;
   contenedor.innerHTML = '';
@@ -9,6 +9,12 @@ export function renderGasolineras(gasolineras) {
   const niveles = calcularNiveles(gasolineras);
 
   estaciones.forEach((estacion, index) => {
+    const nivelActual = niveles.find(n => n.nombre === estacion.nombre);
+
+    if (filtro !== 'todos' && (!nivelActual || nivelActual.niveles[filtro] <= 0)) {
+      return; // Si el filtro está activo y no hay stock, no renderizar esta gasolinera
+    }
+
     const div = document.createElement('div');
     div.className = 'gasolinera';
 
@@ -26,7 +32,6 @@ export function renderGasolineras(gasolineras) {
     div.appendChild(pDireccion);
 
     const ul = document.createElement('ul');
-    const nivelActual = niveles.find(n => n.nombre === estacion.nombre);
 
     if (nivelActual) {
       for (const [tipo, litros] of Object.entries(nivelActual.niveles)) {
@@ -50,9 +55,18 @@ if (typeof document !== 'undefined') {
   document.addEventListener('DOMContentLoaded', () => {
     const datosDemo = [
       { nombre: 'Gasolinera 1', estaActiva: true, direccion: 'av. santa cruz', stock: { magna: 10, premium: 5, diesel: 0 } },
-      { nombre: 'Gasolinera 2', estaActiva: false, direccion: 'av. libertador',stock: { magna: 0, premium: 0, diesel: 20 } },
-      { nombre: 'Gasolinera 3', estaActiva: true, direccion: 'av. juan de la rosa',stock: { magna: 7, premium: 3, diesel: 1 } },
+      { nombre: 'Gasolinera 2', estaActiva: false, direccion: 'av. libertador', stock: { magna: 0, premium: 0, diesel: 20 } },
+      { nombre: 'Gasolinera 3', estaActiva: true, direccion: 'av. juan de la rosa', stock: { magna: 7, premium: 3, diesel: 1 } },
     ];
+
+    const filtroSelect = document.getElementById('filtro-combustible');
+    const aplicarFiltroBtn = document.getElementById('aplicar-filtro');
+
+    aplicarFiltroBtn.addEventListener('click', () => {
+      const tipoCombustible = filtroSelect.value;
+      renderGasolineras(datosDemo, tipoCombustible);
+    });
+
     renderGasolineras(datosDemo);
   });
 }
