@@ -440,5 +440,22 @@
     },
     "coverage": 0,
     "test_count": 11
+  },
+  {
+    "sha": "8ca106d2e8d16e660b5661c08449414c01c5ad46",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-04T16:22:39.000Z",
+      "message": "style: cambiamos el css",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/8ca106d2e8d16e660b5661c08449414c01c5ad46"
+    },
+    "stats": {
+      "total": 244,
+      "additions": 185,
+      "deletions": 59,
+      "date": "2025-05-04"
+    },
+    "coverage": 0,
+    "test_count": 11
   }
 ]
