@@ -154,3 +154,25 @@ describe('calcularTiempoEspera', () => {
   });
 });
 
+describe('SP1.5 – Mostrar horario de apertura de gasolineras', () => {
+  it('debería incluir el horario de apertura cuando está disponible', () => {
+    const datos = [
+      { nombre: 'G1', estaActiva: true, horarioApertura: '06:00 - 23:00' },
+      { nombre: 'G2', estaActiva: false, horarioApertura: '07:00 - 22:00' }
+    ];
+    const esperado = [
+      { nombre: 'G1', estado: 'Disponible', horarioApertura: '06:00 - 23:00' },
+      { nombre: 'G2', estado: 'No disponible', horarioApertura: '07:00 - 22:00' }
+    ];
+    expect(calcularEstados(datos)).toEqual(esperado);
+  });
+  
+  it('debería manejar gasolineras sin horario de apertura sin lanzar error', () => {
+    const datos = [
+      { nombre: 'G1', estaActiva: true }
+    ];
+    const resultado = calcularEstados(datos);
+    expect(resultado[0]).toHaveProperty('estado');
+    expect(resultado[0].horarioApertura).toBeUndefined();
+  });
+});

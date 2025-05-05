@@ -22,7 +22,7 @@ export function renderGasolineras(gasolineras, filtro = 'todos') {
       }
     });
   }
-  
+
   const gasolinerasConCoordenadas = datosDemo.filter(gas => gas.coords);
   
   gasolinerasConCoordenadas.forEach(gas => {
@@ -57,6 +57,13 @@ export function renderGasolineras(gasolineras, filtro = 'todos') {
     pDireccion.textContent = estacion.direccion;
     div.appendChild(pDireccion);
 
+    if (estacion.horarioApertura) {
+      const pHorario = document.createElement('p');
+      pHorario.className = 'horario-apertura';
+      pHorario.innerHTML = `<strong>Horario:</strong> ${estacion.horarioApertura}`;
+      div.appendChild(pHorario);
+    }
+
     const ul = document.createElement('ul');
 
     if (nivelActual) {
@@ -75,8 +82,9 @@ export function renderGasolineras(gasolineras, filtro = 'todos') {
     if (estacion.coords) {
       const marker = L.marker(estacion.coords)
         .addTo(window.mapaGasolineras)
-        .bindPopup(`<strong>${estacion.nombre}</strong><br>${estacion.direccion}`);
-      
+        .bindPopup(`<strong>${estacion.nombre}</strong><br>${estacion.direccion}${
+          estacion.horarioApertura ? `<br><strong>Horario:</strong> ${estacion.horarioApertura}` : ''
+        }`);
       // Evento para centrar mapa al hacer clic en la tarjeta
       div.addEventListener('click', () => {
         window.mapaGasolineras.setView(estacion.coords, 15);

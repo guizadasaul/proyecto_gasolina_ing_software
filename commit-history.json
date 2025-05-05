@@ -627,5 +627,22 @@
     },
     "coverage": 0,
     "test_count": 17
+  },
+  {
+    "sha": "e87eeb7cc0dea3f2e88b39c55c1bf01189fc3a7c",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-05T20:55:59.000Z",
+      "message": "feat: se muestra el horario de atencion de un dia",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/e87eeb7cc0dea3f2e88b39c55c1bf01189fc3a7c"
+    },
+    "stats": {
+      "total": 119,
+      "additions": 89,
+      "deletions": 30,
+      "date": "2025-05-05"
+    },
+    "coverage": 0,
+    "test_count": 19
   }
 ]

@@ -4,7 +4,8 @@ export function calcularEstados(gasolineras) {
     estado: g.estaActiva ? 'Disponible' : 'No disponible',
     direccion: g.direccion,
     capacidad: g.capacidad,
-    fila: g.fila
+    fila: g.fila,
+    horarioApertura: g.horarioApertura
   }));
 }
 
