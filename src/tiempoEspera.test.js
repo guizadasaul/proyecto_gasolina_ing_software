@@ -9,5 +9,7 @@ describe('calcularTiempoEspera', () => {
     expect(calcularTiempoEspera(0, 5)).toBe(0);
   });
 
-
+  test('Debe devolver Infinity si la capacidad es 0 (no se atiende a nadie)', () => {
+    expect(calcularTiempoEspera(5, 0)).toBe(Infinity);
+  });
 });
