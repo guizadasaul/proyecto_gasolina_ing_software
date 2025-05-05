@@ -559,5 +559,22 @@
     },
     "coverage": 0,
     "test_count": 17
+  },
+  {
+    "sha": "2024f27e92f99ff506fbb96429fc6519f2a4f266",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-05T03:37:36.000Z",
+      "message": "feat: añadimos la funcionalidad de tiempoEspera para en el presenter y el index",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/2024f27e92f99ff506fbb96429fc6519f2a4f266"
+    },
+    "stats": {
+      "total": 45,
+      "additions": 40,
+      "deletions": 5,
+      "date": "2025-05-05"
+    },
+    "coverage": 0,
+    "test_count": 17
   }
 ]
