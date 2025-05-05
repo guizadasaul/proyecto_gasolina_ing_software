@@ -1,6 +1,6 @@
 import { calcularEstados, calcularNiveles, filtrarPorCombustible } from './visualizacion.js';
 import { datosDemo } from './datosDemo.js';
-
+import { calcularTiempoEspera } from './tiempoEspera.js';
 
 
 export function renderGasolineras(gasolineras, filtro = 'todos') {
@@ -78,6 +78,32 @@ export function renderGasolineras(gasolineras, filtro = 'todos') {
     }
 
     div.appendChild(ul);
+
+    const capacidad = estacion.capacidad ?? 1; // valor por defecto si no está definido
+    const fila = estacion.fila ?? 0;
+
+    // Calcular tiempo automáticamente
+    const resultado = calcularTiempoEspera(fila, capacidad);
+
+    // Mostrar resultado
+    const contenedorTiempo = document.createElement('div');
+    contenedorTiempo.style.marginTop = '1rem';
+    contenedorTiempo.style.borderTop = '1px solid #ccc';
+    contenedorTiempo.style.paddingTop = '0.5rem';
+
+    const tituloTiempo = document.createElement('h4');
+    tituloTiempo.textContent = 'Tiempo estimado de espera';
+    contenedorTiempo.appendChild(tituloTiempo);
+
+    const resultadoTiempo = document.createElement('p');
+    resultadoTiempo.textContent = 
+    typeof resultado === 'number' 
+    ? `Tiempo estimado: ${resultado} minutos` 
+    : resultado;
+
+    contenedorTiempo.appendChild(resultadoTiempo);
+    div.appendChild(contenedorTiempo);
+
     contenedor.appendChild(div);
   });
 }
@@ -107,4 +133,5 @@ if (typeof document !== 'undefined') {
   select1.addEventListener('change', aplicarFiltro);
   select2.addEventListener('change', aplicarFiltro);
   });
+
 }
