@@ -1,6 +1,5 @@
-import { calcularEstados, calcularNiveles, filtrarPorCombustible } from './visualizacion.js';
+import { calcularEstados, calcularNiveles, filtrarPorCombustible, calcularTiempoEspera } from './visualizacion.js';
 import { datosDemo } from './datosDemo.js';
-import { calcularTiempoEspera } from './tiempoEspera.js';
 
 
 export function renderGasolineras(gasolineras, filtro = 'todos') {

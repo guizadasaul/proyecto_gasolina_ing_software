@@ -593,5 +593,22 @@
     },
     "coverage": 0,
     "test_count": 17
+  },
+  {
+    "sha": "eeea8be0b3aba1509a03cf9633b1f2f60f79b133",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-05T20:27:41.000Z",
+      "message": "fix: correxion de llamado de funcion al visualizacion",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/eeea8be0b3aba1509a03cf9633b1f2f60f79b133"
+    },
+    "stats": {
+      "total": 3,
+      "additions": 1,
+      "deletions": 2,
+      "date": "2025-05-05"
+    },
+    "coverage": 0,
+    "test_count": 17
   }
 ]
