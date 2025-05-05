@@ -576,5 +576,22 @@
     },
     "coverage": 0,
     "test_count": 17
+  },
+  {
+    "sha": "8db3744c4f15d6626e4758ce4de402ade9f4ed44",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-05T20:23:46.000Z",
+      "message": "docs: cambios semanticos al visualizacion .js y .test",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/8db3744c4f15d6626e4758ce4de402ade9f4ed44"
+    },
+    "stats": {
+      "total": 48,
+      "additions": 24,
+      "deletions": 24,
+      "date": "2025-05-05"
+    },
+    "coverage": 0,
+    "test_count": 17
   }
 ]

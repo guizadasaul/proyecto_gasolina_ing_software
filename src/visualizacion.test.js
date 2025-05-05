@@ -1,4 +1,4 @@
-import { calcularEstados, calcularNiveles, filtrarPorCombustible } from './visualizacion.js';
+import { calcularEstados, calcularNiveles, filtrarPorCombustible, calcularTiempoEspera } from './visualizacion.js';
 
 describe('SP1.1 – Lógica de estados de gasolineras', () => {
   it('debería mostrar "Disponible" cuando la gasolinera está activa', () => {
@@ -139,3 +139,18 @@ describe('SP1.4 – Filtrar gasolineras por tipo de combustible', () => {
     ]);
   });
 });
+
+describe('calcularTiempoEspera', () => {
+  it('Debe devolver 5 cuando hay 10 autos y capacidad es 2', () => {
+    expect(calcularTiempoEspera(10, 2)).toBe(5);
+  });
+
+  it('Debe devolver 0 si no hay autos en la fila', () => {
+    expect(calcularTiempoEspera(0, 5)).toBe(0);
+  });
+
+  it('Debe devolver Infinity si la capacidad es 0 (no se atiende a nadie)', () => {
+    expect(calcularTiempoEspera(5, 0)).toBe(Infinity);
+  });
+});
+
