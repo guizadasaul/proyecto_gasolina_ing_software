@@ -22,6 +22,14 @@ export function renderGasolineras(gasolineras, filtro = 'todos') {
       }
     });
   }
+  
+  const gasolinerasConCoordenadas = datosDemo.filter(gas => gas.coords);
+  
+  gasolinerasConCoordenadas.forEach(gas => {
+    L.marker(gas.coords)
+      .addTo(window.mapaGasolineras)
+      .bindPopup(`<strong>${gas.nombre}</strong><br>${gas.direccion}`);
+  });
 
   const estaciones = calcularEstados(gasolineras);
   const niveles = calcularNiveles(gasolineras);

@@ -610,5 +610,22 @@
     },
     "coverage": 0,
     "test_count": 17
+  },
+  {
+    "sha": "cafe4c2774bdc6bbde0c0c26a25ca2f502cd9a5a",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-05T20:40:40.000Z",
+      "message": "fix: los marcadores vuelven a aparecer",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/cafe4c2774bdc6bbde0c0c26a25ca2f502cd9a5a"
+    },
+    "stats": {
+      "total": 10,
+      "additions": 10,
+      "deletions": 0,
+      "date": "2025-05-05"
+    },
+    "coverage": 0,
+    "test_count": 17
   }
 ]
