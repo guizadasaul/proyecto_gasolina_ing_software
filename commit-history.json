@@ -474,5 +474,22 @@
     },
     "coverage": 0,
     "test_count": 0
+  },
+  {
+    "sha": "8e576bfe80b5eb931ac929a1f82e96b06f9a34fc",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-05T00:02:37.000Z",
+      "message": "refactor: organizacion de codigo",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/8e576bfe80b5eb931ac929a1f82e96b06f9a34fc"
+    },
+    "stats": {
+      "total": 5,
+      "additions": 0,
+      "deletions": 5,
+      "date": "2025-05-05"
+    },
+    "coverage": 0,
+    "test_count": 0
   }
 ]

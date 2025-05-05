@@ -84,11 +84,6 @@ export function renderGasolineras(gasolineras, filtro = 'todos') {
 
 if (typeof document !== 'undefined') {
   document.addEventListener('DOMContentLoaded', () => {
-    const datosDemo = [
-      { nombre: 'Gasolinera 1', estaActiva: true, direccion: 'av. santa cruz', stock: { magna: 10, premium: 5, diesel: 0 } },
-      { nombre: 'Gasolinera 2', estaActiva: false, direccion: 'av. libertador', stock: { magna: 0, premium: 0, diesel: 20 } },
-      { nombre: 'Gasolinera 3', estaActiva: true, direccion: 'av. juan de la rosa', stock: { magna: 7, premium: 3, diesel: 1 } },
-    ];
 
     const filtroSelect = document.getElementById('filtro-combustible');
     const aplicarFiltroBtn = document.getElementById('aplicar-filtro');
