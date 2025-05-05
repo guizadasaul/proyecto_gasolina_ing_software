@@ -491,5 +491,22 @@
     },
     "coverage": 0,
     "test_count": 0
+  },
+  {
+    "sha": "6340c2912c182b1e0d99b1a41015e3b00047bc43",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-05T00:16:16.000Z",
+      "message": "test: reestructuracion de los test",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/6340c2912c182b1e0d99b1a41015e3b00047bc43"
+    },
+    "stats": {
+      "total": 52,
+      "additions": 0,
+      "deletions": 52,
+      "date": "2025-05-05"
+    },
+    "coverage": 0,
+    "test_count": 14
   }
 ]

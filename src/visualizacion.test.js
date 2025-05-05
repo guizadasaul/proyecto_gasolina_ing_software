@@ -36,18 +36,6 @@ describe('SP1.1 – Lógica de estados de gasolineras', () => {
       direccion: 'Av. Prado'
     });
   });
-  it('debería manejar múltiples gasolineras con diferentes estados', () => {
-    const datos = [
-      { nombre: 'G1', estaActiva: true },
-      { nombre: 'G2', estaActiva: false }
-    ];
-    const resultado = calcularEstados(datos);
-    expect(resultado).toHaveLength(2);
-    expect(resultado).toEqual(expect.arrayContaining([
-      expect.objectContaining({ nombre: 'G1', estado: 'Disponible' }),
-      expect.objectContaining({ nombre: 'G2', estado: 'No disponible' })
-    ]));
-  });
 });
 
 describe('SP1.2 – Ver niveles de combustible', () => {
@@ -105,46 +93,6 @@ describe('SP1.3 – Mostrar dirección de gasolineras', () => {
   });
 });
 
-describe('SP1.4 – Filtrado por tipo de combustible', () => {
-  const datos = [
-    { nombre: 'G1', estaActiva: true, stock: { magna: 10, premium: 0, diesel: 5 } },
-    { nombre: 'G2', estaActiva: true, stock: { magna: 0, premium: 10, diesel: 0 } },
-    { nombre: 'G3', estaActiva: true, stock: { magna: 5, premium: 5, diesel: 0 } },
-    { nombre: 'G4', estaActiva: false, stock: { magna: 10, premium: 10, diesel: 10 } },
-    { nombre: 'G5', estaActiva: true }  
-  ];
-
-  it('debería retornar todas si se selecciona "todos"', () => {
-    const resultado = filtrarPorCombustible(datos, 'todos');
-    expect(resultado).toHaveLength(5); 
-  });
-
-  it('debería filtrar por magna', () => {
-    const resultado = filtrarPorCombustible(datos, 'magna');
-    expect(resultado.map(g => g.nombre)).toEqual(expect.arrayContaining(['G1', 'G3']));
-  });
-
-  it('debería filtrar por premium', () => {
-    const resultado = filtrarPorCombustible(datos, 'premium');
-    expect(resultado.map(g => g.nombre)).toEqual(expect.arrayContaining(['G2', 'G3']));
-  });
-
-  it('debería filtrar por magna y premium simultáneamente', () => {
-    const resultado = filtrarPorCombustible(datos, 'magna', 'premium');
-    expect(resultado.map(g => g.nombre)).toEqual(['G3']);
-  });
-
-  it('no debería incluir gasolineras inactivas', () => {
-    const resultado = filtrarPorCombustible(datos, 'magna');
-    const nombres = resultado.map(g => g.nombre);
-    expect(nombres).not.toContain('G4');
-  });
-
-  it('debería manejar faltantes en stock como no disponibles', () => {
-    const resultado = filtrarPorCombustible(datos, 'diesel');
-    expect(resultado.map(g => g.nombre)).toEqual(['G1']);
-  });
-});
 
 describe('SP1.4 – Filtrar gasolineras por tipo de combustible', () => {
   const gasolineras = [
