@@ -678,5 +678,22 @@
     },
     "coverage": 0,
     "test_count": 24
+  },
+  {
+    "sha": "d5a61782e2d19ef6c0fb90d0a1de00844355b027",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-06T01:00:38.000Z",
+      "message": "feat: muestra abiertas y cerradas",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/d5a61782e2d19ef6c0fb90d0a1de00844355b027"
+    },
+    "stats": {
+      "total": 57,
+      "additions": 42,
+      "deletions": 15,
+      "date": "2025-05-06"
+    },
+    "coverage": 0,
+    "test_count": 24
   }
 ]

@@ -1,6 +1,28 @@
-import { calcularEstados, calcularNiveles, filtrarPorCombustible, calcularTiempoEspera } from './visualizacion.js';
+import { calcularEstados, calcularNiveles, filtrarPorCombustible, calcularTiempoEspera, obtenerDiaActual } from './visualizacion.js';
 import { datosDemo } from './datosDemo.js';
 
+function estaAbierta(gasolinera) {
+  // Obtener el día actual
+  const diaActual = obtenerDiaActual();
+  
+  // Obtener el horario para el día actual
+  const horarioDiaActual = gasolinera.horarioSemanal ? gasolinera.horarioSemanal[diaActual] : null;
+  
+  if (!horarioDiaActual) return false;
+
+  const ahora = new Date();
+  const [horaActual, minutoActual] = [ahora.getHours(), ahora.getMinutes()];
+  const [horaInicio, minutoInicio, horaFin, minutoFin] = horarioDiaActual
+    .replace(/:/g, ' ')
+    .split(/[- ]/)
+    .map(Number);
+
+  const inicioEnMinutos = horaInicio * 60 + minutoInicio;
+  const finEnMinutos = horaFin * 60 + minutoFin;
+  const actualEnMinutos = horaActual * 60 + minutoActual;
+
+  return actualEnMinutos >= inicioEnMinutos && actualEnMinutos <= finEnMinutos;
+}
 
 export function renderGasolineras(gasolineras, filtro = 'todos') {
   const contenedor = document.getElementById('gasolineras-lista');
@@ -36,6 +58,8 @@ export function renderGasolineras(gasolineras, filtro = 'todos') {
 
   estaciones.forEach((estacion, index) => {
     const nivelActual = niveles.find(n => n.nombre === estacion.nombre);
+    // Encontrar la gasolinera original con todos los datos
+    const gasolineraCompleta = gasolineras.find(g => g.nombre === estacion.nombre);
 
     if (filtro !== 'todos' && (!nivelActual || nivelActual.niveles[filtro] <= 0)) {
       return; // Si el filtro está activo y no hay stock, no renderizar esta gasolinera
@@ -48,7 +72,9 @@ export function renderGasolineras(gasolineras, filtro = 'todos') {
     h3.textContent = estacion.nombre;
 
     const pEstado = document.createElement('p');
-    pEstado.textContent = estacion.estado;
+    // Usar la función estaAbierta con la gasolinera completa
+    pEstado.textContent = estaAbierta(gasolineraCompleta) ? 'Abierta' : 'Cerrada';
+    pEstado.style.color = estaAbierta(gasolineraCompleta) ? 'green' : 'red';
 
     div.appendChild(h3);
     div.appendChild(pEstado);
@@ -198,17 +224,18 @@ if (typeof document !== 'undefined') {
 
     renderGasolineras(datosDemo);
     const select1 = document.getElementById('filtro-combustible');
-  const select2 = document.getElementById('filtro-combustible-2');
+    const select2 = document.getElementById('filtro-combustible-2');
 
-  const aplicarFiltro = () => {
-    const tipo1 = select1.value;
-    const tipo2 = select2.value || null;
-    const filtradas = filtrarPorCombustible(datosDemo, tipo1, tipo2);
-    renderGasolineras(filtradas);
-  };
+    const aplicarFiltro = () => {
+      const tipo1 = select1.value;
+      const tipo2 = select2.value || null;
+      const filtradas = filtrarPorCombustible(datosDemo, tipo1, tipo2);
+      renderGasolineras(filtradas);
+    };
 
-  select1.addEventListener('change', aplicarFiltro);
-  select2.addEventListener('change', aplicarFiltro);
+    select1.addEventListener('change', aplicarFiltro);
+    if (select2) {
+      select2.addEventListener('change', aplicarFiltro);
+    }
   });
-
 }
