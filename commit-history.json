@@ -780,5 +780,22 @@
     },
     "coverage": 0,
     "test_count": 27
+  },
+  {
+    "sha": "db6fc3cf9704d90114d723012d34719b4290705b",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-06T12:32:12.000Z",
+      "message": "refcator: cambio en el presenter",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/db6fc3cf9704d90114d723012d34719b4290705b"
+    },
+    "stats": {
+      "total": 8,
+      "additions": 7,
+      "deletions": 1,
+      "date": "2025-05-06"
+    },
+    "coverage": 0,
+    "test_count": 27
   }
 ]

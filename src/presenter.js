@@ -1,4 +1,10 @@
-import { calcularEstados, calcularNiveles, filtrarPorCombustible, filtrarPorServicio, calcularTiempoEspera, obtenerDiaActual } from './visualizacion.js';
+import { calcularEstados, 
+  calcularNiveles, 
+  filtrarPorCombustible, 
+  filtrarPorServicio, 
+  calcularTiempoEspera, 
+  obtenerDiaActual,
+ calcularVehiculosAbastecidos } from './visualizacion.js';
 import { datosDemo } from './datosDemo.js';
 
 function estaAbierta(gasolinera) {
