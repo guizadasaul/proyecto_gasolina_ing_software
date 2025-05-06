@@ -269,4 +269,12 @@ describe('SP1.8 – Filtrar gasolineras por servicio adicional', () => {
       datosDemo[4], // Gasolinera Express Centro
     ]);
   });
+  it('debería devolver solo gasolineras con aire disponibles', () => {
+    const resultado = filtrarPorServicio(datosDemo, 'aire');
+    expect(resultado).toEqual([
+      datosDemo[0], // Gasolinera Central
+      datosDemo[2], // Gas Express
+      datosDemo[3], // Autoservicio Norte
+    ]);
+  });
 });

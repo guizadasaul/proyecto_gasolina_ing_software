@@ -746,5 +746,22 @@
     },
     "coverage": 0,
     "test_count": 26
+  },
+  {
+    "sha": "807cc4f1f9ee88718a2d7430d9b01fbdcc1f9162",
+    "author": "SantiSaaUCB",
+    "commit": {
+      "date": "2025-05-06T04:21:59.000Z",
+      "message": "test: filtra por aire",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/807cc4f1f9ee88718a2d7430d9b01fbdcc1f9162"
+    },
+    "stats": {
+      "total": 8,
+      "additions": 8,
+      "deletions": 0,
+      "date": "2025-05-06"
+    },
+    "coverage": 0,
+    "test_count": 27
   }
 ]
