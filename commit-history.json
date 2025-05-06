@@ -763,5 +763,22 @@
     },
     "coverage": 0,
     "test_count": 27
+  },
+  {
+    "sha": "b68fe7202df0bb1a5d5d59a97dafc67afbc5c15a",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-06T12:27:13.000Z",
+      "message": "feat:visualizacion de carg en el presenter",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/b68fe7202df0bb1a5d5d59a97dafc67afbc5c15a"
+    },
+    "stats": {
+      "total": 60,
+      "additions": 60,
+      "deletions": 0,
+      "date": "2025-05-06"
+    },
+    "coverage": 0,
+    "test_count": 27
   }
 ]
