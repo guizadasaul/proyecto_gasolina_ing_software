@@ -1,4 +1,10 @@
-import { calcularEstados, calcularNiveles, filtrarPorCombustible, filtrarPorServicio, calcularTiempoEspera, obtenerDiaActual } from './visualizacion.js';
+import { calcularEstados, 
+  calcularNiveles, 
+  filtrarPorCombustible, 
+  filtrarPorServicio, 
+  calcularTiempoEspera, 
+  obtenerDiaActual,
+ calcularVehiculosAbastecidos } from './visualizacion.js';
 import { datosDemo } from './datosDemo.js';
 
 function estaAbierta(gasolinera) {
@@ -166,6 +172,38 @@ export function renderGasolineras(gasolineras, filtro = 'todos') {
 
         ul.appendChild(li);
       }
+    }
+
+    const vehiculosAbastecidos = calcularVehiculosAbastecidos([gasolineraCompleta])[0];
+    
+    if (vehiculosAbastecidos.vehiculos > 0) {
+      const divVehiculos = document.createElement('div');
+      divVehiculos.className = 'vehiculos-abastecidos';
+      divVehiculos.style.marginTop = '1rem';
+      divVehiculos.style.borderTop = '1px solid #ccc';
+      divVehiculos.style.paddingTop = '0.5rem';
+
+      const tituloVehiculos = document.createElement('h4');
+      tituloVehiculos.textContent = 'Vehículos que pueden cargar';
+      divVehiculos.appendChild(tituloVehiculos);
+
+      const infoVehiculos = document.createElement('p');
+      infoVehiculos.textContent = `Total estimado: ${vehiculosAbastecidos.vehiculos} vehículos`;
+      divVehiculos.appendChild(infoVehiculos);
+
+      const ulVehiculos = document.createElement('ul');
+      ulVehiculos.style.marginTop = '0.5rem';
+
+      for (const [tipo, cantidad] of Object.entries(vehiculosAbastecidos.desglose)) {
+        if (cantidad > 0) {
+          const li = document.createElement('li');
+          li.textContent = `${tipo.charAt(0).toUpperCase() + tipo.slice(1)}: ~${cantidad} vehículos`;
+          ulVehiculos.appendChild(li);
+        }
+      }
+
+      divVehiculos.appendChild(ulVehiculos);
+      div.appendChild(divVehiculos);
     }
 
     if (estacion.coords) {

@@ -763,5 +763,73 @@
     },
     "coverage": 0,
     "test_count": 27
+  },
+  {
+    "sha": "b68fe7202df0bb1a5d5d59a97dafc67afbc5c15a",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-06T12:27:13.000Z",
+      "message": "feat:visualizacion de carg en el presenter",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/b68fe7202df0bb1a5d5d59a97dafc67afbc5c15a"
+    },
+    "stats": {
+      "total": 60,
+      "additions": 60,
+      "deletions": 0,
+      "date": "2025-05-06"
+    },
+    "coverage": 0,
+    "test_count": 27
+  },
+  {
+    "sha": "db6fc3cf9704d90114d723012d34719b4290705b",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-06T12:32:12.000Z",
+      "message": "refcator: cambio en el presenter",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/db6fc3cf9704d90114d723012d34719b4290705b"
+    },
+    "stats": {
+      "total": 8,
+      "additions": 7,
+      "deletions": 1,
+      "date": "2025-05-06"
+    },
+    "coverage": 0,
+    "test_count": 27
+  },
+  {
+    "sha": "330a6a706b0b82e05e1cfcf18ab3a002cbe8d435",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-06T12:36:50.000Z",
+      "message": "test:visualizar cuantos vehiculos pueden cargar",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/330a6a706b0b82e05e1cfcf18ab3a002cbe8d435"
+    },
+    "stats": {
+      "total": 74,
+      "additions": 73,
+      "deletions": 1,
+      "date": "2025-05-06"
+    },
+    "coverage": 0,
+    "test_count": 29
+  },
+  {
+    "sha": "de540c3b2743223b016e6ef686efb1ff1c158d98",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-06T12:46:18.000Z",
+      "message": "test: agregadop de test para cntdad de autos que pueden cargar",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/de540c3b2743223b016e6ef686efb1ff1c158d98"
+    },
+    "stats": {
+      "total": 159,
+      "additions": 108,
+      "deletions": 51,
+      "date": "2025-05-06"
+    },
+    "coverage": 0,
+    "test_count": 34
   }
 ]
