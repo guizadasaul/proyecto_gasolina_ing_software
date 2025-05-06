@@ -1,4 +1,4 @@
-import { calcularEstados, calcularNiveles, filtrarPorCombustible, calcularTiempoEspera, obtenerDiaActual } from './visualizacion.js';
+import { calcularEstados, calcularNiveles, filtrarPorCombustible, filtrarPorServicio, calcularTiempoEspera, obtenerDiaActual } from './visualizacion.js';
 import { datosDemo } from './datosDemo.js';
 
 function estaAbierta(gasolinera) {
@@ -29,7 +29,6 @@ export function renderGasolineras(gasolineras, filtro = 'todos') {
   const mapaContainer = document.getElementById('mapaG1');
   if (!contenedor || !mapaContainer) return;
   contenedor.innerHTML = '';
-
 
   if (!window.mapaGasolineras) {
     window.mapaGasolineras = L.map('mapaG1').setView([-17.374706203158816, -66.15689669717388], 15);
@@ -182,6 +181,36 @@ export function renderGasolineras(gasolineras, filtro = 'todos') {
 
     div.appendChild(ul);
 
+    // ——— Nuevo bloque: servicios adicionales ———
+    const serviciosDiv = document.createElement('div');
+    serviciosDiv.className = 'servicios';
+    
+    if (gasolineraCompleta.servicios?.banos) {
+      const ico = document.createElement('span');
+      ico.className = 'icono-servicio';
+      ico.title = 'Baños disponibles';
+      ico.textContent = '🚻';
+      serviciosDiv.appendChild(ico);
+    }
+    if (gasolineraCompleta.servicios?.tienda) {
+      const ico = document.createElement('span');
+      ico.className = 'icono-servicio';
+      ico.title = 'Tienda';
+      ico.textContent = '🛒';
+      serviciosDiv.appendChild(ico);
+    }
+    if (gasolineraCompleta.servicios?.aire) {
+      const ico = document.createElement('span');
+      ico.className = 'icono-servicio';
+      ico.title = 'Aire';
+      ico.textContent = '⛽️';
+      serviciosDiv.appendChild(ico);
+    }
+    if (serviciosDiv.childElementCount > 0) {
+      div.appendChild(serviciosDiv);
+    }
+    // ——— Fin bloque servicios ———
+
     const capacidad = estacion.capacidad ?? 1; // valor por defecto si no está definido
     const fila = estacion.fila ?? 0;
 
@@ -216,26 +245,23 @@ if (typeof document !== 'undefined') {
 
     const filtroSelect = document.getElementById('filtro-combustible');
     const aplicarFiltroBtn = document.getElementById('aplicar-filtro');
+    const chkBanos   = document.getElementById('filtro-banos');
+    const chkTienda  = document.getElementById('filtro-tienda');
+    const chkAire    = document.getElementById('filtro-aire');
+    const btnServicios = document.getElementById('btn-aplicar-filtros');
 
-    aplicarFiltroBtn.addEventListener('click', () => {
-      const tipoCombustible = filtroSelect.value;
-      renderGasolineras(datosDemo, tipoCombustible);
-    });
+    function aplicarFiltros() {
+      let lista = datosDemo;
+      lista = filtrarPorCombustible(lista, filtroSelect.value);
+      if (chkBanos.checked)  lista = filtrarPorServicio(lista, 'banos');
+      if (chkTienda.checked) lista = filtrarPorServicio(lista, 'tienda');
+      if (chkAire.checked)   lista = filtrarPorServicio(lista, 'aire');
+      renderGasolineras(lista);
+    }
+
+    aplicarFiltroBtn.addEventListener('click', aplicarFiltros);
+    btnServicios.addEventListener('click', aplicarFiltros);
 
     renderGasolineras(datosDemo);
-    const select1 = document.getElementById('filtro-combustible');
-    const select2 = document.getElementById('filtro-combustible-2');
-
-    const aplicarFiltro = () => {
-      const tipo1 = select1.value;
-      const tipo2 = select2.value || null;
-      const filtradas = filtrarPorCombustible(datosDemo, tipo1, tipo2);
-      renderGasolineras(filtradas);
-    };
-
-    select1.addEventListener('change', aplicarFiltro);
-    if (select2) {
-      select2.addEventListener('change', aplicarFiltro);
-    }
   });
 }

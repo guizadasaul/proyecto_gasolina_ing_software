@@ -712,5 +712,22 @@
     },
     "coverage": 0,
     "test_count": 25
+  },
+  {
+    "sha": "5b02e57e77fceb2cf13d6244f3affedb400f6c84",
+    "author": "SantiSaaUCB",
+    "commit": {
+      "date": "2025-05-06T04:18:49.000Z",
+      "message": "feat: cambios index, presenter",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/5b02e57e77fceb2cf13d6244f3affedb400f6c84"
+    },
+    "stats": {
+      "total": 162,
+      "additions": 139,
+      "deletions": 23,
+      "date": "2025-05-06"
+    },
+    "coverage": 0,
+    "test_count": 25
   }
 ]
