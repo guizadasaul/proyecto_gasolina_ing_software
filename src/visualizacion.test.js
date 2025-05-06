@@ -1,4 +1,5 @@
-import { calcularEstados, calcularNiveles, filtrarPorCombustible, calcularTiempoEspera, obtenerDiaActual, obtenerHorarioDiaActual } from './visualizacion.js';
+import { calcularEstados, calcularNiveles, filtrarPorCombustible, calcularTiempoEspera, obtenerDiaActual, obtenerHorarioDiaActual, filtrarPorServicio } from './visualizacion.js';
+import { datosDemo } from './datosDemo.js';
 
 describe('SP1.1 – Lógica de estados de gasolineras', () => {
   it('debería mostrar "Disponible" cuando la gasolinera está activa', () => {
@@ -249,5 +250,16 @@ describe('obtenerHorarioDiaActual', () => {
   it('debería devolver null cuando el horario semanal es null o undefined', () => {
     expect(obtenerHorarioDiaActual(null)).toBeNull();
     expect(obtenerHorarioDiaActual(undefined)).toBeNull();
+  });
+});
+
+describe('SP1.8 – Filtrar gasolineras por servicio adicional', () => {
+  it('debería devolver solo gasolineras con baños disponibles', () => {
+    const resultado = filtrarPorServicio(datosDemo, 'banos');
+    expect(resultado).toEqual([
+      datosDemo[0], // Gasolinera Central
+      datosDemo[1], // Estación Sur
+      datosDemo[2], // Gas Express
+    ]);
   });
 });

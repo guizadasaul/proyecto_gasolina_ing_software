@@ -59,3 +59,9 @@ export function obtenerHorarioDiaActual(horarioSemanal) {
   const diaActual = obtenerDiaActual();
   return horarioSemanal[diaActual] || null;
 }
+
+export function filtrarPorServicio(gasolineras, servicio) {
+  return gasolineras.filter(estacion =>
+    estacion.servicios && estacion.servicios[servicio] === true
+  );
+}

@@ -19,7 +19,12 @@ export const datosDemo = [
       viernes: "06:00 - 23:00",
       sabado: "07:00 - 23:00",
       domingo: "07:00 - 20:00"
-    }
+    },
+    servicios: {
+      banos: true,
+      tienda: false,
+      aire: true,
+    }    
   },
   {
     nombre: "Estación Sur",
@@ -41,7 +46,12 @@ export const datosDemo = [
       viernes: "07:00 - 23:00",
       sabado: "08:00 - 22:00",
       domingo: "08:00 - 20:00"
-    }
+    },
+    servicios: {
+      banos: true,
+      tienda: false,
+      aire: false,
+    }  
   },
   {
     nombre: "Gas Express",
@@ -63,7 +73,12 @@ export const datosDemo = [
       viernes: "24 horas",
       sabado: "24 horas",
       domingo: "24 horas"
-    }
+    },
+    servicios: {
+      banos: true,
+      tienda: false,
+      aire: true,
+    }  
   },
   {
     nombre: "Autoservicio Norte",
@@ -85,7 +100,12 @@ export const datosDemo = [
       viernes: "05:00 - 21:00",
       sabado: "06:00 - 20:00",
       domingo: "Cerrado"
-    }
+    },
+    servicios: {
+      banos: false,
+      tienda: true,
+      aire: true,
+    }  
   },
   {
     nombre: "Gasolinera Express Centro",
@@ -107,6 +127,11 @@ export const datosDemo = [
       viernes: "06:00 - 22:00",
       sabado: "07:00 - 22:00",
       domingo: "08:00 - 18:00"
-    }
+    },
+    servicios: {
+      banos: false,
+      tienda: true,
+      aire: false,
+    }  
   }
 ];

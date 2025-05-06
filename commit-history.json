@@ -695,5 +695,22 @@
     },
     "coverage": 0,
     "test_count": 24
+  },
+  {
+    "sha": "bec5b786b0384a95f9d74be727541084394d3790",
+    "author": "SantiSaaUCB",
+    "commit": {
+      "date": "2025-05-06T04:02:38.000Z",
+      "message": "feat: filtro por servicios",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/bec5b786b0384a95f9d74be727541084394d3790"
+    },
+    "stats": {
+      "total": 55,
+      "additions": 49,
+      "deletions": 6,
+      "date": "2025-05-06"
+    },
+    "coverage": 0,
+    "test_count": 25
   }
 ]
