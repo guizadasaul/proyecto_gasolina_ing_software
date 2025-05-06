@@ -1,4 +1,4 @@
-import { calcularEstados, calcularNiveles, filtrarPorCombustible, calcularTiempoEspera} from './visualizacion.js';
+import { calcularEstados, calcularNiveles, filtrarPorCombustible, calcularTiempoEspera, obtenerDiaActual, obtenerHorarioDiaActual } from './visualizacion.js';
 
 describe('SP1.1 – Lógica de estados de gasolineras', () => {
   it('debería mostrar "Disponible" cuando la gasolinera está activa', () => {
@@ -195,5 +195,59 @@ describe('SP1.5 – Mostrar horario semanal de atención de gasolineras', () => 
 
     const resultado = calcularEstados(datos);
     expect(resultado[0].horarioSemanal).toBeUndefined();
+  });
+});
+
+describe('obtenerDiaActual', () => {
+  it('debería devolver un día de la semana válido', () => {
+    const diasValidos = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
+    const dia = obtenerDiaActual();
+    expect(diasValidos).toContain(dia);
+  });
+});
+
+describe('obtenerHorarioDiaActual', () => {
+  it('debería devolver el horario del día actual cuando existe', () => {
+    // Mockear la función obtenerDiaActual para pruebas consistentes
+    const diaOriginal = obtenerDiaActual();
+    global.Date = class extends Date {
+      getDay() {
+        return 1; // Lunes (0 es domingo, 1 es lunes, etc.)
+      }
+    };
+    
+    const horarioSemanal = {
+      lunes: '08:00 - 20:00',
+      martes: '09:00 - 21:00'
+    };
+    
+    expect(obtenerHorarioDiaActual(horarioSemanal)).toBe('08:00 - 20:00');
+    
+    // Restaurar la función original
+    global.Date = Date;
+  });
+  
+  it('debería devolver null cuando no hay horario para el día actual', () => {
+    // Mockear la función obtenerDiaActual para pruebas consistentes
+    global.Date = class extends Date {
+      getDay() {
+        return 3; // Miércoles
+      }
+    };
+    
+    const horarioSemanal = {
+      lunes: '08:00 - 20:00',
+      jueves: '09:00 - 21:00'
+    };
+    
+    expect(obtenerHorarioDiaActual(horarioSemanal)).toBeNull();
+    
+    // Restaurar la función original
+    global.Date = Date;
+  });
+  
+  it('debería devolver null cuando el horario semanal es null o undefined', () => {
+    expect(obtenerHorarioDiaActual(null)).toBeNull();
+    expect(obtenerHorarioDiaActual(undefined)).toBeNull();
   });
 });

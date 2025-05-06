@@ -45,3 +45,17 @@ export function calcularTiempoEspera(longitudFila, capacidadAtencion) {
       return Infinity;
   return longitudFila / capacidadAtencion;
 }
+
+// Función auxiliar para obtener el día actual de la semana
+export function obtenerDiaActual() {
+  const dias = ['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
+  const hoy = new Date().getDay();
+  return dias[hoy];
+}
+// Función para obtener el horario del día actual
+export function obtenerHorarioDiaActual(horarioSemanal) {
+  if (!horarioSemanal) return null;
+
+  const diaActual = obtenerDiaActual();
+  return horarioSemanal[diaActual] || null;
+}
