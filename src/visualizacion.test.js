@@ -286,67 +286,124 @@ describe('SP1.8 – Filtrar gasolineras por servicio adicional', () => {
   });
 });
 
-describe('SP1.9 – Calcular vehículos que pueden cargar', () => {
-  it('debería calcular correctamente los vehículos que pueden cargar', () => {
-    const gasolineras = [
-      { 
-        nombre: 'G1', 
-        estaActiva: true, 
-        stock: { magna: 200, premium: 150, diesel: 300 } 
-      },
-      { 
-        nombre: 'G2', 
-        estaActiva: true, 
-        stock: { magna: 0, premium: 50, diesel: 0 } 
-      },
-      { 
-        nombre: 'G3', 
-        estaActiva: false, 
-        stock: { magna: 100, premium: 100, diesel: 100 } 
-      }
-    ];
+describe('SP1.9 – Calcular vehículos que pueden cargar - Pruebas Extendidas', () => {
+  // Datos de prueba reutilizables
+  const gasolineraActiva = {
+    nombre: 'G1',
+    estaActiva: true,
+    stock: { magna: 200, premium: 150, diesel: 300 }
+  };
 
-    const resultado = calcularVehiculosAbastecidos(gasolineras);
-    
-    expect(resultado[0]).toEqual({
-      nombre: 'G1',
-      vehiculos: 13, // 5 (magna) + 3 (premium) + 5 (diesel)
-      desglose: {
-        magna: 5,    // 200 / 40 = 5
-        premium: 3,  // 150 / 50 = 3
-        diesel: 5   // 300 / 60 = 5
-      }
+  const gasolineraInactiva = {
+    nombre: 'G2',
+    estaActiva: false,
+    stock: { magna: 100, premium: 100, diesel: 100 }
+  };
+
+  const gasolineraSinStock = {
+    nombre: 'G3',
+    estaActiva: true,
+    stock: { magna: 0, premium: 0, diesel: 0 }
+  };
+
+  const gasolineraStockParcial = {
+    nombre: 'G4',
+    estaActiva: true,
+    stock: { magna: 35, premium: 0, diesel: 65 }
+  };
+
+  const gasolineraSinDatosStock = {
+    nombre: 'G5',
+    estaActiva: true
+  };
+
+  const consumosPersonalizados = { magna: 25, premium: 20, diesel: 30 };
+
+  // Pruebas con valores por defecto (40, 50, 60)
+  describe('Pruebas con consumos por defecto', () => {
+    it('debería calcular correctamente para una gasolinera con todos los combustibles', () => {
+      const resultado = calcularVehiculosAbastecidos([gasolineraActiva])[0];
+      expect(resultado).toEqual({
+        nombre: 'G1',
+        vehiculos: 13, // 5 (magna) + 3 (premium) + 5 (diesel)
+        desglose: {
+          magna: 5,    // 200 / 40 = 5
+          premium: 3,  // 150 / 50 = 3
+          diesel: 5    // 300 / 60 = 5
+        }
+      });
     });
 
-    expect(resultado[1]).toEqual({
-      nombre: 'G2',
-      vehiculos: 1,  // solo premium
-      desglose: {
+    it('debería retornar 0 vehículos para gasolinera inactiva', () => {
+      const resultado = calcularVehiculosAbastecidos([gasolineraInactiva])[0];
+      expect(resultado.vehiculos).toBe(0);
+      expect(resultado.desglose.magna).toBe(0);
+    });
+
+    it('debería retornar 0 vehículos cuando no hay stock', () => {
+      const resultado = calcularVehiculosAbastecidos([gasolineraSinStock])[0];
+      expect(resultado.vehiculos).toBe(0);
+      expect(resultado.desglose.diesel).toBe(0);
+    });
+
+
+    it('debería manejar gasolineras sin datos de stock', () => {
+      const resultado = calcularVehiculosAbastecidos([gasolineraSinDatosStock])[0];
+      expect(resultado.vehiculos).toBe(0);
+      expect(resultado.desglose).toEqual({
         magna: 0,
-        premium: 1,  // 50 / 50 = 1
+        premium: 0,
         diesel: 0
-      }
+      });
     });
 
-    expect(resultado[2].vehiculos).toBe(0); // Gasolinera inactiva
+    it('debería redondear hacia abajo los cálculos', () => {
+      const gasolinera = {
+        nombre: 'G6',
+        estaActiva: true,
+        stock: { magna: 39, premium: 49, diesel: 59 }
+      };
+      const resultado = calcularVehiculosAbastecidos([gasolinera])[0];
+      expect(resultado.desglose).toEqual({
+        magna: 0,    // 39 / 40 = 0.975 → 0
+        premium: 0,   // 49 / 50 = 0.98 → 0
+        diesel: 0     // 59 / 60 ≈ 0.983 → 0
+      });
+    });
   });
 
-  it('debería manejar valores personalizados de consumo por vehículo', () => {
-    const gasolinera = [
-      { 
-        nombre: 'G1', 
-        estaActiva: true, 
-        stock: { magna: 100, premium: 100, diesel: 100 } 
-      }
-    ];
 
-    const consumosPersonalizados = { magna: 25, premium: 20, diesel: 30 };
-    const resultado = calcularVehiculosAbastecidos(gasolinera, consumosPersonalizados);
-    
-    expect(resultado[0].desglose).toEqual({
-      magna: 4,    // 100 / 25 = 4
-      premium: 5,  // 100 / 20 = 5
-      diesel: 3    // 100 / 30 ≈ 3.33 → 3
+  // Pruebas de integridad de datos
+  describe('Pruebas de integridad de datos', () => {
+    it('debería mantener la estructura del objeto de salida incluso con datos incompletos', () => {
+      const gasolineraIncompleta = { nombre: 'G9', estaActiva: true };
+      const resultado = calcularVehiculosAbastecidos([gasolineraIncompleta])[0];
+      
+      expect(resultado).toEqual({
+        nombre: 'G9',
+        vehiculos: 0,
+        desglose: {
+          magna: 0,
+          premium: 0,
+          diesel: 0
+        }
+      });
+    });
+
+    it('debería manejar cuando el stock tiene propiedades adicionales', () => {
+      const gasolinera = {
+        nombre: 'G10',
+        estaActiva: true,
+        stock: { magna: 100, premium: 50, diesel: 60, electrico: 200 }
+      };
+      const resultado = calcularVehiculosAbastecidos([gasolinera])[0];
+      
+      // Debería ignorar el tipo 'electrico' no estándar
+      expect(resultado.desglose).toEqual({
+        magna: 2,    // 100 / 40 = 2.5 → 2
+        premium: 1,  // 50 / 50 = 1
+        diesel: 1    // 60 / 60 = 1
+      });
     });
   });
 });

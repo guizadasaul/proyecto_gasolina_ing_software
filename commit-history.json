@@ -814,5 +814,22 @@
     },
     "coverage": 0,
     "test_count": 29
+  },
+  {
+    "sha": "de540c3b2743223b016e6ef686efb1ff1c158d98",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-06T12:46:18.000Z",
+      "message": "test: agregadop de test para cntdad de autos que pueden cargar",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/de540c3b2743223b016e6ef686efb1ff1c158d98"
+    },
+    "stats": {
+      "total": 159,
+      "additions": 108,
+      "deletions": 51,
+      "date": "2025-05-06"
+    },
+    "coverage": 0,
+    "test_count": 34
   }
 ]
