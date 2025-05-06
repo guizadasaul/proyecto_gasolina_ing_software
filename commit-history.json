@@ -729,5 +729,22 @@
     },
     "coverage": 0,
     "test_count": 25
+  },
+  {
+    "sha": "0b61e08d4d11d32d8bdfe3e50d8ac10159cfb61d",
+    "author": "SantiSaaUCB",
+    "commit": {
+      "date": "2025-05-06T04:21:19.000Z",
+      "message": "test: filtra por tienda",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/0b61e08d4d11d32d8bdfe3e50d8ac10159cfb61d"
+    },
+    "stats": {
+      "total": 7,
+      "additions": 7,
+      "deletions": 0,
+      "date": "2025-05-06"
+    },
+    "coverage": 0,
+    "test_count": 26
   }
 ]
