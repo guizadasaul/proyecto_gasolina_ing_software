@@ -1,4 +1,11 @@
-import { calcularEstados, calcularNiveles, filtrarPorCombustible, calcularTiempoEspera, obtenerDiaActual, obtenerHorarioDiaActual, filtrarPorServicio } from './visualizacion.js';
+import { calcularEstados, 
+  calcularNiveles, 
+  filtrarPorCombustible, 
+  calcularTiempoEspera, 
+  obtenerDiaActual, 
+  obtenerHorarioDiaActual, 
+  filtrarPorServicio,
+calcularVehiculosAbastecidos } from './visualizacion.js';
 import { datosDemo } from './datosDemo.js';
 
 describe('SP1.1 – Lógica de estados de gasolineras', () => {
@@ -276,5 +283,70 @@ describe('SP1.8 – Filtrar gasolineras por servicio adicional', () => {
       datosDemo[2], // Gas Express
       datosDemo[3], // Autoservicio Norte
     ]);
+  });
+});
+
+describe('SP1.9 – Calcular vehículos que pueden cargar', () => {
+  it('debería calcular correctamente los vehículos que pueden cargar', () => {
+    const gasolineras = [
+      { 
+        nombre: 'G1', 
+        estaActiva: true, 
+        stock: { magna: 200, premium: 150, diesel: 300 } 
+      },
+      { 
+        nombre: 'G2', 
+        estaActiva: true, 
+        stock: { magna: 0, premium: 50, diesel: 0 } 
+      },
+      { 
+        nombre: 'G3', 
+        estaActiva: false, 
+        stock: { magna: 100, premium: 100, diesel: 100 } 
+      }
+    ];
+
+    const resultado = calcularVehiculosAbastecidos(gasolineras);
+    
+    expect(resultado[0]).toEqual({
+      nombre: 'G1',
+      vehiculos: 13, // 5 (magna) + 3 (premium) + 5 (diesel)
+      desglose: {
+        magna: 5,    // 200 / 40 = 5
+        premium: 3,  // 150 / 50 = 3
+        diesel: 5   // 300 / 60 = 5
+      }
+    });
+
+    expect(resultado[1]).toEqual({
+      nombre: 'G2',
+      vehiculos: 1,  // solo premium
+      desglose: {
+        magna: 0,
+        premium: 1,  // 50 / 50 = 1
+        diesel: 0
+      }
+    });
+
+    expect(resultado[2].vehiculos).toBe(0); // Gasolinera inactiva
+  });
+
+  it('debería manejar valores personalizados de consumo por vehículo', () => {
+    const gasolinera = [
+      { 
+        nombre: 'G1', 
+        estaActiva: true, 
+        stock: { magna: 100, premium: 100, diesel: 100 } 
+      }
+    ];
+
+    const consumosPersonalizados = { magna: 25, premium: 20, diesel: 30 };
+    const resultado = calcularVehiculosAbastecidos(gasolinera, consumosPersonalizados);
+    
+    expect(resultado[0].desglose).toEqual({
+      magna: 4,    // 100 / 25 = 4
+      premium: 5,  // 100 / 20 = 5
+      diesel: 3    // 100 / 30 ≈ 3.33 → 3
+    });
   });
 });

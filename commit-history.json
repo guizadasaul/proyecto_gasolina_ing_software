@@ -797,5 +797,22 @@
     },
     "coverage": 0,
     "test_count": 27
+  },
+  {
+    "sha": "330a6a706b0b82e05e1cfcf18ab3a002cbe8d435",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-06T12:36:50.000Z",
+      "message": "test:visualizar cuantos vehiculos pueden cargar",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/330a6a706b0b82e05e1cfcf18ab3a002cbe8d435"
+    },
+    "stats": {
+      "total": 74,
+      "additions": 73,
+      "deletions": 1,
+      "date": "2025-05-06"
+    },
+    "coverage": 0,
+    "test_count": 29
   }
 ]
