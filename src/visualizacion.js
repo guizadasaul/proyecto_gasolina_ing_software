@@ -5,9 +5,10 @@ export function calcularEstados(gasolineras) {
     direccion: g.direccion,
     capacidad: g.capacidad,
     fila: g.fila,
-    horarioApertura: g.horarioApertura
+    horarioSemanal: g.horarioSemanal || undefined // Incluir horario semanal si está disponible
   }));
 }
+
 
 export function calcularNiveles(gasolineras) {
   return gasolineras

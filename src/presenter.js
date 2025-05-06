@@ -57,13 +57,77 @@ export function renderGasolineras(gasolineras, filtro = 'todos') {
     pDireccion.textContent = estacion.direccion;
     div.appendChild(pDireccion);
 
-    if (estacion.horarioApertura) {
-      const pHorario = document.createElement('p');
-      pHorario.className = 'horario-apertura';
-      pHorario.innerHTML = `<strong>Horario:</strong> ${estacion.horarioApertura}`;
-      div.appendChild(pHorario);
+    
+    // Mostrar horario semanal si está disponible
+    if (estacion.horarioSemanal) {
+      const divHorario = document.createElement('div');
+      divHorario.className = 'horario-semanal';
+      
+      const hTitulo = document.createElement('h4');
+      hTitulo.textContent = 'Horario de atención';
+      divHorario.appendChild(hTitulo);
+      
+      // Obtener el día actual y aplicar un estilo destacado
+      const diaActual = obtenerDiaActual();
+      
+      // Crear una tabla para los horarios
+      const tabla = document.createElement('table');
+      tabla.className = 'tabla-horarios';
+      tabla.style.width = '100%';
+      tabla.style.borderCollapse = 'collapse';
+      tabla.style.marginTop = '5px';
+      tabla.style.fontSize = '0.9em';
+      
+      const thead = document.createElement('thead');
+      const trHead = document.createElement('tr');
+      
+      const thDia = document.createElement('th');
+      thDia.textContent = 'Día';
+      thDia.style.textAlign = 'left';
+      thDia.style.padding = '3px';
+      
+      const thHorario = document.createElement('th');
+      thHorario.textContent = 'Horario';
+      thHorario.style.textAlign = 'left';
+      thHorario.style.padding = '3px';
+      
+      trHead.appendChild(thDia);
+      trHead.appendChild(thHorario);
+      thead.appendChild(trHead);
+      tabla.appendChild(thead);
+      
+      const tbody = document.createElement('tbody');
+      
+      const diasSemana = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
+      
+      diasSemana.forEach(dia => {
+        const tr = document.createElement('tr');
+        
+        if (dia === diaActual) {
+          tr.style.backgroundColor = '#f0f8ff';
+          tr.style.fontWeight = 'bold';
+        }
+        
+        const tdDia = document.createElement('td');
+        tdDia.textContent = dia.charAt(0).toUpperCase() + dia.slice(1);
+        tdDia.style.padding = '3px';
+        
+        const tdHorario = document.createElement('td');
+        tdHorario.textContent = estacion.horarioSemanal && estacion.horarioSemanal[dia] 
+          ? estacion.horarioSemanal[dia] 
+          : 'Cerrado';
+        tdHorario.style.padding = '3px';
+        
+        tr.appendChild(tdDia);
+        tr.appendChild(tdHorario);
+        tbody.appendChild(tr);
+      });
+      
+      tabla.appendChild(tbody);
+      divHorario.appendChild(tabla);
+      div.appendChild(divHorario);
     }
-
+    
     const ul = document.createElement('ul');
 
     if (nivelActual) {
@@ -82,9 +146,7 @@ export function renderGasolineras(gasolineras, filtro = 'todos') {
     if (estacion.coords) {
       const marker = L.marker(estacion.coords)
         .addTo(window.mapaGasolineras)
-        .bindPopup(`<strong>${estacion.nombre}</strong><br>${estacion.direccion}${
-          estacion.horarioApertura ? `<br><strong>Horario:</strong> ${estacion.horarioApertura}` : ''
-        }`);
+        .bindPopup(`<strong>${estacion.nombre}</strong><br>${estacion.direccion}`);
       // Evento para centrar mapa al hacer clic en la tarjeta
       div.addEventListener('click', () => {
         window.mapaGasolineras.setView(estacion.coords, 15);

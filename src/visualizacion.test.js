@@ -1,4 +1,4 @@
-import { calcularEstados, calcularNiveles, filtrarPorCombustible, calcularTiempoEspera } from './visualizacion.js';
+import { calcularEstados, calcularNiveles, filtrarPorCombustible, calcularTiempoEspera} from './visualizacion.js';
 
 describe('SP1.1 – Lógica de estados de gasolineras', () => {
   it('debería mostrar "Disponible" cuando la gasolinera está activa', () => {
@@ -154,25 +154,46 @@ describe('calcularTiempoEspera', () => {
   });
 });
 
-describe('SP1.5 – Mostrar horario de apertura de gasolineras', () => {
-  it('debería incluir el horario de apertura cuando está disponible', () => {
+describe('SP1.5 – Mostrar horario semanal de atención de gasolineras', () => {
+  it('debería incluir el horario semanal cuando está disponible', () => {
+    const horarioSemanal = {
+      lunes: '08:00 - 20:00',
+      martes: '08:00 - 20:00',
+      miercoles: '08:00 - 20:00',
+      jueves: '08:00 - 20:00',
+      viernes: '08:00 - 22:00',
+      sabado: '09:00 - 21:00',
+      domingo: '10:00 - 18:00'
+    };
+
     const datos = [
-      { nombre: 'G1', estaActiva: true, horarioApertura: '06:00 - 23:00' },
-      { nombre: 'G2', estaActiva: false, horarioApertura: '07:00 - 22:00' }
+      { nombre: 'G1', estaActiva: true, horarioSemanal }
     ];
-    const esperado = [
-      { nombre: 'G1', estado: 'Disponible', horarioApertura: '06:00 - 23:00' },
-      { nombre: 'G2', estado: 'No disponible', horarioApertura: '07:00 - 22:00' }
-    ];
-    expect(calcularEstados(datos)).toEqual(esperado);
+
+    const resultado = calcularEstados(datos);
+    expect(resultado[0].horarioSemanal).toEqual(horarioSemanal);
   });
-  
-  it('debería manejar gasolineras sin horario de apertura sin lanzar error', () => {
+
+  it('debería manejar gasolineras con horario semanal parcial', () => {
+    const horarioSemanal = {
+      lunes: '08:00 - 20:00',
+      viernes: '08:00 - 22:00'
+    };
+
+    const datos = [
+      { nombre: 'G1', estaActiva: true, horarioSemanal }
+    ];
+
+    const resultado = calcularEstados(datos);
+    expect(resultado[0].horarioSemanal).toEqual(horarioSemanal);
+  });
+
+  it('debería manejar gasolineras sin horario semanal sin lanzar error', () => {
     const datos = [
       { nombre: 'G1', estaActiva: true }
     ];
+
     const resultado = calcularEstados(datos);
-    expect(resultado[0]).toHaveProperty('estado');
-    expect(resultado[0].horarioApertura).toBeUndefined();
+    expect(resultado[0].horarioSemanal).toBeUndefined();
   });
 });

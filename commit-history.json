@@ -644,5 +644,22 @@
     },
     "coverage": 0,
     "test_count": 19
+  },
+  {
+    "sha": "9fbef5fee6587a9bb55d656309d9180e98301108",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-06T00:25:52.000Z",
+      "message": "feat: muestra los horarios semanales",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/9fbef5fee6587a9bb55d656309d9180e98301108"
+    },
+    "stats": {
+      "total": 192,
+      "additions": 165,
+      "deletions": 27,
+      "date": "2025-05-06"
+    },
+    "coverage": 0,
+    "test_count": 20
   }
 ]
