@@ -1,7 +1,28 @@
-import { calcularEstados, calcularNiveles, filtrarPorCombustible } from './visualizacion.js';
+import { calcularEstados, calcularNiveles, filtrarPorCombustible, calcularTiempoEspera, obtenerDiaActual } from './visualizacion.js';
 import { datosDemo } from './datosDemo.js';
-import { calcularTiempoEspera } from './tiempoEspera.js';
 
+function estaAbierta(gasolinera) {
+  // Obtener el día actual
+  const diaActual = obtenerDiaActual();
+  
+  // Obtener el horario para el día actual
+  const horarioDiaActual = gasolinera.horarioSemanal ? gasolinera.horarioSemanal[diaActual] : null;
+  
+  if (!horarioDiaActual) return false;
+
+  const ahora = new Date();
+  const [horaActual, minutoActual] = [ahora.getHours(), ahora.getMinutes()];
+  const [horaInicio, minutoInicio, horaFin, minutoFin] = horarioDiaActual
+    .replace(/:/g, ' ')
+    .split(/[- ]/)
+    .map(Number);
+
+  const inicioEnMinutos = horaInicio * 60 + minutoInicio;
+  const finEnMinutos = horaFin * 60 + minutoFin;
+  const actualEnMinutos = horaActual * 60 + minutoActual;
+
+  return actualEnMinutos >= inicioEnMinutos && actualEnMinutos <= finEnMinutos;
+}
 
 export function renderGasolineras(gasolineras, filtro = 'todos') {
   const contenedor = document.getElementById('gasolineras-lista');
@@ -24,11 +45,21 @@ export function renderGasolineras(gasolineras, filtro = 'todos') {
     });
   }
 
+  const gasolinerasConCoordenadas = datosDemo.filter(gas => gas.coords);
+  
+  gasolinerasConCoordenadas.forEach(gas => {
+    L.marker(gas.coords)
+      .addTo(window.mapaGasolineras)
+      .bindPopup(`<strong>${gas.nombre}</strong><br>${gas.direccion}`);
+  });
+
   const estaciones = calcularEstados(gasolineras);
   const niveles = calcularNiveles(gasolineras);
 
   estaciones.forEach((estacion, index) => {
     const nivelActual = niveles.find(n => n.nombre === estacion.nombre);
+    // Encontrar la gasolinera original con todos los datos
+    const gasolineraCompleta = gasolineras.find(g => g.nombre === estacion.nombre);
 
     if (filtro !== 'todos' && (!nivelActual || nivelActual.niveles[filtro] <= 0)) {
       return; // Si el filtro está activo y no hay stock, no renderizar esta gasolinera
@@ -41,7 +72,9 @@ export function renderGasolineras(gasolineras, filtro = 'todos') {
     h3.textContent = estacion.nombre;
 
     const pEstado = document.createElement('p');
-    pEstado.textContent = estacion.estado;
+    // Usar la función estaAbierta con la gasolinera completa
+    pEstado.textContent = estaAbierta(gasolineraCompleta) ? 'Abierta' : 'Cerrada';
+    pEstado.style.color = estaAbierta(gasolineraCompleta) ? 'green' : 'red';
 
     div.appendChild(h3);
     div.appendChild(pEstado);
@@ -50,6 +83,77 @@ export function renderGasolineras(gasolineras, filtro = 'todos') {
     pDireccion.textContent = estacion.direccion;
     div.appendChild(pDireccion);
 
+    
+    // Mostrar horario semanal si está disponible
+    if (estacion.horarioSemanal) {
+      const divHorario = document.createElement('div');
+      divHorario.className = 'horario-semanal';
+      
+      const hTitulo = document.createElement('h4');
+      hTitulo.textContent = 'Horario de atención';
+      divHorario.appendChild(hTitulo);
+      
+      // Obtener el día actual y aplicar un estilo destacado
+      const diaActual = obtenerDiaActual();
+      
+      // Crear una tabla para los horarios
+      const tabla = document.createElement('table');
+      tabla.className = 'tabla-horarios';
+      tabla.style.width = '100%';
+      tabla.style.borderCollapse = 'collapse';
+      tabla.style.marginTop = '5px';
+      tabla.style.fontSize = '0.9em';
+      
+      const thead = document.createElement('thead');
+      const trHead = document.createElement('tr');
+      
+      const thDia = document.createElement('th');
+      thDia.textContent = 'Día';
+      thDia.style.textAlign = 'left';
+      thDia.style.padding = '3px';
+      
+      const thHorario = document.createElement('th');
+      thHorario.textContent = 'Horario';
+      thHorario.style.textAlign = 'left';
+      thHorario.style.padding = '3px';
+      
+      trHead.appendChild(thDia);
+      trHead.appendChild(thHorario);
+      thead.appendChild(trHead);
+      tabla.appendChild(thead);
+      
+      const tbody = document.createElement('tbody');
+      
+      const diasSemana = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
+      
+      diasSemana.forEach(dia => {
+        const tr = document.createElement('tr');
+        
+        if (dia === diaActual) {
+          tr.style.backgroundColor = '#f0f8ff';
+          tr.style.fontWeight = 'bold';
+        }
+        
+        const tdDia = document.createElement('td');
+        tdDia.textContent = dia.charAt(0).toUpperCase() + dia.slice(1);
+        tdDia.style.padding = '3px';
+        
+        const tdHorario = document.createElement('td');
+        tdHorario.textContent = estacion.horarioSemanal && estacion.horarioSemanal[dia] 
+          ? estacion.horarioSemanal[dia] 
+          : 'Cerrado';
+        tdHorario.style.padding = '3px';
+        
+        tr.appendChild(tdDia);
+        tr.appendChild(tdHorario);
+        tbody.appendChild(tr);
+      });
+      
+      tabla.appendChild(tbody);
+      divHorario.appendChild(tabla);
+      div.appendChild(divHorario);
+    }
+    
     const ul = document.createElement('ul');
 
     if (nivelActual) {
@@ -69,7 +173,6 @@ export function renderGasolineras(gasolineras, filtro = 'todos') {
       const marker = L.marker(estacion.coords)
         .addTo(window.mapaGasolineras)
         .bindPopup(`<strong>${estacion.nombre}</strong><br>${estacion.direccion}`);
-      
       // Evento para centrar mapa al hacer clic en la tarjeta
       div.addEventListener('click', () => {
         window.mapaGasolineras.setView(estacion.coords, 15);
@@ -121,17 +224,18 @@ if (typeof document !== 'undefined') {
 
     renderGasolineras(datosDemo);
     const select1 = document.getElementById('filtro-combustible');
-  const select2 = document.getElementById('filtro-combustible-2');
+    const select2 = document.getElementById('filtro-combustible-2');
 
-  const aplicarFiltro = () => {
-    const tipo1 = select1.value;
-    const tipo2 = select2.value || null;
-    const filtradas = filtrarPorCombustible(datosDemo, tipo1, tipo2);
-    renderGasolineras(filtradas);
-  };
+    const aplicarFiltro = () => {
+      const tipo1 = select1.value;
+      const tipo2 = select2.value || null;
+      const filtradas = filtrarPorCombustible(datosDemo, tipo1, tipo2);
+      renderGasolineras(filtradas);
+    };
 
-  select1.addEventListener('change', aplicarFiltro);
-  select2.addEventListener('change', aplicarFiltro);
+    select1.addEventListener('change', aplicarFiltro);
+    if (select2) {
+      select2.addEventListener('change', aplicarFiltro);
+    }
   });
-
 }

@@ -1,4 +1,4 @@
-import { calcularEstados, calcularNiveles, filtrarPorCombustible } from './visualizacion.js';
+import { calcularEstados, calcularNiveles, filtrarPorCombustible, calcularTiempoEspera, obtenerDiaActual, obtenerHorarioDiaActual } from './visualizacion.js';
 
 describe('SP1.1 – Lógica de estados de gasolineras', () => {
   it('debería mostrar "Disponible" cuando la gasolinera está activa', () => {
@@ -137,5 +137,117 @@ describe('SP1.4 – Filtrar gasolineras por tipo de combustible', () => {
       { nombre: 'G2', estaActiva: true, stock: { magna: 0, premium: 8, diesel: 12 } },
       { nombre: 'G3', estaActiva: true, stock: { magna: 7, premium: 0, diesel: 15 } }
     ]);
+  });
+});
+
+describe('calcularTiempoEspera', () => {
+  it('Debe devolver 5 cuando hay 10 autos y capacidad es 2', () => {
+    expect(calcularTiempoEspera(10, 2)).toBe(5);
+  });
+
+  it('Debe devolver 0 si no hay autos en la fila', () => {
+    expect(calcularTiempoEspera(0, 5)).toBe(0);
+  });
+
+  it('Debe devolver Infinity si la capacidad es 0 (no se atiende a nadie)', () => {
+    expect(calcularTiempoEspera(5, 0)).toBe(Infinity);
+  });
+});
+
+describe('SP1.5 – Mostrar horario semanal de atención de gasolineras', () => {
+  it('debería incluir el horario semanal cuando está disponible', () => {
+    const horarioSemanal = {
+      lunes: '08:00 - 20:00',
+      martes: '08:00 - 20:00',
+      miercoles: '08:00 - 20:00',
+      jueves: '08:00 - 20:00',
+      viernes: '08:00 - 22:00',
+      sabado: '09:00 - 21:00',
+      domingo: '10:00 - 18:00'
+    };
+
+    const datos = [
+      { nombre: 'G1', estaActiva: true, horarioSemanal }
+    ];
+
+    const resultado = calcularEstados(datos);
+    expect(resultado[0].horarioSemanal).toEqual(horarioSemanal);
+  });
+
+  it('debería manejar gasolineras con horario semanal parcial', () => {
+    const horarioSemanal = {
+      lunes: '08:00 - 20:00',
+      viernes: '08:00 - 22:00'
+    };
+
+    const datos = [
+      { nombre: 'G1', estaActiva: true, horarioSemanal }
+    ];
+
+    const resultado = calcularEstados(datos);
+    expect(resultado[0].horarioSemanal).toEqual(horarioSemanal);
+  });
+
+  it('debería manejar gasolineras sin horario semanal sin lanzar error', () => {
+    const datos = [
+      { nombre: 'G1', estaActiva: true }
+    ];
+
+    const resultado = calcularEstados(datos);
+    expect(resultado[0].horarioSemanal).toBeUndefined();
+  });
+});
+
+describe('obtenerDiaActual', () => {
+  it('debería devolver un día de la semana válido', () => {
+    const diasValidos = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
+    const dia = obtenerDiaActual();
+    expect(diasValidos).toContain(dia);
+  });
+});
+
+describe('obtenerHorarioDiaActual', () => {
+  it('debería devolver el horario del día actual cuando existe', () => {
+    // Mockear la función obtenerDiaActual para pruebas consistentes
+    const diaOriginal = obtenerDiaActual();
+    global.Date = class extends Date {
+      getDay() {
+        return 1; // Lunes (0 es domingo, 1 es lunes, etc.)
+      }
+    };
+    
+    const horarioSemanal = {
+      lunes: '08:00 - 20:00',
+      martes: '09:00 - 21:00'
+    };
+    
+    expect(obtenerHorarioDiaActual(horarioSemanal)).toBe('08:00 - 20:00');
+    
+    // Restaurar la función original
+    global.Date = Date;
+  });
+  
+  it('debería devolver null cuando no hay horario para el día actual', () => {
+    // Mockear la función obtenerDiaActual para pruebas consistentes
+    global.Date = class extends Date {
+      getDay() {
+        return 3; // Miércoles
+      }
+    };
+    
+    const horarioSemanal = {
+      lunes: '08:00 - 20:00',
+      jueves: '09:00 - 21:00'
+    };
+    
+    expect(obtenerHorarioDiaActual(horarioSemanal)).toBeNull();
+    
+    // Restaurar la función original
+    global.Date = Date;
+  });
+  
+  it('debería devolver null cuando el horario semanal es null o undefined', () => {
+    expect(obtenerHorarioDiaActual(null)).toBeNull();
+    expect(obtenerHorarioDiaActual(undefined)).toBeNull();
   });
 });

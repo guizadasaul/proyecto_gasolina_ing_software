@@ -4,9 +4,11 @@ export function calcularEstados(gasolineras) {
     estado: g.estaActiva ? 'Disponible' : 'No disponible',
     direccion: g.direccion,
     capacidad: g.capacidad,
-    fila: g.fila
+    fila: g.fila,
+    horarioSemanal: g.horarioSemanal || undefined // Incluir horario semanal si está disponible
   }));
 }
+
 
 export function calcularNiveles(gasolineras) {
   return gasolineras
@@ -36,4 +38,24 @@ export function filtrarPorCombustible(gasolineras, tipo = 'todos') {
   return gasolinerasActivas.filter(g => {
     return g.stock && g.stock[tipo] > 0;
   });
+}
+
+export function calcularTiempoEspera(longitudFila, capacidadAtencion) {
+  if (capacidadAtencion === 0) 
+      return Infinity;
+  return longitudFila / capacidadAtencion;
+}
+
+// Función auxiliar para obtener el día actual de la semana
+export function obtenerDiaActual() {
+  const dias = ['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
+  const hoy = new Date().getDay();
+  return dias[hoy];
+}
+// Función para obtener el horario del día actual
+export function obtenerHorarioDiaActual(horarioSemanal) {
+  if (!horarioSemanal) return null;
+
+  const diaActual = obtenerDiaActual();
+  return horarioSemanal[diaActual] || null;
 }
