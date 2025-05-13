@@ -1,3 +1,43 @@
+// ====================
+// UTILIDADES DE TIEMPO
+// ====================
+
+export function obtenerDiaActual() {
+  const dias = ['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
+  return dias[new Date().getDay()];
+}
+
+export function obtenerHorarioDiaActual(horarioSemanal) {
+  if (!horarioSemanal) return null;
+  const dia = obtenerDiaActual();
+  return horarioSemanal[dia] || null;
+}
+
+export function estaAbierta(gasolinera) {
+  if (!gasolinera.estaActiva) return false;
+
+  const dia = obtenerDiaActual();
+  const horario = gasolinera.horarioSemanal?.[dia]?.toLowerCase();
+
+  if (!horario || horario === 'cerrado') return false;
+  if (horario.includes('24 horas')) return true;
+
+  const match = horario.match(/(\d{2}):(\d{2})\s*-\s*(\d{2}):(\d{2})/);
+  if (!match) return false;
+
+  const [, hInicio, mInicio, hFin, mFin] = match.map(Number);
+  const ahora = new Date();
+  const actualMin = ahora.getHours() * 60 + ahora.getMinutes();
+  const inicioMin = hInicio * 60 + mInicio;
+  const finMin = hFin * 60 + mFin;
+
+  return actualMin >= inicioMin && actualMin <= finMin;
+}
+
+// ====================
+// LÓGICA PRINCIPAL
+// ====================
+
 export function calcularEstados(gasolineras) {
   return gasolineras.map(g => ({
     nombre: g.nombre,
@@ -5,10 +45,11 @@ export function calcularEstados(gasolineras) {
     direccion: g.direccion,
     capacidad: g.capacidad,
     fila: g.fila,
-    horarioSemanal: g.horarioSemanal || undefined // Incluir horario semanal si está disponible
+    horarioSemanal: g.horarioSemanal || undefined,
+    coords: g.coords,
+    servicios: g.servicios
   }));
 }
-
 
 export function calcularNiveles(gasolineras) {
   return gasolineras
@@ -23,73 +64,47 @@ export function calcularNiveles(gasolineras) {
     }));
 }
 
-export function filtrarPorCombustible(gasolineras, tipo = 'todos') {
-  const gasolinerasActivas = gasolineras.filter(g => g.estaActiva);
-  
-  if (tipo === 'todos') {
-    return gasolinerasActivas;
-  }
-
-  const tiposValidos = ['magna', 'premium', 'diesel'];
-  if (!tiposValidos.includes(tipo)) {
-    return gasolinerasActivas;
-  }
-  
-  return gasolinerasActivas.filter(g => {
-    return g.stock && g.stock[tipo] > 0;
-  });
-}
-
-export function calcularTiempoEspera(longitudFila, capacidadAtencion) {
-  if (capacidadAtencion === 0) 
-      return Infinity;
-  return longitudFila / capacidadAtencion;
-}
-
-// Función auxiliar para obtener el día actual de la semana
-export function obtenerDiaActual() {
-  const dias = ['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
-  const hoy = new Date().getDay();
-  return dias[hoy];
-}
-// Función para obtener el horario del día actual
-export function obtenerHorarioDiaActual(horarioSemanal) {
-  if (!horarioSemanal) return null;
-
-  const diaActual = obtenerDiaActual();
-  return horarioSemanal[diaActual] || null;
-}
-
-export function filtrarPorServicio(gasolineras, servicio) {
-  return gasolineras.filter(estacion =>
-    estacion.servicios && estacion.servicios[servicio] === true
-  );
-}
-
-export function calcularVehiculosAbastecidos(gasolineras, consumos = { magna: 40, premium: 50, diesel: 60 }) {
-  return gasolineras.map(gasolinera => {
-    if (!gasolinera.estaActiva || !gasolinera.stock) {
+export function calcularVehiculosAbastecidos(
+  gasolineras,
+  consumos = { magna: 40, premium: 50, diesel: 60 }
+) {
+  return gasolineras.map(g => {
+    if (!g.estaActiva || !g.stock) {
       return {
-        nombre: gasolinera.nombre,
+        nombre: g.nombre,
         vehiculos: 0,
-        desglose: {
-          magna: 0,
-          premium: 0,
-          diesel: 0
-        }
+        desglose: { magna: 0, premium: 0, diesel: 0 }
       };
     }
-
     const desglose = {
-      magna: Math.floor((gasolinera.stock.magna || 0) / consumos.magna),
-      premium: Math.floor((gasolinera.stock.premium || 0) / consumos.premium),
-      diesel: Math.floor((gasolinera.stock.diesel || 0) / consumos.diesel)
+      magna: Math.floor((g.stock.magna || 0) / consumos.magna),
+      premium: Math.floor((g.stock.premium || 0) / consumos.premium),
+      diesel: Math.floor((g.stock.diesel || 0) / consumos.diesel)
     };
-
     return {
-      nombre: gasolinera.nombre,
+      nombre: g.nombre,
       vehiculos: desglose.magna + desglose.premium + desglose.diesel,
       desglose
     };
   });
+}
+
+export function calcularTiempoEspera(fila, capacidad) {
+  if (capacidad === 0) return Infinity;
+  if (fila === 0) return 0;
+  return Math.ceil(fila / capacidad);
+}
+
+// ====================
+// FILTRADO
+// ====================
+
+export function filtrarPorCombustible(gasolineras, tipo = 'todos') {
+  const activas = gasolineras.filter(g => g.estaActiva);
+  if (tipo === 'todos') return activas;
+  return activas.filter(g => g.stock?.[tipo] > 0);
+}
+
+export function filtrarPorServicio(gasolineras, servicio) {
+  return gasolineras.filter(g => g.servicios?.[servicio] === true);
 }

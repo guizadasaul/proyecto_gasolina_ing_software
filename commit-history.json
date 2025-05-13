@@ -848,5 +848,22 @@
     },
     "coverage": 0,
     "test_count": 34
+  },
+  {
+    "sha": "3c5f32c81d601461efea6b1823cde155d881f839",
+    "author": "SantiSaaUCB",
+    "commit": {
+      "date": "2025-05-13T15:00:45.000Z",
+      "message": "fix: Arreglos presenter, visualizacion, datos, test",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/3c5f32c81d601461efea6b1823cde155d881f839"
+    },
+    "stats": {
+      "total": 1001,
+      "additions": 377,
+      "deletions": 624,
+      "date": "2025-05-13"
+    },
+    "coverage": 0,
+    "test_count": 34
   }
 ]
