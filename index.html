@@ -4,10 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>GasolinaYa</title>
-    <link rel="stylesheet" href="./src/style.css">
-    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="./src/styles/main.css"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   </head>
   <body>
@@ -22,18 +20,16 @@
           <option value="diesel">Diesel</option>
         </select>
         <button id="aplicar-filtro">Aplicar Filtro</button>
-        
         <div class="filtros-servicios">
-          <label><input type="checkbox" id="filtro-banos"> Baños</label>
-          <label><input type="checkbox" id="filtro-tienda"> Tienda</label>
-          <label><input type="checkbox" id="filtro-aire"> Aire</label>
+          <label><input type="checkbox" id="filtro-banos"/> Baños</label>
+          <label><input type="checkbox" id="filtro-tienda"/> Tienda</label>
+          <label><input type="checkbox" id="filtro-aire"/> Aire</label>
         </div>
         <button id="btn-aplicar-filtros">Aplicar Filtros</button>
       </div>
     </header>
-
     <div id="gasolineras-lista"></div>
     <div id="mapaG1"></div>
-    <script type="module" src="./src/presenter.js"></script> 
+    <script type="module" src="./src/presenter.js"></script>
   </body>
 </html>

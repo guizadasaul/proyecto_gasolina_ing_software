@@ -1,19 +1,10 @@
 import {
   calcularEstados,
   calcularNiveles,
-  filtrarPorCombustible,
-  calcularTiempoEspera,
-  obtenerDiaActual,
-  obtenerHorarioDiaActual,
-  filtrarPorServicio,
-  calcularVehiculosAbastecidos
-} from './visualizacion.js';
+  calcularVehiculosAbastecidos,
+  calcularTiempoEspera
+} from '../utils/calcUtils.js';
 
-import { datosDemo } from './datosDemo.js';
-
-//
-// === SP1.1 – Estado de gasolineras ===
-//
 describe('SP1.1 – Lógica de estados de gasolineras', () => {
   it('debería mostrar "Disponible" cuando la gasolinera está activa', () => {
     const datos = [{ nombre: 'G1', estaActiva: true }];
@@ -56,9 +47,6 @@ describe('SP1.1 – Lógica de estados de gasolineras', () => {
   });
 });
 
-//
-// === SP1.2 – Ver niveles de combustible ===
-//
 describe('SP1.2 – Ver niveles de combustible', () => {
   it('debería incluir solo gasolineras activas con sus niveles', () => {
     const datos = [
@@ -94,9 +82,6 @@ describe('SP1.2 – Ver niveles de combustible', () => {
   });
 });
 
-//
-// === SP1.3 – Mostrar dirección ===
-//
 describe('SP1.3 – Mostrar dirección de gasolineras', () => {
   it('debería incluir la dirección de cada gasolinera', () => {
     const datos = [
@@ -117,41 +102,6 @@ describe('SP1.3 – Mostrar dirección de gasolineras', () => {
   });
 });
 
-//
-// === SP1.4 – Filtrar por combustible ===
-//
-describe('SP1.4 – Filtrar gasolineras por tipo de combustible', () => {
-  const gasolineras = [
-    { nombre: 'G1', estaActiva: true, stock: { magna: 10, premium: 5, diesel: 0 } },
-    { nombre: 'G2', estaActiva: true, stock: { magna: 0, premium: 8, diesel: 12 } },
-    { nombre: 'G3', estaActiva: true, stock: { magna: 7, premium: 0, diesel: 15 } },
-    { nombre: 'G4', estaActiva: false, stock: { magna: 5, premium: 3, diesel: 2 } }
-  ];
-
-  it('debería mostrar todas las gasolineras activas cuando el filtro es "todos"', () => {
-    const resultado = filtrarPorCombustible(gasolineras, 'todos');
-    expect(resultado.length).toBe(3);
-  });
-
-  it('debería usar "todos" como filtro predeterminado si no se especifica', () => {
-    const resultado = filtrarPorCombustible(gasolineras);
-    expect(resultado.length).toBe(3);
-  });
-
-  it('debería filtrar gasolineras activas con magna disponible cuando el filtro es "magna"', () => {
-    const resultado = filtrarPorCombustible(gasolineras, 'magna');
-    expect(resultado.map(g => g.nombre)).toEqual(['G1', 'G3']);
-  });
-
-  it('debería filtrar gasolineras activas con diesel disponible cuando el filtro es "diesel"', () => {
-    const resultado = filtrarPorCombustible(gasolineras, 'diesel');
-    expect(resultado.map(g => g.nombre)).toEqual(['G2', 'G3']);
-  });
-});
-
-//
-// === SP1.5 – Mostrar horario semanal ===
-//
 describe('SP1.5 – Mostrar horario semanal', () => {
   it('debería incluir el horario semanal cuando está disponible', () => {
     const horarioSemanal = {
@@ -177,9 +127,6 @@ describe('SP1.5 – Mostrar horario semanal', () => {
   });
 });
 
-//
-// === SP1.6 – Calcular tiempo de espera ===
-//
 describe('SP1.6 – Calcular tiempo de espera', () => {
   it('Debe devolver 5 cuando hay 10 autos y capacidad es 2', () => {
     expect(calcularTiempoEspera(10, 2)).toBe(5);
@@ -194,60 +141,6 @@ describe('SP1.6 – Calcular tiempo de espera', () => {
   });
 });
 
-//
-// === SP1.7 – Funciones auxiliares ===
-//
-describe('SP1.7 – Funciones auxiliares de fecha y horario', () => {
-  it('obtenerDiaActual: debería devolver un día de la semana válido', () => {
-    const diasValidos = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
-    const dia = obtenerDiaActual();
-    expect(diasValidos).toContain(dia);
-  });
-
-  it('obtenerHorarioDiaActual: debería devolver el horario del día actual cuando existe', () => {
-    const horario = {
-      lunes: '08:00 - 20:00',
-      martes: '09:00 - 21:00'
-    };
-    const diaActual = obtenerDiaActual();
-    const resultado = obtenerHorarioDiaActual(horario);
-    expect(typeof resultado === 'string' || resultado === null).toBeTruthy();
-  });
-
-  it('obtenerHorarioDiaActual: debería devolver null cuando el horario no existe', () => {
-    const resultado = obtenerHorarioDiaActual({});
-    expect(resultado).toBeNull();
-  });
-
-  it('obtenerHorarioDiaActual: debería devolver null cuando el horario es null o undefined', () => {
-    expect(obtenerHorarioDiaActual(null)).toBeNull();
-    expect(obtenerHorarioDiaActual(undefined)).toBeNull();
-  });
-});
-
-//
-// === SP1.8 – Filtrar gasolineras por servicio ===
-//
-describe('SP1.8 – Filtrar gasolineras por servicio adicional', () => {
-  it('debería devolver solo gasolineras con baños disponibles', () => {
-    const resultado = filtrarPorServicio(datosDemo, 'banos');
-    expect(resultado.every(g => g.servicios?.banos)).toBe(true);
-  });
-
-  it('debería devolver solo gasolineras con tienda disponibles', () => {
-    const resultado = filtrarPorServicio(datosDemo, 'tienda');
-    expect(resultado.every(g => g.servicios?.tienda)).toBe(true);
-  });
-
-  it('debería devolver solo gasolineras con aire disponibles', () => {
-    const resultado = filtrarPorServicio(datosDemo, 'aire');
-    expect(resultado.every(g => g.servicios?.aire)).toBe(true);
-  });
-});
-
-//
-// === SP1.9 – Calcular vehículos que pueden cargar ===
-//
 describe('SP1.9 – Calcular vehículos que pueden cargar', () => {
   const defaultGasolinera = {
     nombre: 'G1',

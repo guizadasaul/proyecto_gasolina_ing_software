@@ -2,15 +2,19 @@ import {
   calcularEstados,
   calcularNiveles,
   calcularVehiculosAbastecidos,
-  calcularTiempoEspera,
+  calcularTiempoEspera
+} from './utils/calcUtils.js';
+import {
   estaAbierta,
   obtenerDiaActual,
-  obtenerHorarioDiaActual,
+  obtenerHorarioDiaActual
+} from './utils/timeUtils.js';
+import {
   filtrarPorCombustible,
   filtrarPorServicio
-} from './visualizacion.js';
-
-import { datosDemo } from './datosDemo.js';
+} from './utils/filterUtils.js';
+import { demoStations } from './data/demoStations.js';
+import { initMap, clearMarkers } from './components/map.js';
 
 const contenedor = document.getElementById('gasolineras-lista');
 const filtroSelect = document.getElementById('filtro-combustible');
@@ -20,24 +24,10 @@ const chkTienda = document.getElementById('filtro-tienda');
 const chkAire = document.getElementById('filtro-aire');
 const btnServicios = document.getElementById('btn-aplicar-filtros');
 
-function initMapa() {
-  if (!window.mapaGasolineras) {
-    window.mapaGasolineras = L.map('mapaG1').setView([-17.3747, -66.1568], 15);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(window.mapaGasolineras);
-  }
-}
-
 function renderizarTarjetasYMapa(gasolineras) {
   contenedor.innerHTML = '';
-  initMapa();
-
-  window.mapaGasolineras.eachLayer(layer => {
-    if (layer instanceof L.Marker) {
-      window.mapaGasolineras.removeLayer(layer);
-    }
-  });
+  initMap();
+  clearMarkers();
 
   const estados = calcularEstados(gasolineras);
   const niveles = calcularNiveles(gasolineras);
@@ -132,7 +122,7 @@ function renderizarTarjetasYMapa(gasolineras) {
 }
 
 function aplicarFiltros() {
-  let lista = datosDemo;
+  let lista = demoStations;
   lista = filtrarPorCombustible(lista, filtroSelect.value);
   if (chkBanos.checked) lista = filtrarPorServicio(lista, 'banos');
   if (chkTienda.checked) lista = filtrarPorServicio(lista, 'tienda');
@@ -143,5 +133,5 @@ function aplicarFiltros() {
 document.addEventListener('DOMContentLoaded', () => {
   aplicarFiltroBtn.addEventListener('click', aplicarFiltros);
   btnServicios.addEventListener('click', aplicarFiltros);
-  renderizarTarjetasYMapa(datosDemo);
+  renderizarTarjetasYMapa(demoStations);
 });

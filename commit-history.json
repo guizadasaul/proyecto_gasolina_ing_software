@@ -865,5 +865,22 @@
     },
     "coverage": 0,
     "test_count": 34
+  },
+  {
+    "sha": "cd40db0f2a333c5aa59cf59f6d265d1b31080e7b",
+    "author": "SantiSaaUCB",
+    "commit": {
+      "date": "2025-05-15T13:53:38.000Z",
+      "message": "refactor: ordenar codigo",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/cd40db0f2a333c5aa59cf59f6d265d1b31080e7b"
+    },
+    "stats": {
+      "total": 1322,
+      "additions": 657,
+      "deletions": 665,
+      "date": "2025-05-15"
+    },
+    "coverage": 0,
+    "test_count": 34
   }
 ]
