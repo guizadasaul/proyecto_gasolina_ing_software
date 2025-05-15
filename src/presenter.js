@@ -1,137 +1,137 @@
 import {
   calcularEstados,
   calcularNiveles,
-  calcularVehiculosAbastecidos,
+  calcularCapacidadDeAbastecimiento,
   calcularTiempoEspera
-} from './utils/calcUtils.js';
+} from './utils/CalculoGasolinera.js';
 import {
-  estaAbierta,
-  obtenerDiaActual,
+  gasolineraEstaAbierta,
+  obtenerNombreDiaActual,
   obtenerHorarioDiaActual
-} from './utils/timeUtils.js';
+} from './utils/HorarioGasolinera.js';
 import {
   filtrarPorCombustible,
   filtrarPorServicio
-} from './utils/filterUtils.js';
-import { demoStations } from './data/demoStations.js';
+} from './utils/FiltroGasolinera.js';
+import { GasolinerasDemo as gasolinerasDatos } from './data/DatosDemo.js';
 import { initMap, clearMarkers } from './components/map.js';
 
-const contenedor = document.getElementById('gasolineras-lista');
-const filtroSelect = document.getElementById('filtro-combustible');
-const aplicarFiltroBtn = document.getElementById('aplicar-filtro');
-const chkBanos = document.getElementById('filtro-banos');
-const chkTienda = document.getElementById('filtro-tienda');
-const chkAire = document.getElementById('filtro-aire');
-const btnServicios = document.getElementById('btn-aplicar-filtros');
+const listaGasolineras = document.getElementById('gasolineras-lista');
+const selectCombustible = document.getElementById('filtro-combustible');
+const botonFiltrarCombustible = document.getElementById('aplicar-filtro');
+const chkFiltroBanos = document.getElementById('filtro-banos');
+const chkFiltroTienda = document.getElementById('filtro-tienda');
+const chkFiltroAire = document.getElementById('filtro-aire');
+const botonFiltrarServicios = document.getElementById('btn-aplicar-filtros');
 
-function renderizarTarjetasYMapa(gasolineras) {
-  contenedor.innerHTML = '';
+function renderizarGasolineras(gasolineras) {
+  listaGasolineras.innerHTML = '';
   initMap();
   clearMarkers();
 
   const estados = calcularEstados(gasolineras);
-  const niveles = calcularNiveles(gasolineras);
-  const abastecidos = calcularVehiculosAbastecidos(gasolineras);
+  const nivelesCombustible = calcularNiveles(gasolineras);
+  const datosAbastecimiento = calcularCapacidadDeAbastecimiento(gasolineras);
 
-  estados.forEach(estacion => {
-    const g = gasolineras.find(x => x.nombre === estacion.nombre);
-    const nivel = niveles.find(n => n.nombre === estacion.nombre);
-    const abastecimiento = abastecidos.find(v => v.nombre === estacion.nombre);
+  estados.forEach(estadoGasolinera => {
+    const gasolinera = gasolineras.find(g => g.nombre === estadoGasolinera.nombre);
+    const nivel = nivelesCombustible.find(n => n.nombre === estadoGasolinera.nombre);
+    const abastecimiento = datosAbastecimiento.find(a => a.nombre === estadoGasolinera.nombre);
 
-    const div = document.createElement('div');
-    div.className = 'gasolinera';
+    const tarjeta = document.createElement('div');
+    tarjeta.className = 'gasolinera';
 
-    const h3 = document.createElement('h3');
-    h3.textContent = estacion.nombre;
-    div.appendChild(h3);
+    const titulo = document.createElement('h3');
+    titulo.textContent = estadoGasolinera.nombre;
+    tarjeta.appendChild(titulo);
 
-    const estadoP = document.createElement('p');
-    const abierta = g.estaActiva && estaAbierta(g);
-    estadoP.className = 'estado ' + (abierta ? 'estado-disponible' : 'estado-no-disponible');
-    estadoP.textContent = abierta ? 'Abierta' : 'Cerrada';
-    div.appendChild(estadoP);
+    const parrafoEstado = document.createElement('p');
+    const estaDisponible = gasolinera.estaActiva && gasolineraEstaAbierta(gasolinera);
+    parrafoEstado.className = 'estado ' + (estaDisponible ? 'estado-disponible' : 'estado-no-disponible');
+    parrafoEstado.textContent = estaDisponible ? 'Abierta' : 'Cerrada';
+    tarjeta.appendChild(parrafoEstado);
 
-    const dirP = document.createElement('p');
-    dirP.className = 'direccion';
-    dirP.textContent = estacion.direccion;
-    div.appendChild(dirP);
+    const parrafoDireccion = document.createElement('p');
+    parrafoDireccion.className = 'direccion';
+    parrafoDireccion.textContent = estadoGasolinera.direccion;
+    tarjeta.appendChild(parrafoDireccion);
 
-    const diaActual = obtenerDiaActual();
-    const horarioHoy = obtenerHorarioDiaActual(g.horarioSemanal) || 'No disponible';
-    const horarioP = document.createElement('p');
-    horarioP.innerHTML = `<strong>${diaActual.charAt(0).toUpperCase() + diaActual.slice(1)}:</strong> ${horarioHoy}`;
-    div.appendChild(horarioP);
+    const diaHoy = obtenerNombreDiaActual();
+    const horarioHoy = obtenerHorarioDiaActual(gasolinera.horarioSemanal) || 'No disponible';
+    const parrafoHorario = document.createElement('p');
+    parrafoHorario.innerHTML = `<strong>${diaHoy.charAt(0).toUpperCase() + diaHoy.slice(1)}:</strong> ${horarioHoy}`;
+    tarjeta.appendChild(parrafoHorario);
 
     if (nivel) {
-      const ul = document.createElement('ul');
-      for (const tipo of ['magna', 'premium', 'diesel']) {
-        const li = document.createElement('li');
-        const cantidad = nivel.niveles[tipo];
-        const tipoCapitalizado = tipo.charAt(0).toUpperCase() + tipo.slice(1);
-        li.textContent = `${tipoCapitalizado}: ${cantidad} L`;
-        li.className = cantidad > 0 ? 'combustible-disponible' : 'combustible-agotado';
-        ul.appendChild(li);
+      const listaCombustibles = document.createElement('ul');
+      for (const tipoCombustible of ['magna', 'premium', 'diesel']) {
+        const item = document.createElement('li');
+        const cantidad = nivel.niveles[tipoCombustible];
+        const nombreTipo = tipoCombustible.charAt(0).toUpperCase() + tipoCombustible.slice(1);
+        item.textContent = `${nombreTipo}: ${cantidad} L`;
+        item.className = cantidad > 0 ? 'combustible-disponible' : 'combustible-agotado';
+        listaCombustibles.appendChild(item);
       }
-      div.appendChild(ul);
+      tarjeta.appendChild(listaCombustibles);
     }
 
     if (abastecimiento?.vehiculos > 0) {
-      const seccion = document.createElement('div');
-      seccion.innerHTML = `<h4>Capacidad Aproximada de Atencion</h4>
+      const seccionAbastecimiento = document.createElement('div');
+      seccionAbastecimiento.innerHTML = `<h4>Capacidad Aproximada de Atencion</h4>
         <p><strong>Aprox:</strong> ${abastecimiento.vehiculos} vehículos</p>`;
 
-      const ulv = document.createElement('ul');
+      const listaVehiculos = document.createElement('ul');
       for (const [tipo, cantidad] of Object.entries(abastecimiento.desglose)) {
         if (cantidad > 0) {
-          const tipoCapitalizado = tipo.charAt(0).toUpperCase() + tipo.slice(1);
-          const li = document.createElement('li');
-          li.textContent = `${tipoCapitalizado} - Aprox: ${cantidad} vehículos`;
-          ulv.appendChild(li);
+          const nombreTipo = tipo.charAt(0).toUpperCase() + tipo.slice(1);
+          const item = document.createElement('li');
+          item.textContent = `${nombreTipo} - Aprox: ${cantidad} vehículos`;
+          listaVehiculos.appendChild(item);
         }
       }
-      seccion.appendChild(ulv);
-      div.appendChild(seccion);
+      seccionAbastecimiento.appendChild(listaVehiculos);
+      tarjeta.appendChild(seccionAbastecimiento);
     }
 
-    if (g.servicios) {
-      const serviciosDiv = document.createElement('div');
-      serviciosDiv.className = 'servicios';
-      if (g.servicios.banos) serviciosDiv.innerHTML += `<span class="icono-servicio" title="Baños">🚻</span>`;
-      if (g.servicios.tienda) serviciosDiv.innerHTML += `<span class="icono-servicio" title="Tienda">🛒</span>`;
-      if (g.servicios.aire) serviciosDiv.innerHTML += `<span class="icono-servicio" title="Aire">⛽️</span>`;
-      div.appendChild(serviciosDiv);
+    if (gasolinera.servicios) {
+      const contenedorServicios = document.createElement('div');
+      contenedorServicios.className = 'servicios';
+      if (gasolinera.servicios.banos) contenedorServicios.innerHTML += `<span class="icono-servicio" title="Baños">🚻</span>`;
+      if (gasolinera.servicios.tienda) contenedorServicios.innerHTML += `<span class="icono-servicio" title="Tienda">🛒</span>`;
+      if (gasolinera.servicios.aire) contenedorServicios.innerHTML += `<span class="icono-servicio" title="Aire">⛽️</span>`;
+      tarjeta.appendChild(contenedorServicios);
     }
 
-    const espera = calcularTiempoEspera(estacion.fila ?? 0, estacion.capacidad ?? 1);
-    const esperaP = document.createElement('p');
-    esperaP.innerHTML = `<strong>Tiempo Aproximado de Espera:</strong> ${isFinite(espera) ? espera + ' minutos' : 'N/A'}`;
-    div.appendChild(esperaP);
+    const tiempoEspera = calcularTiempoEspera(estadoGasolinera.fila ?? 0, estadoGasolinera.capacidad ?? 1);
+    const parrafoEspera = document.createElement('p');
+    parrafoEspera.innerHTML = `<strong>Tiempo Aproximado de Espera:</strong> ${isFinite(tiempoEspera) ? tiempoEspera + ' minutos' : 'N/A'}`;
+    tarjeta.appendChild(parrafoEspera);
 
-    contenedor.appendChild(div);
+    listaGasolineras.appendChild(tarjeta);
 
-    if (estacion.coords) {
-      const marker = L.marker(estacion.coords)
+    if (estadoGasolinera.coords) {
+      const marcador = L.marker(estadoGasolinera.coords)
         .addTo(window.mapaGasolineras)
-        .bindPopup(`<strong>${estacion.nombre}</strong><br>${estacion.direccion}`);
-      div.addEventListener('click', () => {
-        window.mapaGasolineras.setView(estacion.coords, 15);
-        marker.openPopup();
+        .bindPopup(`<strong>${estadoGasolinera.nombre}</strong><br>${estadoGasolinera.direccion}`);
+      tarjeta.addEventListener('click', () => {
+        window.mapaGasolineras.setView(estadoGasolinera.coords, 15);
+        marcador.openPopup();
       });
     }
   });
 }
 
 function aplicarFiltros() {
-  let lista = demoStations;
-  lista = filtrarPorCombustible(lista, filtroSelect.value);
-  if (chkBanos.checked) lista = filtrarPorServicio(lista, 'banos');
-  if (chkTienda.checked) lista = filtrarPorServicio(lista, 'tienda');
-  if (chkAire.checked) lista = filtrarPorServicio(lista, 'aire');
-  renderizarTarjetasYMapa(lista);
+  let gasolinerasFiltradas = gasolinerasDatos;
+  gasolinerasFiltradas = filtrarPorCombustible(gasolinerasFiltradas, selectCombustible.value);
+  if (chkFiltroBanos.checked) gasolinerasFiltradas = filtrarPorServicio(gasolinerasFiltradas, 'banos');
+  if (chkFiltroTienda.checked) gasolinerasFiltradas = filtrarPorServicio(gasolinerasFiltradas, 'tienda');
+  if (chkFiltroAire.checked) gasolinerasFiltradas = filtrarPorServicio(gasolinerasFiltradas, 'aire');
+  renderizarGasolineras(gasolinerasFiltradas);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  aplicarFiltroBtn.addEventListener('click', aplicarFiltros);
-  btnServicios.addEventListener('click', aplicarFiltros);
-  renderizarTarjetasYMapa(demoStations);
+  botonFiltrarCombustible.addEventListener('click', aplicarFiltros);
+  botonFiltrarServicios.addEventListener('click', aplicarFiltros);
+  renderizarGasolineras(gasolinerasDatos);
 });

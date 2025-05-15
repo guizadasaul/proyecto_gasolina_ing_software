@@ -1,9 +1,9 @@
 import {
   calcularEstados,
   calcularNiveles,
-  calcularVehiculosAbastecidos,
+  calcularCapacidadDeAbastecimiento,
   calcularTiempoEspera
-} from '../utils/calcUtils.js';
+} from '../utils/CalculoGasolinera.js';
 
 describe('SP1.1 – Lógica de estados de gasolineras', () => {
   it('debería mostrar "Disponible" cuando la gasolinera está activa', () => {
@@ -149,7 +149,7 @@ describe('SP1.9 – Calcular vehículos que pueden cargar', () => {
   };
 
   it('debería calcular correctamente usando divisiones por tipo de combustible', () => {
-    const [r] = calcularVehiculosAbastecidos([defaultGasolinera]);
+    const [r] = calcularCapacidadDeAbastecimiento([defaultGasolinera]);
     expect(r).toEqual({
       nombre: 'G1',
       vehiculos: 13,
@@ -162,36 +162,36 @@ describe('SP1.9 – Calcular vehículos que pueden cargar', () => {
   });
 
   it('debería retornar 0 vehículos si la gasolinera está inactiva', () => {
-    const [r] = calcularVehiculosAbastecidos([{ ...defaultGasolinera, estaActiva: false }]);
+    const [r] = calcularCapacidadDeAbastecimiento([{ ...defaultGasolinera, estaActiva: false }]);
     expect(r.vehiculos).toBe(0);
   });
 
   it('debería retornar 0 vehículos si no hay stock', () => {
-    const [r] = calcularVehiculosAbastecidos([{ nombre: 'G2', estaActiva: true, stock: { magna: 0, premium: 0, diesel: 0 } }]);
+    const [r] = calcularCapacidadDeAbastecimiento([{ nombre: 'G2', estaActiva: true, stock: { magna: 0, premium: 0, diesel: 0 } }]);
     expect(r.vehiculos).toBe(0);
   });
 
   it('debería retornar 0 si no tiene stock definido', () => {
-    const [r] = calcularVehiculosAbastecidos([{ nombre: 'G3', estaActiva: true }]);
+    const [r] = calcularCapacidadDeAbastecimiento([{ nombre: 'G3', estaActiva: true }]);
     expect(r.vehiculos).toBe(0);
     expect(r.desglose).toEqual({ magna: 0, premium: 0, diesel: 0 });
   });
 
   it('debería redondear hacia abajo correctamente', () => {
     const stock = { magna: 39, premium: 49, diesel: 59 };
-    const [r] = calcularVehiculosAbastecidos([{ nombre: 'G4', estaActiva: true, stock }]);
+    const [r] = calcularCapacidadDeAbastecimiento([{ nombre: 'G4', estaActiva: true, stock }]);
     expect(r.desglose).toEqual({ magna: 0, premium: 0, diesel: 0 });
   });
 
   it('debería ignorar combustibles no estándar', () => {
     const stock = { magna: 80, premium: 50, diesel: 60, electrico: 1000 };
-    const [r] = calcularVehiculosAbastecidos([{ nombre: 'G5', estaActiva: true, stock }]);
+    const [r] = calcularCapacidadDeAbastecimiento([{ nombre: 'G5', estaActiva: true, stock }]);
     expect(r.desglose).toEqual({ magna: 2, premium: 1, diesel: 1 });
     expect(r.vehiculos).toBe(4);
   });
 
   it('debería mantener la estructura incluso con datos incompletos', () => {
-    const [r] = calcularVehiculosAbastecidos([{ nombre: 'G6', estaActiva: true }]);
+    const [r] = calcularCapacidadDeAbastecimiento([{ nombre: 'G6', estaActiva: true }]);
     expect(r).toHaveProperty('desglose');
     expect(r.desglose).toEqual({ magna: 0, premium: 0, diesel: 0 });
   });

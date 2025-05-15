@@ -1,9 +1,9 @@
-import { obtenerDiaActual, obtenerHorarioDiaActual } from '../utils/timeUtils.js';
+import { obtenerNombreDiaActual, obtenerHorarioDiaActual } from '../utils/HorarioGasolinera.js';
 
 describe('SP1.7 – Funciones auxiliares de fecha y horario', () => {
   it('obtenerDiaActual: debería devolver un día de la semana válido', () => {
     const diasValidos = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
-    const dia = obtenerDiaActual();
+    const dia = obtenerNombreDiaActual();
     expect(diasValidos).toContain(dia);
   });
 
@@ -12,7 +12,7 @@ describe('SP1.7 – Funciones auxiliares de fecha y horario', () => {
       lunes: '08:00 - 20:00',
       martes: '09:00 - 21:00'
     };
-    const diaActual = obtenerDiaActual();
+    const diaActual = obtenerNombreDiaActual();
     const resultado = obtenerHorarioDiaActual(horario);
     expect(typeof resultado === 'string' || resultado === null).toBeTruthy();
   });

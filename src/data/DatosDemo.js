@@ -1,4 +1,4 @@
-export const demoStations = [
+export const GasolinerasDemo = [
      {
           nombre: "Gasolinera Central",
           estaActiva: true,

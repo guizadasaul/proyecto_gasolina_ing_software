@@ -1,5 +1,5 @@
-import { demoStations } from '../data/demoStations.js';
-import { filtrarPorCombustible, filtrarPorServicio } from '../utils/filterUtils.js';
+import { GasolinerasDemo } from '../data/DatosDemo.js';
+import { filtrarPorCombustible, filtrarPorServicio } from '../utils/FiltroGasolinera.js';
 
 describe('SP1.4 – Filtrar gasolineras por tipo de combustible', () => {
   const gasolineras = [
@@ -32,17 +32,17 @@ describe('SP1.4 – Filtrar gasolineras por tipo de combustible', () => {
 
 describe('SP1.8 – Filtrar gasolineras por servicio adicional', () => {
   it('debería devolver solo gasolineras con baños disponibles', () => {
-    const resultado = filtrarPorServicio(demoStations, 'banos');
+    const resultado = filtrarPorServicio(GasolinerasDemo, 'banos');
     expect(resultado.every(g => g.servicios?.banos)).toBe(true);
   });
 
   it('debería devolver solo gasolineras con tienda disponibles', () => {
-    const resultado = filtrarPorServicio(demoStations, 'tienda');
+    const resultado = filtrarPorServicio(GasolinerasDemo, 'tienda');
     expect(resultado.every(g => g.servicios?.tienda)).toBe(true);
   });
 
   it('debería devolver solo gasolineras con aire disponibles', () => {
-    const resultado = filtrarPorServicio(demoStations, 'aire');
+    const resultado = filtrarPorServicio(GasolinerasDemo, 'aire');
     expect(resultado.every(g => g.servicios?.aire)).toBe(true);
   });
 });
