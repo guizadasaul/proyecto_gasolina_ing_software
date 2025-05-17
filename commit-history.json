@@ -899,5 +899,22 @@
     },
     "coverage": 0,
     "test_count": 34
+  },
+  {
+    "sha": "23fc15346a35425e7cd6492bc83790f9cc3c803c",
+    "author": "SantiSaaUCB",
+    "commit": {
+      "date": "2025-05-17T05:34:43.000Z",
+      "message": "fix: arreglo vista gasolineras",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/23fc15346a35425e7cd6492bc83790f9cc3c803c"
+    },
+    "stats": {
+      "total": 665,
+      "additions": 403,
+      "deletions": 262,
+      "date": "2025-05-17"
+    },
+    "coverage": 0,
+    "test_count": 34
   }
 ]
