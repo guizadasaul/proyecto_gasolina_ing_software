@@ -916,5 +916,22 @@
     },
     "coverage": 0,
     "test_count": 34
+  },
+  {
+    "sha": "8af939d0101a54392f6ad75fe478618b413f10aa",
+    "author": "SantiSaaUCB",
+    "commit": {
+      "date": "2025-05-18T15:15:11.000Z",
+      "message": "fix: Arreglo tam tarjetas",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/8af939d0101a54392f6ad75fe478618b413f10aa"
+    },
+    "stats": {
+      "total": 2,
+      "additions": 1,
+      "deletions": 1,
+      "date": "2025-05-18"
+    },
+    "coverage": 0,
+    "test_count": 34
   }
 ]

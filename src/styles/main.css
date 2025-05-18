@@ -228,7 +228,7 @@ button#btn-aplicar-filtros:hover {
   position: absolute;
   top: calc(100% + 10px);
   left: 0;
-  width: 100%;
+  width: 88%;
   background-color: white;
   box-shadow: var(--sombra-suave);
   border-radius: var(--borde-redondeado);
