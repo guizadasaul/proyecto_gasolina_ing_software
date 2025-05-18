@@ -6,6 +6,7 @@ export function getEstacionesActivas() {
     .filter(e => e.activa)
     .map(({ value, label }) => ({ value, label }));
 }
+
 export function validarSeleccion(estacionValue, tipo, litros) {
   if (estacionValue === null || estacionValue === undefined || estacionValue === '') {
     return { valid: false, mensaje: 'Por favor selecciona una gasolinera.' };
@@ -17,4 +18,14 @@ export function validarSeleccion(estacionValue, tipo, litros) {
     return { valid: false, mensaje: 'Por favor ingresa un valor entre 1 y 50 litros.' };
   }
   return { valid: true, mensaje: '' };
+}
+
+export function procesarSeleccion(estacionValue, tipo, litros) {
+  const { valid, mensaje } = validarSeleccion(estacionValue, tipo, litros);
+  if (!valid) return { valid, mensaje };
+  const estacion = GasolinerasDemo[estacionValue];
+return {
+     valid: true,
+     mensaje: `Selección exitosa: ${litros} L de ${tipo.charAt(0).toUpperCase() + tipo.slice(1)} en ${estacion.nombre}. Proceso de reserva en curso...`,
+};
 }

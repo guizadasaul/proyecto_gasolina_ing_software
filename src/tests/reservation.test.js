@@ -39,4 +39,15 @@ describe('SP2.1 – Reserva de combustible', () => {
       expect(validarSeleccion(0, 'premium', 20)).toEqual({ valid: true, mensaje: '' });
     });
   });
+  describe('procesarSeleccion', () => {
+    it('debe retornar error si la validación falla', () => {
+      expect(procesarSeleccion(null, 'magna', 10)).toEqual({ valid: false, mensaje: 'Por favor selecciona una gasolinera.' });
+    });
+
+    it('debe retornar mensaje de éxito en selección válida', () => {
+      const resultado = procesarSeleccion(0, 'magna', 10);
+      expect(resultado.valid).toBe(true);
+      expect(resultado.mensaje).toBe('Selección exitosa: 10 L de Magna en Estación de Servicio América. Proceso de reserva en curso...');
+    });
+  });
 });

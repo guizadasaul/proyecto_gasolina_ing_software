@@ -17,7 +17,8 @@ import { GasolinerasDemo as gasolinerasDatos } from './data/DatosDemo.js';
 import { initMap, clearMarkers } from './components/map.js';
 import {
   getEstacionesActivas,
-  validarSeleccion
+  validarSeleccion,
+  procesarSeleccion
 } from './components/reservation.js';
 
 const listaGasolineras = document.getElementById('gasolineras-lista');
