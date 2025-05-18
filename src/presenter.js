@@ -15,7 +15,7 @@ import {
 } from './utils/FiltroGasolinera.js';
 import { GasolinerasDemo as gasolinerasDatos } from './data/DatosDemo.js';
 import { initMap, clearMarkers } from './components/map.js';
-import { initReservation } from './components/reservation.js';
+
 
 const listaGasolineras = document.getElementById('gasolineras-lista');
 const selectCombustible = document.getElementById('filtro-combustible');
@@ -57,7 +57,7 @@ function renderizarGasolineras(gasolineras) {
 
     const parrafoDireccion = document.createElement('p');
     parrafoDireccion.className = 'direccion';
-    parrafoDireccion.textContent = estadoGasolinera.direccion;
+    parrafoDireccion.textContent = gasolinera.direccion;
     resumen.appendChild(parrafoDireccion);
 
     const diaHoy = obtenerNombreDiaActual();
@@ -148,7 +148,5 @@ document.addEventListener('DOMContentLoaded', () => {
   botonFiltrarCombustible.addEventListener('click', aplicarFiltros);
   botonFiltrarServicios.addEventListener('click', aplicarFiltros);
   renderizarGasolineras(gasolinerasDatos);
-  initReservation('reserva-estacion','reserva-tipo','form-reserva','reserva-mensaje', () => {
-    renderizarGasolineras(gasolinerasDatos);
-  });
+  
 });

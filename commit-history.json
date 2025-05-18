@@ -950,5 +950,22 @@
     },
     "coverage": 0,
     "test_count": 34
+  },
+  {
+    "sha": "0ab31144cb0d2bbeccd1cb59625f80fcaf6f8242",
+    "author": "SantiSaaUCB",
+    "commit": {
+      "date": "2025-05-18T18:04:20.000Z",
+      "message": "feat: hacer una reserva de combustible",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/0ab31144cb0d2bbeccd1cb59625f80fcaf6f8242"
+    },
+    "stats": {
+      "total": 38,
+      "additions": 33,
+      "deletions": 5,
+      "date": "2025-05-18"
+    },
+    "coverage": 0,
+    "test_count": 35
   }
 ]
