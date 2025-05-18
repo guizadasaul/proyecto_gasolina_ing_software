@@ -30,6 +30,26 @@
     </header>
     <div id="gasolineras-lista"></div>
     <div id="mapaG1"></div>
+
+    <section id="reserva-seccion">
+      <h2>Reservar Combustible</h2>
+      <form id="form-reserva">
+        <label for="reserva-estacion">Selecciona gasolinera:</label>
+        <select id="reserva-estacion"></select>
+        <label for="reserva-tipo">Tipo de combustible:</label>
+        <select id="reserva-tipo">
+          <option value="" disabled selected>Selecciona tipo</option>
+          <option value="magna">Magna</option>
+          <option value="premium">Premium</option>
+          <option value="diesel">Diesel</option>
+        </select>
+        <label for="reserva-litros">Litros a reservar (1-50):</label>
+        <input type="number" id="reserva-litros" name="reserva-litros" min="1" max="50" value="1"/>
+        <button type="submit" id="btn-reservar">Reservar</button>
+      </form>
+      <div id="reserva-mensaje"></div>
+    </section>
+
     <script type="module" src="./src/presenter.js"></script>
   </body>
 </html>

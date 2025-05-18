@@ -933,5 +933,22 @@
     },
     "coverage": 0,
     "test_count": 34
+  },
+  {
+    "sha": "fef54fb17dda6d902ba0df215e2048f8f1c06a06",
+    "author": "SantiSaaUCB",
+    "commit": {
+      "date": "2025-05-18T15:56:24.000Z",
+      "message": "feat: index reservas",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/fef54fb17dda6d902ba0df215e2048f8f1c06a06"
+    },
+    "stats": {
+      "total": 87,
+      "additions": 87,
+      "deletions": 0,
+      "date": "2025-05-18"
+    },
+    "coverage": 0,
+    "test_count": 34
   }
 ]

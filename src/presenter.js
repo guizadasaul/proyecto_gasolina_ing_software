@@ -15,6 +15,7 @@ import {
 } from './utils/FiltroGasolinera.js';
 import { GasolinerasDemo as gasolinerasDatos } from './data/DatosDemo.js';
 import { initMap, clearMarkers } from './components/map.js';
+import { initReservation } from './components/reservation.js';
 
 const listaGasolineras = document.getElementById('gasolineras-lista');
 const selectCombustible = document.getElementById('filtro-combustible');
@@ -147,4 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
   botonFiltrarCombustible.addEventListener('click', aplicarFiltros);
   botonFiltrarServicios.addEventListener('click', aplicarFiltros);
   renderizarGasolineras(gasolinerasDatos);
+  initReservation('reserva-estacion','reserva-tipo','form-reserva','reserva-mensaje', () => {
+    renderizarGasolineras(gasolinerasDatos);
+  });
 });
