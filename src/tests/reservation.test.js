@@ -19,4 +19,24 @@ describe('SP2.1 – Reserva de combustible', () => {
       });
     });
   });
+  describe('validarSeleccion', () => {
+    it('debe falla si estacionValue no está definido', () => {
+      expect(validarSeleccion(null, 'magna', 10)).toEqual({ valid: false, mensaje: 'Por favor selecciona una gasolinera.' });
+      expect(validarSeleccion('', 'magna', 10)).toEqual({ valid: false, mensaje: 'Por favor selecciona una gasolinera.' });
+    });
+
+    it('debe falla si tipo no está definido', () => {
+      expect(validarSeleccion(0, '', 10)).toEqual({ valid: false, mensaje: 'Por favor selecciona un tipo de combustible.' });
+    });
+
+    it('debe falla si litros no es número o está fuera de rango', () => {
+      expect(validarSeleccion(0, 'diesel', NaN)).toEqual({ valid: false, mensaje: 'Por favor ingresa un valor entre 1 y 50 litros.' });
+      expect(validarSeleccion(0, 'diesel', 0)).toEqual({ valid: false, mensaje: 'Por favor ingresa un valor entre 1 y 50 litros.' });
+      expect(validarSeleccion(0, 'diesel', 51)).toEqual({ valid: false, mensaje: 'Por favor ingresa un valor entre 1 y 50 litros.' });
+    });
+
+    it('debe validar entrada correcta', () => {
+      expect(validarSeleccion(0, 'premium', 20)).toEqual({ valid: true, mensaje: '' });
+    });
+  });
 });

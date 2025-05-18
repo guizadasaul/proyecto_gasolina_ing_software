@@ -15,7 +15,10 @@ import {
 } from './utils/FiltroGasolinera.js';
 import { GasolinerasDemo as gasolinerasDatos } from './data/DatosDemo.js';
 import { initMap, clearMarkers } from './components/map.js';
-
+import {
+  getEstacionesActivas,
+  validarSeleccion
+} from './components/reservation.js';
 
 const listaGasolineras = document.getElementById('gasolineras-lista');
 const selectCombustible = document.getElementById('filtro-combustible');
@@ -144,9 +147,51 @@ function aplicarFiltros() {
   renderizarGasolineras(gasolinerasFiltradas);
 }
 
+function initReservation(selectId, tipoId, formId, messageId, onSuccess) {
+  const selectEstacion = document.getElementById(selectId);
+  const selectTipo = document.getElementById(tipoId);
+  const form = document.getElementById(formId);
+  const mensaje = document.getElementById(messageId);
+  const inputLitros = document.getElementById('reserva-litros');
+
+  selectEstacion.innerHTML = '';
+  const defaultOption = document.createElement('option');
+  defaultOption.value = '';
+  defaultOption.disabled = true;
+  defaultOption.selected = true;
+  defaultOption.textContent = 'Selecciona una estación';
+  selectEstacion.appendChild(defaultOption);
+
+  getEstacionesActivas().forEach(({ value, label }) => {
+    const option = document.createElement('option');
+    option.value = value;
+    option.textContent = label;
+    selectEstacion.appendChild(option);
+  });
+
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    const estacionValue = selectEstacion.value;
+    const tipo = selectTipo.value;
+    const litros = parseFloat(inputLitros.value);
+    const validation = validarSeleccion(estacionValue, tipo, litros);
+    if (!validation.valid) {
+      mensaje.textContent = validation.mensaje;
+      mensaje.className = 'error';
+      return;
+    }
+    const resultado = procesarSeleccion(estacionValue, tipo, litros);
+    mensaje.textContent = resultado.mensaje;
+    mensaje.className = resultado.valid ? 'success' : 'error';
+    if (resultado.valid) onSuccess();
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   botonFiltrarCombustible.addEventListener('click', aplicarFiltros);
   botonFiltrarServicios.addEventListener('click', aplicarFiltros);
   renderizarGasolineras(gasolinerasDatos);
-  
+  initReservation('reserva-estacion', 'reserva-tipo', 'form-reserva', 'reserva-mensaje', () => {
+    renderizarGasolineras(gasolinerasDatos);
+  });
 });

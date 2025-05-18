@@ -967,5 +967,22 @@
     },
     "coverage": 0,
     "test_count": 35
+  },
+  {
+    "sha": "337df6c53851842cad9fe1d4728968a7e8059c05",
+    "author": "SantiSaaUCB",
+    "commit": {
+      "date": "2025-05-18T18:09:16.000Z",
+      "message": "feat: validar campos de seleccion",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/337df6c53851842cad9fe1d4728968a7e8059c05"
+    },
+    "stats": {
+      "total": 81,
+      "additions": 79,
+      "deletions": 2,
+      "date": "2025-05-18"
+    },
+    "coverage": 0,
+    "test_count": 39
   }
 ]
