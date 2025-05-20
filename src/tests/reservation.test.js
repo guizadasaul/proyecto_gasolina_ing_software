@@ -2,7 +2,8 @@ import { GasolinerasDemo } from '../data/DatosDemo.js';
 import {
   getEstacionesActivas,
   validarSeleccion,
-  procesarSeleccion
+  procesarSeleccion,
+  verificarDisponibilidad,
 } from '../components/reservation.js';
 
 describe('SP2.1 – Reserva de combustible', () => {
@@ -43,11 +44,60 @@ describe('SP2.1 – Reserva de combustible', () => {
     it('debe retornar error si la validación falla', () => {
       expect(procesarSeleccion(null, 'magna', 10)).toEqual({ valid: false, mensaje: 'Por favor selecciona una gasolinera.' });
     });
+  });
+});
 
-    it('debe retornar mensaje de éxito en selección válida', () => {
-      const resultado = procesarSeleccion(0, 'magna', 10);
-      expect(resultado.valid).toBe(true);
-      expect(resultado.mensaje).toBe('Selección exitosa: 10 L de Magna en Estación de Servicio América. Proceso de reserva en curso...');
-    });
+describe('SP2.2-VerificarDisponibilidad', () => {
+  const nivelEstacion = {
+    niveles: {
+      magna: 40,
+      premium: 10,
+      diesel: 0
+    }
+  };
+
+  it('devuelve true si hay suficiente combustible', () => {
+    expect(verificarDisponibilidad({}, 'magna', 20, nivelEstacion)).toBe(true);
+  });
+
+  it('devuelve false si no hay suficiente combustible', () => {
+    expect(verificarDisponibilidad({}, 'premium', 20, nivelEstacion)).toBe(false);
+  });
+
+  it('devuelve false si el tipo no existe', () => {
+    expect(verificarDisponibilidad({}, 'inexistente', 5, nivelEstacion)).toBe(false);
+  });
+
+  it('devuelve false si nivelEstacion es inválido', () => {
+    expect(verificarDisponibilidad({}, 'magna', 5, null)).toBe(false);
+  });
+});
+
+describe('SP2.2-ProcesarSeleccion', () => {
+  const estacion = { nombre: 'Gasolinera 1' };
+  const nivelEstacion = {
+    nombre: 'Gasolinera 1',
+    niveles: {
+      magna: 50,
+      premium: 0
+    }
+  };
+
+  it('reserva exitosa si hay suficiente combustible', () => {
+    const res = procesarSeleccion(estacion, 'magna', 10, nivelEstacion);
+    expect(res.valid).toBe(true);
+    expect(res.mensaje).toMatch(/¡Reserva exitosa!/);
+  });
+
+  it('falla si no hay suficiente combustible', () => {
+    const res = procesarSeleccion(estacion, 'premium', 10, nivelEstacion);
+    expect(res.valid).toBe(false);
+    expect(res.mensaje).toMatch(/no hay suficiente/);
+  });
+
+  it('falla si los datos de entrada no son válidos', () => {
+    const res = procesarSeleccion(estacion, '', 10, nivelEstacion);
+    expect(res.valid).toBe(false);
+    expect(res.mensaje).toMatch(/Por favor selecciona un tipo de combustible/);
   });
 });

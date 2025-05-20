@@ -20,12 +20,33 @@ export function validarSeleccion(estacionValue, tipo, litros) {
   return { valid: true, mensaje: '' };
 }
 
-export function procesarSeleccion(estacionValue, tipo, litros) {
-  const { valid, mensaje } = validarSeleccion(estacionValue, tipo, litros);
+export function verificarDisponibilidad(estacion, tipo, litros, nivelEstacion) {
+  // nivelEstacion es el objeto de niveles para esta estación específica
+  if (!nivelEstacion || !nivelEstacion.niveles || typeof nivelEstacion.niveles[tipo] !== 'number') {
+    return false;
+  }
+  return nivelEstacion.niveles[tipo] >= litros;
+}
+
+export function procesarSeleccion(estacion, tipo, litros, nivelEstacion) {
+  // Primero validamos los datos de entrada
+  const { valid, mensaje } = validarSeleccion(estacion?.nombre, tipo, litros);
   if (!valid) return { valid, mensaje };
-  const estacion = GasolinerasDemo[estacionValue];
-return {
-     valid: true,
-     mensaje: `Selección exitosa: ${litros} L de ${tipo.charAt(0).toUpperCase() + tipo.slice(1)} en ${estacion.nombre}. Proceso de reserva en curso...`,
-};
+
+  // Verificamos la disponibilidad de combustible
+  const hayDisponibilidad = verificarDisponibilidad(estacion, tipo, litros, nivelEstacion);
+
+  if (hayDisponibilidad) {
+    return {
+      valid: true,
+      mensaje: `¡Reserva exitosa! ${litros} L de ${tipo.charAt(0).toUpperCase() + tipo.slice(1)} en ${estacion.nombre} han sido reservados.`,
+      reservaConfirmada: true
+    };
+  } else {
+    return {
+      valid: false,
+      mensaje: `Lo sentimos, no hay suficiente ${tipo} disponible en ${estacion.nombre} para completar su reserva de ${litros} L.`,
+      reservaConfirmada: false
+    };
+  }
 }

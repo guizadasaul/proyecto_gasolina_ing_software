@@ -175,13 +175,20 @@ function initReservation(selectId, tipoId, formId, messageId, onSuccess) {
     const estacionValue = selectEstacion.value;
     const tipo = selectTipo.value;
     const litros = parseFloat(inputLitros.value);
+
+    // Calcula los niveles y obtiene la estación y su nivel
+    const nivelesCombustible = calcularNiveles(gasolinerasDatos);
+    const estacion = gasolinerasDatos[estacionValue];
+    const nivelEstacion = nivelesCombustible.find(n => n.nombre === estacion.nombre);
+
     const validation = validarSeleccion(estacionValue, tipo, litros);
     if (!validation.valid) {
       mensaje.textContent = validation.mensaje;
       mensaje.className = 'error';
       return;
     }
-    const resultado = procesarSeleccion(estacionValue, tipo, litros);
+    // Pasa los datos calculados a procesarSeleccion
+    const resultado = procesarSeleccion(estacion, tipo, litros, nivelEstacion);
     mensaje.textContent = resultado.mensaje;
     mensaje.className = resultado.valid ? 'success' : 'error';
     if (resultado.valid) onSuccess();

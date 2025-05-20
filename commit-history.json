@@ -1001,5 +1001,90 @@
     },
     "coverage": 0,
     "test_count": 41
+  },
+  {
+    "sha": "c42eab3e2927192165232c92ecab00edd260a3bd",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-20T04:58:47.000Z",
+      "message": "feat: recibe correctamente los niveles de combustible de las gasolineras",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/c42eab3e2927192165232c92ecab00edd260a3bd"
+    },
+    "stats": {
+      "total": 62,
+      "additions": 47,
+      "deletions": 15,
+      "date": "2025-05-20"
+    },
+    "coverage": 0,
+    "test_count": 44
+  },
+  {
+    "sha": "4e89d300027c183c78e0d02904ec69940d468721",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-20T05:02:09.000Z",
+      "message": "feat: procesar seleccion",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/4e89d300027c183c78e0d02904ec69940d468721"
+    },
+    "stats": {
+      "total": 17,
+      "additions": 17,
+      "deletions": 0,
+      "date": "2025-05-20"
+    },
+    "coverage": 0,
+    "test_count": 45
+  },
+  {
+    "sha": "429ce8cc55c564f607aa64ba64999dca7e41bcca",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-20T05:03:18.000Z",
+      "message": "feat: valida que si hay combustible suficiente",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/429ce8cc55c564f607aa64ba64999dca7e41bcca"
+    },
+    "stats": {
+      "total": 17,
+      "additions": 17,
+      "deletions": 0,
+      "date": "2025-05-20"
+    },
+    "coverage": 0,
+    "test_count": 46
+  },
+  {
+    "sha": "31c3a5d676c7e7139dd92385cba50711f1920e2c",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-20T05:04:15.000Z",
+      "message": "feat: valida cuando no hay gasolina suficiente para la reserva",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/31c3a5d676c7e7139dd92385cba50711f1920e2c"
+    },
+    "stats": {
+      "total": 12,
+      "additions": 12,
+      "deletions": 0,
+      "date": "2025-05-20"
+    },
+    "coverage": 0,
+    "test_count": 47
+  },
+  {
+    "sha": "868ee09937faaeb7600537d4df5c9b17fd9786f5",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-20T05:08:58.000Z",
+      "message": "style: cambio de color cuando no hay gasolina suficiente para la reserva",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/868ee09937faaeb7600537d4df5c9b17fd9786f5"
+    },
+    "stats": {
+      "total": 10,
+      "additions": 10,
+      "deletions": 0,
+      "date": "2025-05-20"
+    },
+    "coverage": 0,
+    "test_count": 47
   }
 ]

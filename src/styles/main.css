@@ -330,3 +330,13 @@ button#btn-aplicar-filtros:hover {
   font-weight: 500;
   color: var(--color-disponible);
 }
+
+/* Nuevo: mensaje de error en rojo */
+#reserva-mensaje.error {
+  color: var(--color-no-disponible);
+}
+
+/* Opcional: mensaje de éxito en verde */
+#reserva-mensaje.success {
+  color: var(--color-disponible);
+}
