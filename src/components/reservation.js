@@ -42,5 +42,11 @@ export function procesarSeleccion(estacion, tipo, litros, nivelEstacion) {
       mensaje: `¡Reserva exitosa! ${litros} L de ${tipo.charAt(0).toUpperCase() + tipo.slice(1)} en ${estacion.nombre} han sido reservados.`,
       reservaConfirmada: true
     };
+  } else {
+    return {
+      valid: false,
+      mensaje: `Lo sentimos, no hay suficiente ${tipo} disponible en ${estacion.nombre} para completar su reserva de ${litros} L.`,
+      reservaConfirmada: false
+    };
   }
 }

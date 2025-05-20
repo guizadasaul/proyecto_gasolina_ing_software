@@ -1052,5 +1052,22 @@
     },
     "coverage": 0,
     "test_count": 46
+  },
+  {
+    "sha": "31c3a5d676c7e7139dd92385cba50711f1920e2c",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-20T05:04:15.000Z",
+      "message": "feat: valida cuando no hay gasolina suficiente para la reserva",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/31c3a5d676c7e7139dd92385cba50711f1920e2c"
+    },
+    "stats": {
+      "total": 12,
+      "additions": 12,
+      "deletions": 0,
+      "date": "2025-05-20"
+    },
+    "coverage": 0,
+    "test_count": 47
   }
 ]

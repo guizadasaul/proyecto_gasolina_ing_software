@@ -89,6 +89,12 @@ describe('SP2.2-ProcesarSeleccion', () => {
     expect(res.mensaje).toMatch(/¡Reserva exitosa!/);
   });
 
+  it('falla si no hay suficiente combustible', () => {
+    const res = procesarSeleccion(estacion, 'premium', 10, nivelEstacion);
+    expect(res.valid).toBe(false);
+    expect(res.mensaje).toMatch(/no hay suficiente/);
+  });
+
   it('falla si los datos de entrada no son válidos', () => {
     const res = procesarSeleccion(estacion, '', 10, nivelEstacion);
     expect(res.valid).toBe(false);
