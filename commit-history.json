@@ -1035,5 +1035,22 @@
     },
     "coverage": 0,
     "test_count": 45
+  },
+  {
+    "sha": "429ce8cc55c564f607aa64ba64999dca7e41bcca",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-20T05:03:18.000Z",
+      "message": "feat: valida que si hay combustible suficiente",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/429ce8cc55c564f607aa64ba64999dca7e41bcca"
+    },
+    "stats": {
+      "total": 17,
+      "additions": 17,
+      "deletions": 0,
+      "date": "2025-05-20"
+    },
+    "coverage": 0,
+    "test_count": 46
   }
 ]
