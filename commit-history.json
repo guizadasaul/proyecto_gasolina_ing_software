@@ -1001,5 +1001,22 @@
     },
     "coverage": 0,
     "test_count": 41
+  },
+  {
+    "sha": "c42eab3e2927192165232c92ecab00edd260a3bd",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-20T04:58:47.000Z",
+      "message": "feat: recibe correctamente los niveles de combustible de las gasolineras",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/c42eab3e2927192165232c92ecab00edd260a3bd"
+    },
+    "stats": {
+      "total": 62,
+      "additions": 47,
+      "deletions": 15,
+      "date": "2025-05-20"
+    },
+    "coverage": 0,
+    "test_count": 44
   }
 ]
