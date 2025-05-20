@@ -1018,5 +1018,22 @@
     },
     "coverage": 0,
     "test_count": 44
+  },
+  {
+    "sha": "4e89d300027c183c78e0d02904ec69940d468721",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-20T05:02:09.000Z",
+      "message": "feat: procesar seleccion",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/4e89d300027c183c78e0d02904ec69940d468721"
+    },
+    "stats": {
+      "total": 17,
+      "additions": 17,
+      "deletions": 0,
+      "date": "2025-05-20"
+    },
+    "coverage": 0,
+    "test_count": 45
   }
 ]

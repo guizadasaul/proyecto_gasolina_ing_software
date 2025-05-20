@@ -72,3 +72,20 @@ describe('SP2.2-VerificarDisponibilidad', () => {
     expect(verificarDisponibilidad({}, 'magna', 5, null)).toBe(false);
   });
 });
+
+describe('SP2.2-ProcesarSeleccion', () => {
+  const estacion = { nombre: 'Gasolinera 1' };
+  const nivelEstacion = {
+    nombre: 'Gasolinera 1',
+    niveles: {
+      magna: 50,
+      premium: 0
+    }
+  };
+
+  it('falla si los datos de entrada no son válidos', () => {
+    const res = procesarSeleccion(estacion, '', 10, nivelEstacion);
+    expect(res.valid).toBe(false);
+    expect(res.mensaje).toMatch(/Por favor selecciona un tipo de combustible/);
+  });
+});
