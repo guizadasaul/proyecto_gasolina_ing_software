@@ -13,7 +13,14 @@ import {
   filtrarPorCombustible,
   filtrarPorServicio
 } from './utils/FiltroGasolinera.js';
-import { GasolinerasDemo as gasolinerasDatos } from './data/DatosDemo.js';
+import {
+  cargarGasolineras,
+  guardarGasolineras,
+  resetearGasolineras
+} from './components/storage.js';
+
+let gasolinerasDatos = cargarGasolineras();
+
 import { initMap, clearMarkers } from './components/map.js';
 import {
   getEstacionesActivas,
@@ -172,26 +179,34 @@ function initReservation(selectId, tipoId, formId, messageId, onSuccess) {
 
   form.addEventListener('submit', event => {
     event.preventDefault();
-    const estacionValue = selectEstacion.value;
+    const estacionIndex = selectEstacion.value;
     const tipo = selectTipo.value;
     const litros = parseFloat(inputLitros.value);
 
-    // Calcula los niveles y obtiene la estación y su nivel
+    if (estacionIndex === '') {
+      mensaje.textContent = 'Por favor selecciona una gasolinera.';
+      mensaje.className = 'error';
+      return;
+    }
+
+    const estacion = gasolinerasDatos[estacionIndex];
     const nivelesCombustible = calcularNiveles(gasolinerasDatos);
-    const estacion = gasolinerasDatos[estacionValue];
     const nivelEstacion = nivelesCombustible.find(n => n.nombre === estacion.nombre);
 
-    const validation = validarSeleccion(estacionValue, tipo, litros);
+    const validation = validarSeleccion(estacion?.nombre, tipo, litros);
     if (!validation.valid) {
       mensaje.textContent = validation.mensaje;
       mensaje.className = 'error';
       return;
     }
-    // Pasa los datos calculados a procesarSeleccion
+
     const resultado = procesarSeleccion(estacion, tipo, litros, nivelEstacion);
     mensaje.textContent = resultado.mensaje;
     mensaje.className = resultado.valid ? 'success' : 'error';
-    if (resultado.valid) onSuccess();
+    if (resultado.valid) {
+      guardarGasolineras(gasolinerasDatos);
+      onSuccess();
+    }
   });
 }
 
@@ -202,4 +217,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initReservation('reserva-estacion', 'reserva-tipo', 'form-reserva', 'reserva-mensaje', () => {
     renderizarGasolineras(gasolinerasDatos);
   });
+});
+
+document.getElementById('btn-resetear').addEventListener('click', () => {
+  resetearGasolineras();
+  location.reload();
 });

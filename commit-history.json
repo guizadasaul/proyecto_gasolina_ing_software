@@ -1086,5 +1086,22 @@
     },
     "coverage": 0,
     "test_count": 47
+  },
+  {
+    "sha": "220cc8b98b9b3a4d36ae2b6053c6811bc3b99559",
+    "author": "SantiSaaUCB",
+    "commit": {
+      "date": "2025-05-20T13:52:16.000Z",
+      "message": "feat: Arreglos visualizacion y guardado de datos",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/220cc8b98b9b3a4d36ae2b6053c6811bc3b99559"
+    },
+    "stats": {
+      "total": 82,
+      "additions": 70,
+      "deletions": 12,
+      "date": "2025-05-20"
+    },
+    "coverage": 0,
+    "test_count": 47
   }
 ]

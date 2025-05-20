@@ -331,12 +331,26 @@ button#btn-aplicar-filtros:hover {
   color: var(--color-disponible);
 }
 
-/* Nuevo: mensaje de error en rojo */
 #reserva-mensaje.error {
   color: var(--color-no-disponible);
 }
 
-/* Opcional: mensaje de éxito en verde */
 #reserva-mensaje.success {
   color: var(--color-disponible);
+}
+
+#btn-resetear {
+  background-color: transparent;
+  color: var(--color-rojo-apagado);
+  border: 2px solid var(--color-rojo-apagado);
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+#btn-resetear:hover {
+  background-color: var(--color-rojo-claro);
+  color: white;
 }

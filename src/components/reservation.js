@@ -21,7 +21,6 @@ export function validarSeleccion(estacionValue, tipo, litros) {
 }
 
 export function verificarDisponibilidad(estacion, tipo, litros, nivelEstacion) {
-  // nivelEstacion es el objeto de niveles para esta estación específica
   if (!nivelEstacion || !nivelEstacion.niveles || typeof nivelEstacion.niveles[tipo] !== 'number') {
     return false;
   }
@@ -29,14 +28,15 @@ export function verificarDisponibilidad(estacion, tipo, litros, nivelEstacion) {
 }
 
 export function procesarSeleccion(estacion, tipo, litros, nivelEstacion) {
-  // Primero validamos los datos de entrada
   const { valid, mensaje } = validarSeleccion(estacion?.nombre, tipo, litros);
   if (!valid) return { valid, mensaje };
 
-  // Verificamos la disponibilidad de combustible
   const hayDisponibilidad = verificarDisponibilidad(estacion, tipo, litros, nivelEstacion);
 
   if (hayDisponibilidad) {
+    if (estacion.stock?.[tipo] !== undefined) {
+      estacion.stock[tipo] -= litros;
+    }
     return {
       valid: true,
       mensaje: `¡Reserva exitosa! ${litros} L de ${tipo.charAt(0).toUpperCase() + tipo.slice(1)} en ${estacion.nombre} han sido reservados.`,
