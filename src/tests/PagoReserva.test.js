@@ -14,5 +14,11 @@ describe('Pago de reserva', () => {
     expect(resultado.metodo).toBe('QR');
   });
 
-});
+  
+  it('debería procesar pago con tarjeta correctamente', () => {
+    const resultado = procesarPago(reservaEjemplo, 'tarjeta');
+    expect(resultado.exito).toBe(true);
+    expect(resultado.metodo).toBe('tarjeta');
+  });
 
+});

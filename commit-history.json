@@ -1120,5 +1120,22 @@
     },
     "coverage": 0,
     "test_count": 48
+  },
+  {
+    "sha": "72534ae9f7f7619105df32c90740c7032e9f8aca",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-21T22:37:49.000Z",
+      "message": "test: añadimos nuevo test para el metodo de pago tarjeta",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/72534ae9f7f7619105df32c90740c7032e9f8aca"
+    },
+    "stats": {
+      "total": 10,
+      "additions": 8,
+      "deletions": 2,
+      "date": "2025-05-21"
+    },
+    "coverage": 0,
+    "test_count": 49
   }
 ]
