@@ -1103,5 +1103,22 @@
     },
     "coverage": 0,
     "test_count": 47
+  },
+  {
+    "sha": "e988aa0facdb91d26aad270b855381d51e5236b6",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-21T22:34:51.000Z",
+      "message": "test: añadimos un test para los metodos de pagos",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/e988aa0facdb91d26aad270b855381d51e5236b6"
+    },
+    "stats": {
+      "total": 29,
+      "additions": 29,
+      "deletions": 0,
+      "date": "2025-05-21"
+    },
+    "coverage": 0,
+    "test_count": 48
   }
 ]
