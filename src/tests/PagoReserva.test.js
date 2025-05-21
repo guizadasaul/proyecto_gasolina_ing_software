@@ -21,4 +21,10 @@ describe('Pago de reserva', () => {
     expect(resultado.metodo).toBe('tarjeta');
   });
 
+  it('debería rechazar métodos de pago no válidos', () => {
+    const resultado = procesarPago(reservaEjemplo, 'efectivo');
+    expect(resultado.exito).toBe(false);
+    expect(resultado.error).toBe('Método de pago no válido');
+  });
+
 });

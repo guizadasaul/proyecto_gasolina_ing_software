@@ -1137,5 +1137,22 @@
     },
     "coverage": 0,
     "test_count": 49
+  },
+  {
+    "sha": "9e085bc2cfde9b592a4f2d0588f9701b886f7e25",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-21T22:40:55.000Z",
+      "message": "test: nuevo test para probar un metodo no valido",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/9e085bc2cfde9b592a4f2d0588f9701b886f7e25"
+    },
+    "stats": {
+      "total": 6,
+      "additions": 6,
+      "deletions": 0,
+      "date": "2025-05-21"
+    },
+    "coverage": 0,
+    "test_count": 50
   }
 ]
