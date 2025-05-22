@@ -51,6 +51,21 @@
       <div id="reserva-mensaje"></div>
     </section>
 
+    <section id="pago-seccion">
+      <h2>Pagar Reserva</h2>
+      <form id="form-pago">
+        <label for="pago-metodo">Método de pago:</label>
+        <select id="pago-metodo" required>
+          <option value="" disabled selected>Selecciona método</option>
+          <option value="QR">Código QR</option>
+          <option value="tarjeta">Tarjeta</option>
+        </select>
+
+        <button type="submit" id="btn-pagar">Pagar</button>
+      </form>
+      <div id="pago-mensaje"></div>
+    </section>
+
     <script type="module" src="./src/presenter.js"></script>
   </body>
 </html>

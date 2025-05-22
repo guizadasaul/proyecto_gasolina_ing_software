@@ -1154,5 +1154,22 @@
     },
     "coverage": 0,
     "test_count": 50
+  },
+  {
+    "sha": "8c78c0babfc4638f6b92ff7d350b0342edead606",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-22T02:33:28.000Z",
+      "message": "feat: añadimos la funcionalidar al presenter para poder hacer el pago de la reserva que hicimos",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/8c78c0babfc4638f6b92ff7d350b0342edead606"
+    },
+    "stats": {
+      "total": 129,
+      "additions": 129,
+      "deletions": 0,
+      "date": "2025-05-22"
+    },
+    "coverage": 0,
+    "test_count": 50
   }
 ]

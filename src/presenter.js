@@ -20,6 +20,7 @@ import {
 } from './components/storage.js';
 
 let gasolinerasDatos = cargarGasolineras();
+let ultimaReserva = null;
 
 import { initMap, clearMarkers } from './components/map.js';
 import {
@@ -27,6 +28,8 @@ import {
   validarSeleccion,
   procesarSeleccion
 } from './components/reservation.js';
+import { procesarPago } from './utils/PagoReserva.js';
+
 
 const listaGasolineras = document.getElementById('gasolineras-lista');
 const selectCombustible = document.getElementById('filtro-combustible');
@@ -205,6 +208,13 @@ function initReservation(selectId, tipoId, formId, messageId, onSuccess) {
     mensaje.className = resultado.valid ? 'success' : 'error';
     if (resultado.valid) {
       guardarGasolineras(gasolinerasDatos);
+      ultimaReserva = {
+        estacion: estacion.nombre,
+        tipo,
+        litros,
+        mensaje: resultado.mensaje,
+        fecha: new Date().toISOString()
+      };
       onSuccess();
     }
   });
@@ -217,7 +227,41 @@ document.addEventListener('DOMContentLoaded', () => {
   initReservation('reserva-estacion', 'reserva-tipo', 'form-reserva', 'reserva-mensaje', () => {
     renderizarGasolineras(gasolinerasDatos);
   });
+
 });
+
+document.getElementById('form-pago').addEventListener('submit', event => {
+  event.preventDefault(); // evita que recargue la página
+
+  const metodo = document.getElementById('pago-metodo').value;
+  const mensajePago = document.getElementById('pago-mensaje');
+
+  if (!ultimaReserva) {
+    mensajePago.textContent = 'Primero debe realizar una reserva antes de pagar.';
+    mensajePago.className = 'error';
+    return;
+  }
+
+  if (!metodo) {
+    mensajePago.textContent = 'Por favor selecciona un método de pago.';
+    mensajePago.className = 'error';
+    return;
+  }
+
+  const resultadoPago = procesarPago(ultimaReserva, metodo);
+
+  if (!resultadoPago.exito) {
+    mensajePago.textContent = resultadoPago.error;
+    mensajePago.className = 'error';
+    return;
+  }
+
+  mensajePago.textContent = `✅ ${resultadoPago.mensaje} para la reserva de ${ultimaReserva.litros}L de ${ultimaReserva.tipo} en ${ultimaReserva.estacion}.`;
+  mensajePago.className = 'success';
+
+  ultimaReserva = null;
+});
+
 
 document.getElementById('btn-resetear').addEventListener('click', () => {
   resetearGasolineras();
