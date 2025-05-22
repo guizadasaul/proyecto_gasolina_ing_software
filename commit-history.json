@@ -1103,5 +1103,107 @@
     },
     "coverage": 0,
     "test_count": 47
+  },
+  {
+    "sha": "e988aa0facdb91d26aad270b855381d51e5236b6",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-21T22:34:51.000Z",
+      "message": "test: añadimos un test para los metodos de pagos",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/e988aa0facdb91d26aad270b855381d51e5236b6"
+    },
+    "stats": {
+      "total": 29,
+      "additions": 29,
+      "deletions": 0,
+      "date": "2025-05-21"
+    },
+    "coverage": 0,
+    "test_count": 48
+  },
+  {
+    "sha": "72534ae9f7f7619105df32c90740c7032e9f8aca",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-21T22:37:49.000Z",
+      "message": "test: añadimos nuevo test para el metodo de pago tarjeta",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/72534ae9f7f7619105df32c90740c7032e9f8aca"
+    },
+    "stats": {
+      "total": 10,
+      "additions": 8,
+      "deletions": 2,
+      "date": "2025-05-21"
+    },
+    "coverage": 0,
+    "test_count": 49
+  },
+  {
+    "sha": "9e085bc2cfde9b592a4f2d0588f9701b886f7e25",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-21T22:40:55.000Z",
+      "message": "test: nuevo test para probar un metodo no valido",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/9e085bc2cfde9b592a4f2d0588f9701b886f7e25"
+    },
+    "stats": {
+      "total": 6,
+      "additions": 6,
+      "deletions": 0,
+      "date": "2025-05-21"
+    },
+    "coverage": 0,
+    "test_count": 50
+  },
+  {
+    "sha": "8c78c0babfc4638f6b92ff7d350b0342edead606",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-22T02:33:28.000Z",
+      "message": "feat: añadimos la funcionalidar al presenter para poder hacer el pago de la reserva que hicimos",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/8c78c0babfc4638f6b92ff7d350b0342edead606"
+    },
+    "stats": {
+      "total": 129,
+      "additions": 129,
+      "deletions": 0,
+      "date": "2025-05-22"
+    },
+    "coverage": 0,
+    "test_count": 50
+  },
+  {
+    "sha": "330c33aeddb2d661c7ac3f4212bb8f37950667d5",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-22T04:10:40.000Z",
+      "message": "feat: añadimos campos para cuando seleccionamos tarjeta porde llenar los datos",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/330c33aeddb2d661c7ac3f4212bb8f37950667d5"
+    },
+    "stats": {
+      "total": 28,
+      "additions": 26,
+      "deletions": 2,
+      "date": "2025-05-22"
+    },
+    "coverage": 0,
+    "test_count": 50
+  },
+  {
+    "sha": "150103530dc2911db2a6207cf85dc1fe08aff9a0",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-22T13:45:34.000Z",
+      "message": "feat: añadimos funcionalidad para mostrar el codigo qr cuando seleccionemos metodo qr",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/150103530dc2911db2a6207cf85dc1fe08aff9a0"
+    },
+    "stats": {
+      "total": 19,
+      "additions": 16,
+      "deletions": 3,
+      "date": "2025-05-22"
+    },
+    "coverage": 0,
+    "test_count": 50
   }
 ]

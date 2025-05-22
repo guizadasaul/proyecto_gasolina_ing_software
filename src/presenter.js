@@ -20,6 +20,7 @@ import {
 } from './components/storage.js';
 
 let gasolinerasDatos = cargarGasolineras();
+let ultimaReserva = null;
 
 import { initMap, clearMarkers } from './components/map.js';
 import {
@@ -27,6 +28,8 @@ import {
   validarSeleccion,
   procesarSeleccion
 } from './components/reservation.js';
+import { procesarPago } from './utils/PagoReserva.js';
+
 
 const listaGasolineras = document.getElementById('gasolineras-lista');
 const selectCombustible = document.getElementById('filtro-combustible');
@@ -205,6 +208,13 @@ function initReservation(selectId, tipoId, formId, messageId, onSuccess) {
     mensaje.className = resultado.valid ? 'success' : 'error';
     if (resultado.valid) {
       guardarGasolineras(gasolinerasDatos);
+      ultimaReserva = {
+        estacion: estacion.nombre,
+        tipo,
+        litros,
+        mensaje: resultado.mensaje,
+        fecha: new Date().toISOString()
+      };
       onSuccess();
     }
   });
@@ -217,6 +227,59 @@ document.addEventListener('DOMContentLoaded', () => {
   initReservation('reserva-estacion', 'reserva-tipo', 'form-reserva', 'reserva-mensaje', () => {
     renderizarGasolineras(gasolinerasDatos);
   });
+
+  const selectMetodo = document.getElementById('pago-metodo');
+  const tarjetaDatos = document.getElementById('tarjeta-datos');
+  const qrImagen = document.getElementById('qr-imagen');
+
+  selectMetodo.addEventListener('change', () => {
+    const metodo = selectMetodo.value;
+    if (metodo === 'tarjeta') {
+      tarjetaDatos.style.display = 'block';
+    } else {
+      tarjetaDatos.style.display = 'none';
+    }
+
+    if (metodo === 'QR' && ultimaReserva) {
+      const textoQR = `Pago para ${ultimaReserva.litros}L de ${ultimaReserva.tipo} en ${ultimaReserva.estacion}`;
+      qrImagen.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(textoQR)}`;
+      qrImagen.style.display = 'block';
+    } else {
+      qrImagen.style.display = 'none';
+    }
+
+  });
+});
+
+document.getElementById('form-pago').addEventListener('submit', event => {
+  event.preventDefault();
+
+  const metodo = document.getElementById('pago-metodo').value;
+  const mensajePago = document.getElementById('pago-mensaje');
+
+  if (!ultimaReserva) {
+    mensajePago.textContent = 'Primero debe realizar una reserva antes de pagar.';
+    mensajePago.className = 'error';
+    return;
+  }
+
+  if (!metodo) {
+    mensajePago.textContent = 'Por favor selecciona un método de pago.';
+    mensajePago.className = 'error';
+    return;
+  }
+
+  const resultadoPago = procesarPago(ultimaReserva, metodo);
+
+  if (!resultadoPago.exito) {
+    mensajePago.textContent = resultadoPago.error;
+    mensajePago.className = 'error';
+    return;
+  }
+
+  mensajePago.textContent = `${resultadoPago.mensaje} para la reserva de ${ultimaReserva.litros}L de ${ultimaReserva.tipo} en ${ultimaReserva.estacion}.`;
+  mensajePago.className = 'success';
+
 });
 
 document.getElementById('btn-resetear').addEventListener('click', () => {
