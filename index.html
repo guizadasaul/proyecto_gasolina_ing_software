@@ -61,6 +61,20 @@
           <option value="tarjeta">Tarjeta</option>
         </select>
 
+        <div id="tarjeta-datos" style="display: none; margin-top: 1em;">
+          <label for="tarjeta-numero">Número de tarjeta:</label>
+          <input type="text" id="tarjeta-numero" required pattern="\d{16}" maxlength="16" />
+          <br>
+          <label for="tarjeta-nombre">Nombre en la tarjeta:</label>
+          <input type="text" id="tarjeta-nombre" required />
+          <br>
+          <label for="tarjeta-expiracion">Fecha de expiración (M/A):</label>
+          <input type="text" id="tarjeta-expiracion" required pattern="\d{2}/\d{2}" />
+          <br>
+          <label for="tarjeta-cvv">CVV:</label>
+          <input type="text" id="tarjeta-cvv" required pattern="\d{3}" maxlength="3" />
+        </div>
+
         <button type="submit" id="btn-pagar">Pagar</button>
       </form>
       <div id="pago-mensaje"></div>

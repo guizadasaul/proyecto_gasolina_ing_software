@@ -228,10 +228,20 @@ document.addEventListener('DOMContentLoaded', () => {
     renderizarGasolineras(gasolinerasDatos);
   });
 
+  const selectMetodo = document.getElementById('pago-metodo');
+  const tarjetaDatos = document.getElementById('tarjeta-datos');
+
+  selectMetodo.addEventListener('change', () => {
+    if (selectMetodo.value === 'tarjeta') {
+      tarjetaDatos.style.display = 'block';
+    } else {
+      tarjetaDatos.style.display = 'none';
+    }
+  });
 });
 
 document.getElementById('form-pago').addEventListener('submit', event => {
-  event.preventDefault(); // evita que recargue la página
+  event.preventDefault();
 
   const metodo = document.getElementById('pago-metodo').value;
   const mensajePago = document.getElementById('pago-mensaje');
@@ -256,7 +266,7 @@ document.getElementById('form-pago').addEventListener('submit', event => {
     return;
   }
 
-  mensajePago.textContent = `✅ ${resultadoPago.mensaje} para la reserva de ${ultimaReserva.litros}L de ${ultimaReserva.tipo} en ${ultimaReserva.estacion}.`;
+  mensajePago.textContent = `${resultadoPago.mensaje} para la reserva de ${ultimaReserva.litros}L de ${ultimaReserva.tipo} en ${ultimaReserva.estacion}.`;
   mensajePago.className = 'success';
 
   ultimaReserva = null;

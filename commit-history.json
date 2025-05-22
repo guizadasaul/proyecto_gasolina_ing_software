@@ -1171,5 +1171,22 @@
     },
     "coverage": 0,
     "test_count": 50
+  },
+  {
+    "sha": "330c33aeddb2d661c7ac3f4212bb8f37950667d5",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-22T04:10:40.000Z",
+      "message": "feat: añadimos campos para cuando seleccionamos tarjeta porde llenar los datos",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/330c33aeddb2d661c7ac3f4212bb8f37950667d5"
+    },
+    "stats": {
+      "total": 28,
+      "additions": 26,
+      "deletions": 2,
+      "date": "2025-05-22"
+    },
+    "coverage": 0,
+    "test_count": 50
   }
 ]
