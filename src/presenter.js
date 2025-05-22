@@ -230,13 +230,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const selectMetodo = document.getElementById('pago-metodo');
   const tarjetaDatos = document.getElementById('tarjeta-datos');
+  const qrImagen = document.getElementById('qr-imagen');
 
   selectMetodo.addEventListener('change', () => {
-    if (selectMetodo.value === 'tarjeta') {
+    const metodo = selectMetodo.value;
+    if (metodo === 'tarjeta') {
       tarjetaDatos.style.display = 'block';
     } else {
       tarjetaDatos.style.display = 'none';
     }
+
+    if (metodo === 'QR' && ultimaReserva) {
+      const textoQR = `Pago para ${ultimaReserva.litros}L de ${ultimaReserva.tipo} en ${ultimaReserva.estacion}`;
+      qrImagen.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(textoQR)}`;
+      qrImagen.style.display = 'block';
+    } else {
+      qrImagen.style.display = 'none';
+    }
+
   });
 });
 
@@ -269,9 +280,7 @@ document.getElementById('form-pago').addEventListener('submit', event => {
   mensajePago.textContent = `${resultadoPago.mensaje} para la reserva de ${ultimaReserva.litros}L de ${ultimaReserva.tipo} en ${ultimaReserva.estacion}.`;
   mensajePago.className = 'success';
 
-  ultimaReserva = null;
 });
-
 
 document.getElementById('btn-resetear').addEventListener('click', () => {
   resetearGasolineras();

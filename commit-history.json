@@ -1188,5 +1188,22 @@
     },
     "coverage": 0,
     "test_count": 50
+  },
+  {
+    "sha": "150103530dc2911db2a6207cf85dc1fe08aff9a0",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-22T13:45:34.000Z",
+      "message": "feat: añadimos funcionalidad para mostrar el codigo qr cuando seleccionemos metodo qr",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/150103530dc2911db2a6207cf85dc1fe08aff9a0"
+    },
+    "stats": {
+      "total": 19,
+      "additions": 16,
+      "deletions": 3,
+      "date": "2025-05-22"
+    },
+    "coverage": 0,
+    "test_count": 50
   }
 ]
