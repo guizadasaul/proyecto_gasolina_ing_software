@@ -1307,5 +1307,22 @@
     },
     "coverage": 0,
     "test_count": 53
+  },
+  {
+    "sha": "54172dce93a233d2dcbe7b48c3f9a21d97d01016",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-26T22:56:47.000Z",
+      "message": "feat: actualizacion de la manipulacion del DOM",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/54172dce93a233d2dcbe7b48c3f9a21d97d01016"
+    },
+    "stats": {
+      "total": 8,
+      "additions": 7,
+      "deletions": 1,
+      "date": "2025-05-26"
+    },
+    "coverage": 0,
+    "test_count": 53
   }
 ]

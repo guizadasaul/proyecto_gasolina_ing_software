@@ -29,6 +29,8 @@ import {
   procesarSeleccion,
 } from './components/reservation.js';
 import { procesarPago } from './utils/PagoReserva.js';
+import { cargarComprobanteActual, guardarComprobanteActual } from './components/storage.js';
+
 
 
 const listaGasolineras = document.getElementById('gasolineras-lista');
@@ -237,6 +239,7 @@ function initReservation(selectId, tipoId, formId, messageId, onSuccess) {
         fecha: new Date().toISOString(),
         codigo: resultado.codigo || null
       };
+      guardarComprobanteActual(ultimaReserva);
       actualizarComprobanteEnPantalla();
       onSuccess();
     }
@@ -247,8 +250,11 @@ document.addEventListener('DOMContentLoaded', () => {
   botonFiltrarCombustible.addEventListener('click', aplicarFiltros);
   botonFiltrarServicios.addEventListener('click', aplicarFiltros);
   renderizarGasolineras(gasolinerasDatos);
+  ultimaReserva = cargarComprobanteActual();
+  actualizarComprobanteEnPantalla();
   initReservation('reserva-estacion', 'reserva-tipo', 'form-reserva', 'reserva-mensaje', () => {
-    renderizarGasolineras(gasolinerasDatos);
+  renderizarGasolineras(gasolinerasDatos);
+
   });
 
   const selectMetodo = document.getElementById('pago-metodo');
