@@ -26,7 +26,7 @@ import { initMap, clearMarkers } from './components/map.js';
 import {
   getEstacionesActivas,
   validarSeleccion,
-  procesarSeleccion
+  procesarSeleccion,
 } from './components/reservation.js';
 import { procesarPago } from './utils/PagoReserva.js';
 
@@ -208,12 +208,18 @@ function initReservation(selectId, tipoId, formId, messageId, onSuccess) {
     mensaje.className = resultado.valid ? 'success' : 'error';
     if (resultado.valid) {
       guardarGasolineras(gasolinerasDatos);
+      const comprobanteTexto = resultado.codigo
+        ? `\nCódigo de comprobante: ${resultado.codigo}`
+        : '';
+      mensaje.textContent = resultado.mensaje + comprobanteTexto;
+      mensaje.className = 'success';
       ultimaReserva = {
         estacion: estacion.nombre,
         tipo,
         litros,
         mensaje: resultado.mensaje,
-        fecha: new Date().toISOString()
+        fecha: new Date().toISOString(),
+        codigo: resultado.codigo || null
       };
       onSuccess();
     }
@@ -277,8 +283,8 @@ document.getElementById('form-pago').addEventListener('submit', event => {
     return;
   }
 
-  mensajePago.textContent = `${resultadoPago.mensaje} para la reserva de ${ultimaReserva.litros}L de ${ultimaReserva.tipo} en ${ultimaReserva.estacion}.`;
-  mensajePago.className = 'success';
+ mensajePago.textContent = `${resultadoPago.mensaje} para la reserva de ${ultimaReserva.litros}L de ${ultimaReserva.tipo} en ${ultimaReserva.estacion}. Código: ${ultimaReserva.codigo || 'N/A'}`;
+ mensajePago.className = 'success';
 
 });
 

@@ -1239,5 +1239,22 @@
     },
     "coverage": 0,
     "test_count": 53
+  },
+  {
+    "sha": "ef9080abf6c49ad111460998411b16d9cf486b1d",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-26T21:28:39.000Z",
+      "message": "feat: funcion agregada al presenter",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/ef9080abf6c49ad111460998411b16d9cf486b1d"
+    },
+    "stats": {
+      "total": 14,
+      "additions": 10,
+      "deletions": 4,
+      "date": "2025-05-26"
+    },
+    "coverage": 0,
+    "test_count": 53
   }
 ]
