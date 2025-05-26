@@ -37,11 +37,12 @@ export function procesarSeleccion(estacion, tipo, litros, nivelEstacion) {
     if (estacion.stock?.[tipo] !== undefined) {
       estacion.stock[tipo] -= litros;
     }
-    
+    const comprobante = generarCodigoComprobante();
     return {
       valid: true,
       mensaje: `¡Reserva exitosa! ${litros} L de ${tipo.charAt(0).toUpperCase() + tipo.slice(1)} en ${estacion.nombre} han sido reservados.`,
-      reservaConfirmada: true
+      reservaConfirmada: true,
+      codigo: comprobante
       
     };
   } else {

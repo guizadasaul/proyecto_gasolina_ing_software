@@ -1222,5 +1222,22 @@
     },
     "coverage": 0,
     "test_count": 52
+  },
+  {
+    "sha": "5c95d047747563627be43a6559addf2c257b4edf",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-26T21:14:13.000Z",
+      "message": "refactor: procesar seleccion agrega codigo comprobante",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/5c95d047747563627be43a6559addf2c257b4edf"
+    },
+    "stats": {
+      "total": 12,
+      "additions": 10,
+      "deletions": 2,
+      "date": "2025-05-26"
+    },
+    "coverage": 0,
+    "test_count": 53
   }
 ]

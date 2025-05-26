@@ -101,6 +101,13 @@ describe('SP2.3-ProcesarSeleccion', () => {
     expect(res.valid).toBe(false);
     expect(res.mensaje).toMatch(/Por favor selecciona un tipo de combustible/);
   });
+  it('debería incluir un código de comprobante si la reserva es exitosa', () => {
+  const estacion = { nombre: 'G1', stock: { magna: 100 } };
+  const nivelEstacion = { niveles: { magna: 100 } };
+  const resultado = procesarSeleccion(estacion, 'magna', 10, nivelEstacion);
+  expect(resultado.valid).toBe(true);
+  expect(resultado.codigo).toMatch(/^[A-Z0-9]{8}$/);
+});
 });
 
 
