@@ -37,10 +37,12 @@ export function procesarSeleccion(estacion, tipo, litros, nivelEstacion) {
     if (estacion.stock?.[tipo] !== undefined) {
       estacion.stock[tipo] -= litros;
     }
+    
     return {
       valid: true,
       mensaje: `¡Reserva exitosa! ${litros} L de ${tipo.charAt(0).toUpperCase() + tipo.slice(1)} en ${estacion.nombre} han sido reservados.`,
       reservaConfirmada: true
+      
     };
   } else {
     return {
@@ -49,4 +51,13 @@ export function procesarSeleccion(estacion, tipo, litros, nivelEstacion) {
       reservaConfirmada: false
     };
   }
+}
+
+export function generarCodigoComprobante() {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let codigo = '';
+  for (let i = 0; i < 8; i++) {
+    codigo += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return codigo;
 }

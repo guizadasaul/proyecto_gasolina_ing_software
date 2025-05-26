@@ -1205,5 +1205,22 @@
     },
     "coverage": 0,
     "test_count": 50
+  },
+  {
+    "sha": "80abfb2468890ba681cb4fac1abfaa9d9dd746f5",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-26T21:07:02.000Z",
+      "message": "feat:generar comprobante",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/80abfb2468890ba681cb4fac1abfaa9d9dd746f5"
+    },
+    "stats": {
+      "total": 33,
+      "additions": 31,
+      "deletions": 2,
+      "date": "2025-05-26"
+    },
+    "coverage": 0,
+    "test_count": 52
   }
 ]

@@ -4,6 +4,7 @@ import {
   validarSeleccion,
   procesarSeleccion,
   verificarDisponibilidad,
+  generarCodigoComprobante,
 } from '../components/reservation.js';
 
 describe('SP2.1 – Reserva de combustible', () => {
@@ -73,7 +74,7 @@ describe('SP2.2-VerificarDisponibilidad', () => {
   });
 });
 
-describe('SP2.2-ProcesarSeleccion', () => {
+describe('SP2.3-ProcesarSeleccion', () => {
   const estacion = { nombre: 'Gasolinera 1' };
   const nivelEstacion = {
     nombre: 'Gasolinera 1',
@@ -99,5 +100,22 @@ describe('SP2.2-ProcesarSeleccion', () => {
     const res = procesarSeleccion(estacion, '', 10, nivelEstacion);
     expect(res.valid).toBe(false);
     expect(res.mensaje).toMatch(/Por favor selecciona un tipo de combustible/);
+  });
+});
+
+
+describe('SP2.4 – Generación de código de comprobante', () => {
+  it('debería generar un código alfanumérico de 8 caracteres', () => {
+    const codigo = generarCodigoComprobante();
+    expect(typeof codigo).toBe('string');
+    expect(codigo).toMatch(/^[A-Z0-9]{8}$/);
+  });
+
+  it('debería generar códigos únicos diferentes en múltiples llamadas', () => {
+    const codigos = new Set();
+    for (let i = 0; i < 100; i++) {
+      codigos.add(generarCodigoComprobante());
+    }
+    expect(codigos.size).toBe(100);
   });
 });
