@@ -1256,5 +1256,22 @@
     },
     "coverage": 0,
     "test_count": 53
+  },
+  {
+    "sha": "82a81e7bb97bb10326f04f715c4cc0c863ad5187",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-26T22:28:36.000Z",
+      "message": "style: agregar apartado de codigo en el html",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/82a81e7bb97bb10326f04f715c4cc0c863ad5187"
+    },
+    "stats": {
+      "total": 22,
+      "additions": 22,
+      "deletions": 0,
+      "date": "2025-05-26"
+    },
+    "coverage": 0,
+    "test_count": 53
   }
 ]

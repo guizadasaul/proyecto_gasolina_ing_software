@@ -149,6 +149,22 @@ function renderizarGasolineras(gasolineras) {
   });
 }
 
+function actualizarComprobanteEnPantalla() {
+  const contenedor = document.getElementById('comprobante-mensaje');
+  if (!ultimaReserva || !ultimaReserva.codigo) {
+    contenedor.textContent = 'No se ha realizado ninguna reserva aún.';
+  } else {
+    contenedor.innerHTML = `
+      <strong>Gasolinera:</strong> ${ultimaReserva.estacion}<br>
+      <strong>Tipo:</strong> ${ultimaReserva.tipo}<br>
+      <strong>Litros:</strong> ${ultimaReserva.litros}<br>
+      <strong>Fecha:</strong> ${new Date(ultimaReserva.fecha).toLocaleString()}<br>
+      <strong>Código de comprobante:</strong> <code>${ultimaReserva.codigo}</code>
+    `;
+  }
+}
+
+
 function aplicarFiltros() {
   let gasolinerasFiltradas = gasolinerasDatos;
   gasolinerasFiltradas = filtrarPorCombustible(gasolinerasFiltradas, selectCombustible.value);
