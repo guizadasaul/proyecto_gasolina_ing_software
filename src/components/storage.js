@@ -21,3 +21,19 @@ export function guardarGasolineras(data) {
 export function resetearGasolineras() {
   localStorage.removeItem(STORAGE_KEY);
 }
+
+const STORAGE_COMPROBANTE_KEY = 'comprobanteActual';
+
+export function guardarComprobanteActual(comprobante) {
+  localStorage.setItem(STORAGE_COMPROBANTE_KEY, JSON.stringify(comprobante));
+}
+
+export function cargarComprobanteActual() {
+  const raw = localStorage.getItem(STORAGE_COMPROBANTE_KEY);
+  try {
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+

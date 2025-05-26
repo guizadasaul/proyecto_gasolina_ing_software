@@ -1205,5 +1205,124 @@
     },
     "coverage": 0,
     "test_count": 50
+  },
+  {
+    "sha": "80abfb2468890ba681cb4fac1abfaa9d9dd746f5",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-26T21:07:02.000Z",
+      "message": "feat:generar comprobante",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/80abfb2468890ba681cb4fac1abfaa9d9dd746f5"
+    },
+    "stats": {
+      "total": 33,
+      "additions": 31,
+      "deletions": 2,
+      "date": "2025-05-26"
+    },
+    "coverage": 0,
+    "test_count": 52
+  },
+  {
+    "sha": "5c95d047747563627be43a6559addf2c257b4edf",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-26T21:14:13.000Z",
+      "message": "refactor: procesar seleccion agrega codigo comprobante",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/5c95d047747563627be43a6559addf2c257b4edf"
+    },
+    "stats": {
+      "total": 12,
+      "additions": 10,
+      "deletions": 2,
+      "date": "2025-05-26"
+    },
+    "coverage": 0,
+    "test_count": 53
+  },
+  {
+    "sha": "ef9080abf6c49ad111460998411b16d9cf486b1d",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-26T21:28:39.000Z",
+      "message": "feat: funcion agregada al presenter",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/ef9080abf6c49ad111460998411b16d9cf486b1d"
+    },
+    "stats": {
+      "total": 14,
+      "additions": 10,
+      "deletions": 4,
+      "date": "2025-05-26"
+    },
+    "coverage": 0,
+    "test_count": 53
+  },
+  {
+    "sha": "82a81e7bb97bb10326f04f715c4cc0c863ad5187",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-26T22:28:36.000Z",
+      "message": "style: agregar apartado de codigo en el html",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/82a81e7bb97bb10326f04f715c4cc0c863ad5187"
+    },
+    "stats": {
+      "total": 22,
+      "additions": 22,
+      "deletions": 0,
+      "date": "2025-05-26"
+    },
+    "coverage": 0,
+    "test_count": 53
+  },
+  {
+    "sha": "7608dcd380e815f624f0d392316400fecfe3e319",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-26T22:36:53.000Z",
+      "message": "feat: funcion agregada en manipulacion de reserva en el presenter",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/7608dcd380e815f624f0d392316400fecfe3e319"
+    },
+    "stats": {
+      "total": 3,
+      "additions": 3,
+      "deletions": 0,
+      "date": "2025-05-26"
+    },
+    "coverage": 0,
+    "test_count": 53
+  },
+  {
+    "sha": "bfdcdd5128049471702a2142f53ca58b9e99d759",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-26T22:40:21.000Z",
+      "message": "feat: cargas comprobante en storage",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/bfdcdd5128049471702a2142f53ca58b9e99d759"
+    },
+    "stats": {
+      "total": 16,
+      "additions": 16,
+      "deletions": 0,
+      "date": "2025-05-26"
+    },
+    "coverage": 0,
+    "test_count": 53
+  },
+  {
+    "sha": "54172dce93a233d2dcbe7b48c3f9a21d97d01016",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-26T22:56:47.000Z",
+      "message": "feat: actualizacion de la manipulacion del DOM",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/54172dce93a233d2dcbe7b48c3f9a21d97d01016"
+    },
+    "stats": {
+      "total": 8,
+      "additions": 7,
+      "deletions": 1,
+      "date": "2025-05-26"
+    },
+    "coverage": 0,
+    "test_count": 53
   }
 ]
