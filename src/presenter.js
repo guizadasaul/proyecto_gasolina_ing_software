@@ -237,6 +237,7 @@ function initReservation(selectId, tipoId, formId, messageId, onSuccess) {
         fecha: new Date().toISOString(),
         codigo: resultado.codigo || null
       };
+      actualizarComprobanteEnPantalla();
       onSuccess();
     }
   });
@@ -301,6 +302,8 @@ document.getElementById('form-pago').addEventListener('submit', event => {
 
  mensajePago.textContent = `${resultadoPago.mensaje} para la reserva de ${ultimaReserva.litros}L de ${ultimaReserva.tipo} en ${ultimaReserva.estacion}. Código: ${ultimaReserva.codigo || 'N/A'}`;
  mensajePago.className = 'success';
+ actualizarComprobanteEnPantalla();
+
 
 });
 

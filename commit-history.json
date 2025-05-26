@@ -1273,5 +1273,22 @@
     },
     "coverage": 0,
     "test_count": 53
+  },
+  {
+    "sha": "7608dcd380e815f624f0d392316400fecfe3e319",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-26T22:36:53.000Z",
+      "message": "feat: funcion agregada en manipulacion de reserva en el presenter",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/7608dcd380e815f624f0d392316400fecfe3e319"
+    },
+    "stats": {
+      "total": 3,
+      "additions": 3,
+      "deletions": 0,
+      "date": "2025-05-26"
+    },
+    "coverage": 0,
+    "test_count": 53
   }
 ]
