@@ -1290,5 +1290,22 @@
     },
     "coverage": 0,
     "test_count": 53
+  },
+  {
+    "sha": "bfdcdd5128049471702a2142f53ca58b9e99d759",
+    "author": "GatoCoder282",
+    "commit": {
+      "date": "2025-05-26T22:40:21.000Z",
+      "message": "feat: cargas comprobante en storage",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/bfdcdd5128049471702a2142f53ca58b9e99d759"
+    },
+    "stats": {
+      "total": 16,
+      "additions": 16,
+      "deletions": 0,
+      "date": "2025-05-26"
+    },
+    "coverage": 0,
+    "test_count": 53
   }
 ]
