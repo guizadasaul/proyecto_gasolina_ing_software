@@ -1324,5 +1324,22 @@
     },
     "coverage": 0,
     "test_count": 53
+  },
+  {
+    "sha": "372320e71ae3748eeec70efb4847d762cfdf9dfb",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-27T00:06:24.000Z",
+      "message": "feat: obtenerQueuePorEstacion debe devolver un array vacío cuando no hay registros",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/372320e71ae3748eeec70efb4847d762cfdf9dfb"
+    },
+    "stats": {
+      "total": 1666,
+      "additions": 1485,
+      "deletions": 181,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 54
   }
 ]
