@@ -1,29 +1,23 @@
-export function obtenerHistorial() {
-  return JSON.parse(localStorage.getItem('historial_reservas')) || [];
-}
-
-export function agregarReservaAlHistorial(reserva) {
-  const historial = obtenerHistorial();
-  historial.push(reserva);
-  localStorage.setItem('historial_reservas', JSON.stringify(historial));
-}
+export let historialReservas = JSON.parse(localStorage.getItem('historialReservas')) || [];
 
 export function mostrarHistorial() {
-  const lista = document.getElementById('historial-lista');
-  lista.innerHTML = '';
+  const historialSeccion = document.getElementById('historial-seccion');
+  const historialLista = document.getElementById('historial-lista');
 
-  const historial = obtenerHistorial();
+  historialSeccion.style.display = historialSeccion.style.display === 'none' ? 'block' : 'none';
 
-  if (historial.length === 0) {
+  historialLista.innerHTML = '';
+
+  if (historialReservas.length === 0) {
     const li = document.createElement('li');
     li.textContent = 'No hay reservas registradas.';
-    lista.appendChild(li);
+    historialLista.appendChild(li);
     return;
   }
 
-  historial.forEach(reserva => {
+  historialReservas.forEach(reserva => {
     const li = document.createElement('li');
-    li.textContent = `${reserva.fecha}: ${reserva.litros}L de ${reserva.tipo} en ${reserva.estacion}`;
-    lista.appendChild(li);
+    li.textContent = `${reserva.fecha.split('T')[0]} - ${reserva.litros}L de ${reserva.tipo} en ${reserva.estacion} con codigo: ${reserva.codigo}`;
+    historialLista.appendChild(li);
   });
 }

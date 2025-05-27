@@ -19,18 +19,20 @@ import {
   resetearGasolineras
 } from './components/storage.js';
 
+import { historialReservas, mostrarHistorial } from './components/historial.js';
+
+
 let gasolinerasDatos = cargarGasolineras();
 let ultimaReserva = null;
+let historialReservas = JSON.parse(localStorage.getItem('historialReservas')) || [];
 
 import { initMap, clearMarkers } from './components/map.js';
 import {
   getEstacionesActivas,
   validarSeleccion,
-  procesarSeleccion,
+  procesarSeleccion
 } from './components/reservation.js';
 import { procesarPago } from './utils/PagoReserva.js';
-import { cargarComprobanteActual, guardarComprobanteActual } from './components/storage.js';
-
 
 
 const listaGasolineras = document.getElementById('gasolineras-lista');
@@ -151,22 +153,6 @@ function renderizarGasolineras(gasolineras) {
   });
 }
 
-function actualizarComprobanteEnPantalla() {
-  const contenedor = document.getElementById('comprobante-mensaje');
-  if (!ultimaReserva || !ultimaReserva.codigo) {
-    contenedor.textContent = 'No se ha realizado ninguna reserva aún.';
-  } else {
-    contenedor.innerHTML = `
-      <strong>Gasolinera:</strong> ${ultimaReserva.estacion}<br>
-      <strong>Tipo:</strong> ${ultimaReserva.tipo}<br>
-      <strong>Litros:</strong> ${ultimaReserva.litros}<br>
-      <strong>Fecha:</strong> ${new Date(ultimaReserva.fecha).toLocaleString()}<br>
-      <strong>Código de comprobante:</strong> <code>${ultimaReserva.codigo}</code>
-    `;
-  }
-}
-
-
 function aplicarFiltros() {
   let gasolinerasFiltradas = gasolinerasDatos;
   gasolinerasFiltradas = filtrarPorCombustible(gasolinerasFiltradas, selectCombustible.value);
@@ -226,21 +212,16 @@ function initReservation(selectId, tipoId, formId, messageId, onSuccess) {
     mensaje.className = resultado.valid ? 'success' : 'error';
     if (resultado.valid) {
       guardarGasolineras(gasolinerasDatos);
-      const comprobanteTexto = resultado.codigo
-        ? `\nCódigo de comprobante: ${resultado.codigo}`
-        : '';
-      mensaje.textContent = resultado.mensaje + comprobanteTexto;
-      mensaje.className = 'success';
       ultimaReserva = {
         estacion: estacion.nombre,
         tipo,
         litros,
         mensaje: resultado.mensaje,
         fecha: new Date().toISOString(),
-        codigo: resultado.codigo || null
+        codigo: resultado.codigo
       };
-      guardarComprobanteActual(ultimaReserva);
-      actualizarComprobanteEnPantalla();
+      historialReservas.push(ultimaReserva);
+      localStorage.setItem('historialReservas', JSON.stringify(historialReservas));
       onSuccess();
     }
   });
@@ -250,12 +231,14 @@ document.addEventListener('DOMContentLoaded', () => {
   botonFiltrarCombustible.addEventListener('click', aplicarFiltros);
   botonFiltrarServicios.addEventListener('click', aplicarFiltros);
   renderizarGasolineras(gasolinerasDatos);
-  ultimaReserva = cargarComprobanteActual();
-  actualizarComprobanteEnPantalla();
   initReservation('reserva-estacion', 'reserva-tipo', 'form-reserva', 'reserva-mensaje', () => {
-  renderizarGasolineras(gasolinerasDatos);
-
+    renderizarGasolineras(gasolinerasDatos);
   });
+
+  const btnVerHistorial = document.getElementById('btn-ver-historial');
+  if (btnVerHistorial) {
+    btnVerHistorial.addEventListener('click', mostrarHistorial);
+  }
 
   const selectMetodo = document.getElementById('pago-metodo');
   const tarjetaDatos = document.getElementById('tarjeta-datos');
@@ -306,9 +289,8 @@ document.getElementById('form-pago').addEventListener('submit', event => {
     return;
   }
 
- mensajePago.textContent = `${resultadoPago.mensaje} para la reserva de ${ultimaReserva.litros}L de ${ultimaReserva.tipo} en ${ultimaReserva.estacion}. Código: ${ultimaReserva.codigo || 'N/A'}`;
- mensajePago.className = 'success';
- actualizarComprobanteEnPantalla();
+  mensajePago.textContent = `${resultadoPago.mensaje} para la reserva de ${ultimaReserva.litros}L de ${ultimaReserva.tipo} en ${ultimaReserva.estacion}.`;
+  mensajePago.className = 'success';
 
 });
 

@@ -1358,5 +1358,22 @@
     },
     "coverage": 0,
     "test_count": 53
+  },
+  {
+    "sha": "f165ca26ef6d20f7136485325d4b8c0d3e7ae40a",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-27T02:37:28.000Z",
+      "message": "añadimos el archivo y funcion para mostrar el historial de reservas",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/f165ca26ef6d20f7136485325d4b8c0d3e7ae40a"
+    },
+    "stats": {
+      "total": 79,
+      "additions": 27,
+      "deletions": 52,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 53
   }
 ]
