@@ -41,4 +41,18 @@ describe('QueueService', () => {
     expect(registros2).toHaveLength(2);
     expect(registros2.map(r => r.placa)).toEqual(['AAA-001', 'BBB-002']);
   });
+
+  it('mantiene colas separadas para distintas estaciones', () => {
+    agregarAFila(ESTACION_A, '111-AAA', 'Pedro');
+    agregarAFila(ESTACION_B, '222-BBB', 'María');
+
+    const colaA = obtenerQueuePorEstacion(ESTACION_A);
+    const colaB = obtenerQueuePorEstacion(ESTACION_B);
+
+    expect(colaA).toHaveLength(1);
+    expect(colaA[0].placa).toBe('111-AAA');
+
+    expect(colaB).toHaveLength(1);
+    expect(colaB[0].placa).toBe('222-BBB');
+  });
 });

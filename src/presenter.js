@@ -217,6 +217,10 @@ function initReservation(selectId, tipoId, formId, messageId, onSuccess) {
 
 function initFila(selectId, formId, messageId) {
   const selectEstacion = document.getElementById(selectId);
+  const form = document.getElementById(formId);
+  const mensaje = document.getElementById(messageId);
+  const inputPlaca = document.getElementById('fila-placa');
+  const inputNombre = document.getElementById('fila-nombre');
 
   // Poblar el select con estaciones activas
   selectEstacion.innerHTML = '';
@@ -232,6 +236,30 @@ function initFila(selectId, formId, messageId) {
     opt.value = value;
     opt.textContent = label;
     selectEstacion.appendChild(opt);
+  });
+
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    const estacionIdx = selectEstacion.value;
+    const placa = inputPlaca.value.trim();
+    const nombre = inputNombre.value.trim();
+
+    // Validaciones básicas
+    if (estacionIdx === '') {
+      mensaje.textContent = 'Por favor selecciona una gasolinera.';
+      mensaje.className = 'error';
+      return;
+    }
+    if (!placa) {
+      mensaje.textContent = 'Ingresa un número de placa válido.';
+      mensaje.className = 'error';
+      return;
+    }
+    if (!nombre) {
+      mensaje.textContent = 'Ingresa tu nombre.';
+      mensaje.className = 'error';
+      return;
+    }
   });
 }
 

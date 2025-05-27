@@ -1375,5 +1375,22 @@
     },
     "coverage": 0,
     "test_count": 56
+  },
+  {
+    "sha": "d32fc7f03267d0278069d11f9eccd5d7da218155",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-27T00:14:55.000Z",
+      "message": "feat: mantiene colas separadas para distintas estaciones",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/d32fc7f03267d0278069d11f9eccd5d7da218155"
+    },
+    "stats": {
+      "total": 42,
+      "additions": 42,
+      "deletions": 0,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 57
   }
 ]
