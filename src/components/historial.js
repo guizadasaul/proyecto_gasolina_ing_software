@@ -1,5 +1,6 @@
 export let historialReservas = JSON.parse(localStorage.getItem('historialReservas')) || [];
 
+
 export function mostrarHistorial() {
   const historialSeccion = document.getElementById('historial-seccion');
   const historialLista = document.getElementById('historial-lista');
