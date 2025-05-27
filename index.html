@@ -51,6 +51,23 @@
       <div id="reserva-mensaje"></div>
     </section>
 
+    <section id="fila-seccion">
+      <h2>Registrarse en Fila</h2>
+      <form id="form-fila">
+        <label for="fila-estacion">Selecciona gasolinera:</label>
+        <select id="fila-estacion"></select>
+
+        <label for="fila-placa">Número de placa:</label>
+        <input type="text" id="fila-placa" placeholder="ABC-1234" required />
+
+        <label for="fila-nombre">Nombre:</label>
+        <input type="text" id="fila-nombre" placeholder="Tu nombre" required />
+
+        <button type="submit" id="btn-registrar-fila">Registrar en Fila</button>
+      </form>
+      <div id="fila-mensaje"></div>
+    </section>
+
     <section id="pago-seccion">
       <section id="comprobante-seccion">
       <button id="btn-ver-historial">Ver Historial</button>
@@ -93,6 +110,7 @@
       </form>
       <div id="pago-mensaje"></div>
     </section>
+
 
     <script type="module" src="./src/presenter.js"></script>
   </body>

@@ -21,7 +21,6 @@ import {
 
 import { historialReservas, mostrarHistorial } from './components/historial.js';
 
-
 let gasolinerasDatos = cargarGasolineras();
 let ultimaReserva = null;
 let historialReservas = JSON.parse(localStorage.getItem('historialReservas')) || [];
@@ -32,8 +31,13 @@ import {
   validarSeleccion,
   procesarSeleccion
 } from './components/reservation.js';
+
 import { procesarPago } from './utils/PagoReserva.js';
 
+import {
+  agregarAFila,
+  obtenerQueuePorEstacion
+} from './utils/QueueService.js';
 
 const listaGasolineras = document.getElementById('gasolineras-lista');
 const selectCombustible = document.getElementById('filtro-combustible');
@@ -226,6 +230,76 @@ function initReservation(selectId, tipoId, formId, messageId, onSuccess) {
     }
   });
 }
+
+function initFila(selectId, formId, messageId) {
+  const selectEstacion = document.getElementById(selectId);
+  const form = document.getElementById(formId);
+  const mensaje = document.getElementById(messageId);
+  const inputPlaca = document.getElementById('fila-placa');
+  const inputNombre = document.getElementById('fila-nombre');
+
+  // Poblar el select con estaciones activas
+  selectEstacion.innerHTML = '';
+  const optionDefault = document.createElement('option');
+  optionDefault.value = '';
+  optionDefault.disabled = true;
+  optionDefault.selected = true;
+  optionDefault.textContent = 'Selecciona una estación';
+  selectEstacion.appendChild(optionDefault);
+
+  getEstacionesActivas().forEach(({ value, label }) => {
+    const opt = document.createElement('option');
+    opt.value = value;
+    opt.textContent = label;
+    selectEstacion.appendChild(opt);
+  });
+
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    const estacionIdx = selectEstacion.value;
+    const placa = inputPlaca.value.trim();
+    const nombre = inputNombre.value.trim();
+
+    // Validaciones básicas
+    if (estacionIdx === '') {
+      mensaje.textContent = 'Por favor selecciona una gasolinera.';
+      mensaje.className = 'error';
+      return;
+    }
+    if (!placa) {
+      mensaje.textContent = 'Ingresa un número de placa válido.';
+      mensaje.className = 'error';
+      return;
+    }
+    if (!nombre) {
+      mensaje.textContent = 'Ingresa tu nombre.';
+      mensaje.className = 'error';
+      return;
+    }
+
+    // Registrar en fila
+    const registros = agregarAFila(estacionIdx, placa, nombre);
+    const estacion = gasolinerasDatos[estacionIdx];
+    const posicion = estacion.fila + registros.length;
+
+    // Calcular capacidad según stock
+    const capacidad = calcularCapacidadDeAbastecimiento([estacion])[0].vehiculos;
+
+    // Determinar si alcanzará a cargar
+    const llegara = posicion <= capacidad;
+
+    mensaje.textContent = `
+      Autos en espera inicial: ${estacion.fila}.
+      Tu posición en la fila: ${posicion}.
+      Con stock actual, la estación puede atender hasta ${capacidad} vehículos.
+      ${llegara
+        ? '✅ Llegarás a cargar gasolina.'
+        : '⚠️ Es probable que no alcances a cargar gasolina.'}
+    `.replace(/\s+/g,' ');
+    mensaje.className = llegara ? 'success' : 'error';
+  });
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
   botonFiltrarCombustible.addEventListener('click', aplicarFiltros);
