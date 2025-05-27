@@ -348,6 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('btn-cancelar').style.display = 'block';
     }
   );
+  initFila('fila-estacion', 'form-fila', 'fila-mensaje');
 
   const btnVerHistorial = document.getElementById('btn-ver-historial');
   if (btnVerHistorial) {
