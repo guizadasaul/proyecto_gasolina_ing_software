@@ -33,6 +33,7 @@ import {
 } from './components/reservation.js';
 
 import { procesarPago } from './utils/PagoReserva.js';
+import { cancelarReserva } from './utils/cancelReservation.js';
 
 import {
   agregarAFila,
@@ -305,9 +306,48 @@ document.addEventListener('DOMContentLoaded', () => {
   botonFiltrarCombustible.addEventListener('click', aplicarFiltros);
   botonFiltrarServicios.addEventListener('click', aplicarFiltros);
   renderizarGasolineras(gasolinerasDatos);
-  initReservation('reserva-estacion', 'reserva-tipo', 'form-reserva', 'reserva-mensaje', () => {
+  //preparar botón de cancelar
+  const btnCancelar = document.getElementById('btn-cancelar');
+  btnCancelar.style.display = 'none';
+  btnCancelar.addEventListener('click', () => {
+    // si no hay reserva, no hacemos nada
+    if (!ultimaReserva) return;
+
+    // ejecutar negocio: restaura stock y persiste
+    const ok = cancelarReserva(ultimaReserva, gasolinerasDatos);
+    if (!ok) return;
+
+    // ocultar botón de cancelar
+    btnCancelar.style.display = 'none';
+
+    // mostrar mensaje de éxito en reserva
+    const reservaMsg = document.getElementById('reserva-mensaje');
+    reservaMsg.textContent = 'Reserva cancelada correctamente.';
+    reservaMsg.className   = 'success';
+
+    // limpiar sección de pago
+    document.getElementById('pago-mensaje').textContent = '';
+    document.getElementById('pago-metodo').value      = '';
+    document.getElementById('tarjeta-datos').style.display = 'none';
+    document.getElementById('qr-imagen').style.display     = 'none';
+
+    // re-renderizar lista con stock actualizado
     renderizarGasolineras(gasolinerasDatos);
+
+    // limpiar estado interno
+    ultimaReserva = null;
   });
+  initReservation(
+    'reserva-estacion',
+    'reserva-tipo',
+    'form-reserva',
+    'reserva-mensaje',
+    () => {
+      renderizarGasolineras(gasolinerasDatos);
+      // 3) cuando se confirma reserva, mostramos botón de cancelar
+      document.getElementById('btn-cancelar').style.display = 'block';
+    }
+  );
 
   const btnVerHistorial = document.getElementById('btn-ver-historial');
   if (btnVerHistorial) {

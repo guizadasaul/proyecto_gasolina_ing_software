@@ -1545,5 +1545,90 @@
     },
     "coverage": 0,
     "test_count": 58
+  },
+  {
+    "sha": "525cb11b5351d717bd2527175fff19fe10729954",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-27T05:56:15.000Z",
+      "message": "feat: debe devolver false si no hay reserva",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/525cb11b5351d717bd2527175fff19fe10729954"
+    },
+    "stats": {
+      "total": 73,
+      "additions": 72,
+      "deletions": 1,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 59
+  },
+  {
+    "sha": "33d5736a7b6f864bb1e8fa0a961e63bc08e37033",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-27T05:59:06.000Z",
+      "message": "feat: debe devolver false si el índice de estación es inválido",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/33d5736a7b6f864bb1e8fa0a961e63bc08e37033"
+    },
+    "stats": {
+      "total": 16,
+      "additions": 16,
+      "deletions": 0,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 60
+  },
+  {
+    "sha": "c82a48327381ff22100e789e9669b02a7a399a3b",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-27T05:59:58.000Z",
+      "message": "feat: debe restaurar stock, llamar a guardarGasolineras y devolver true'",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/c82a48327381ff22100e789e9669b02a7a399a3b"
+    },
+    "stats": {
+      "total": 17,
+      "additions": 17,
+      "deletions": 0,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 62
+  },
+  {
+    "sha": "4676431d7331ccc54dd861a75f749990db2e4afd",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-27T06:03:47.000Z",
+      "message": "fix: correxion de errores",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/4676431d7331ccc54dd861a75f749990db2e4afd"
+    },
+    "stats": {
+      "total": 2,
+      "additions": 1,
+      "deletions": 1,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 62
+  },
+  {
+    "sha": "264e0b3b8529ac3b075a19c6ef6dfc2ac7af0194",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-27T06:20:28.000Z",
+      "message": "fix: arreglos de nombres",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/264e0b3b8529ac3b075a19c6ef6dfc2ac7af0194"
+    },
+    "stats": {
+      "total": 16,
+      "additions": 11,
+      "deletions": 5,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 62
   }
 ]
