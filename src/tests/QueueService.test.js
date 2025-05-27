@@ -55,4 +55,14 @@ describe('QueueService', () => {
     expect(colaB).toHaveLength(1);
     expect(colaB[0].placa).toBe('222-BBB');
   });
+
+  it('reinicia la cola si el JSON en localStorage es inválido', () => {
+    // Simular dato corrupto
+    localStorage.setItem('gasolineras_queue', '¡no es JSON!');
+    const registros = agregarAFila(ESTACION_A, 'ZZZ-999', 'Test');
+
+    // Debe comportarse como si estuviera vacío y añadir el primer registro
+    expect(registros).toHaveLength(1);
+    expect(registros[0].placa).toBe('ZZZ-999');
+  });
 });

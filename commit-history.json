@@ -1392,5 +1392,22 @@
     },
     "coverage": 0,
     "test_count": 57
+  },
+  {
+    "sha": "718b83bf4fdec379cc43a0a8e307eba9c9ec38d8",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-27T00:15:55.000Z",
+      "message": "feat: reinicia la cola si el JSON en localStorage es inválido",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/718b83bf4fdec379cc43a0a8e307eba9c9ec38d8"
+    },
+    "stats": {
+      "total": 31,
+      "additions": 31,
+      "deletions": 0,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 58
   }
 ]

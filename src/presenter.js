@@ -260,6 +260,27 @@ function initFila(selectId, formId, messageId) {
       mensaje.className = 'error';
       return;
     }
+
+    // Registrar en fila
+    const registros = agregarAFila(estacionIdx, placa, nombre);
+    const estacion = gasolinerasDatos[estacionIdx];
+    const posicion = estacion.fila + registros.length;
+
+    // Calcular capacidad según stock
+    const capacidad = calcularCapacidadDeAbastecimiento([estacion])[0].vehiculos;
+
+    // Determinar si alcanzará a cargar
+    const llegara = posicion <= capacidad;
+
+    mensaje.textContent = `
+      Autos en espera inicial: ${estacion.fila}.
+      Tu posición en la fila: ${posicion}.
+      Con stock actual, la estación puede atender hasta ${capacidad} vehículos.
+      ${llegara
+        ? '✅ Llegarás a cargar gasolina.'
+        : '⚠️ Es probable que no alcances a cargar gasolina.'}
+    `.replace(/\s+/g,' ');
+    mensaje.className = llegara ? 'success' : 'error';
   });
 }
 
