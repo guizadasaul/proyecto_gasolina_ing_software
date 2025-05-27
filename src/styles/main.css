@@ -478,3 +478,35 @@ button#btn-aplicar-filtros:hover {
   margin-top: 20px;
   font-weight: 500;
 }
+
+#btn-limpiar-historial {
+  grid-column: span 2;
+  padding: 12px;
+  background-color: var(--color-rojo-apagado);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+#btn-limpiar-historial:hover {
+  background-color: var(--color-rojo-claro);
+}
+
+#btn-ver-historial {
+  grid-column: span 2;
+  padding: 12px;
+  background-color: var(--color-rojo-apagado);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+#btn-ver-historial:hover {
+  background-color: var(--color-rojo-claro);
+}

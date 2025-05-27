@@ -1426,5 +1426,124 @@
     },
     "coverage": 0,
     "test_count": 58
+  },
+  {
+    "sha": "5b4cf78fd7624952690ba1a991b603937c8a92e1",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-27T01:19:57.000Z",
+      "message": "añadimos el boton para el historial",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/5b4cf78fd7624952690ba1a991b603937c8a92e1"
+    },
+    "stats": {
+      "total": 12,
+      "additions": 8,
+      "deletions": 4,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 53
+  },
+  {
+    "sha": "9f22820f0f6ce8f12ee02f8f6090d440d881b3cf",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-27T01:21:06.000Z",
+      "message": "creamos el archivo para el historial",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/9f22820f0f6ce8f12ee02f8f6090d440d881b3cf"
+    },
+    "stats": {
+      "total": 29,
+      "additions": 29,
+      "deletions": 0,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 53
+  },
+  {
+    "sha": "f165ca26ef6d20f7136485325d4b8c0d3e7ae40a",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-27T02:37:28.000Z",
+      "message": "añadimos el archivo y funcion para mostrar el historial de reservas",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/f165ca26ef6d20f7136485325d4b8c0d3e7ae40a"
+    },
+    "stats": {
+      "total": 79,
+      "additions": 27,
+      "deletions": 52,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 53
+  },
+  {
+    "sha": "969436eaadfe9d069f2aec02785a06f29fdc0d39",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-27T02:51:52.000Z",
+      "message": "añadimos boton para limpiar el historial de reservas",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/969436eaadfe9d069f2aec02785a06f29fdc0d39"
+    },
+    "stats": {
+      "total": 61,
+      "additions": 57,
+      "deletions": 4,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 53
+  },
+  {
+    "sha": "a236b763894f52f4eacae46be16fee843524eb40",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-27T04:03:22.000Z",
+      "message": "errores resueltos",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/a236b763894f52f4eacae46be16fee843524eb40"
+    },
+    "stats": {
+      "total": 1882,
+      "additions": 1794,
+      "deletions": 88,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 0
+  },
+  {
+    "sha": "3f888986802f36ed669e059f1c1f51127b05debc",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-27T04:28:02.000Z",
+      "message": "correccion de errores",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/3f888986802f36ed669e059f1c1f51127b05debc"
+    },
+    "stats": {
+      "total": 1,
+      "additions": 1,
+      "deletions": 0,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 0
+  },
+  {
+    "sha": "96a1e409c5e6fea7bc0eaa46bd9cb80cf04bb256",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-27T04:39:01.000Z",
+      "message": "corregimos errores de historial",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/96a1e409c5e6fea7bc0eaa46bd9cb80cf04bb256"
+    },
+    "stats": {
+      "total": 433,
+      "additions": 423,
+      "deletions": 10,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 58
   }
 ]

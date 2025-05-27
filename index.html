@@ -68,6 +68,49 @@
       <div id="fila-mensaje"></div>
     </section>
 
+    <section id="pago-seccion">
+      <section id="comprobante-seccion">
+      <button id="btn-ver-historial">Ver Historial</button>
+      <section id="historial-seccion" style="display: none;">
+        <h2>Historial de Reservas</h2>
+        <ul id="historial-lista"></ul>
+        <button id="btn-limpiar-historial" style="display: none; margin-top: 10px;">🗑️ Limpiar historial</button>
+      </section>
+
+    </section>
+      <br>
+      <h2>Pagar Reserva</h2>
+      <form id="form-pago">
+        <label for="pago-metodo">Método de pago:</label>
+        <select id="pago-metodo" required>
+          <option value="" disabled selected>Selecciona método</option>
+          <option value="QR">Código QR</option>
+          <option value="tarjeta">Tarjeta</option>
+        </select>
+
+        <div id="tarjeta-datos" style="display: none; margin-top: 1em;">
+          <label for="tarjeta-numero">Número de tarjeta:</label>
+          <input type="text" id="tarjeta-numero" required pattern="\d{16}" maxlength="16" />
+          <br>
+          <label for="tarjeta-nombre">Nombre en la tarjeta:</label>
+          <input type="text" id="tarjeta-nombre" required />
+          <br>
+          <label for="tarjeta-expiracion">Fecha de expiración (M/A):</label>
+          <input type="text" id="tarjeta-expiracion" required pattern="\d{2}/\d{2}" />
+          <br>
+          <label for="tarjeta-cvv">CVV:</label>
+          <input type="text" id="tarjeta-cvv" required pattern="\d{3}" maxlength="3" />
+        </div>
+
+        <div id="qr-contenedor" style="margin-top: 15px; text-align: center;">
+          <img id="qr-imagen" alt="QR de pago" style="display: none; width: 200px; height: 200px;" />
+        </div>
+
+        <button type="submit" id="btn-pagar">Pagar</button>
+      </form>
+      <div id="pago-mensaje"></div>
+    </section>
+
 
     <script type="module" src="./src/presenter.js"></script>
   </body>
