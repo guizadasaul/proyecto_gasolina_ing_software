@@ -2,7 +2,7 @@
  * @jest-environment node
  */
 
-import { cancelarReserva } from '../utils/CancelResevation.js';
+import { cancelarReserva } from '../utils/cancelReservation.js';
 import * as storage from '../components/storage.js';
 
 describe('cancelarReserva', () => {

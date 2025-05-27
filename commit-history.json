@@ -1613,5 +1613,22 @@
     },
     "coverage": 0,
     "test_count": 62
+  },
+  {
+    "sha": "264e0b3b8529ac3b075a19c6ef6dfc2ac7af0194",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-27T06:20:28.000Z",
+      "message": "fix: arreglos de nombres",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/264e0b3b8529ac3b075a19c6ef6dfc2ac7af0194"
+    },
+    "stats": {
+      "total": 16,
+      "additions": 11,
+      "deletions": 5,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 62
   }
 ]

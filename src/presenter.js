@@ -33,7 +33,7 @@ import {
 } from './components/reservation.js';
 
 import { procesarPago } from './utils/PagoReserva.js';
-import { cancelarReserva } from './utils/CancelReservation.js';
+import { cancelarReserva } from './utils/cancelReservation.js';
 
 import {
   agregarAFila,
