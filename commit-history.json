@@ -1375,5 +1375,22 @@
     },
     "coverage": 0,
     "test_count": 53
+  },
+  {
+    "sha": "969436eaadfe9d069f2aec02785a06f29fdc0d39",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-27T02:51:52.000Z",
+      "message": "añadimos boton para limpiar el historial de reservas",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/969436eaadfe9d069f2aec02785a06f29fdc0d39"
+    },
+    "stats": {
+      "total": 61,
+      "additions": 57,
+      "deletions": 4,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 53
   }
 ]
