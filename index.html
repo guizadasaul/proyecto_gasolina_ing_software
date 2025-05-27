@@ -51,44 +51,23 @@
       <div id="reserva-mensaje"></div>
     </section>
 
-    <section id="pago-seccion">
-      <section id="comprobante-seccion">
-      <h2>Comprobante de Reserva</h2>
-      <div id="comprobante-contenido">
-      <p id="comprobante-mensaje">No se ha realizado ninguna reserva aún.</p>
-      </div>
-    </section>
-      <h2>Pagar Reserva</h2>
-      <form id="form-pago">
-        <label for="pago-metodo">Método de pago:</label>
-        <select id="pago-metodo" required>
-          <option value="" disabled selected>Selecciona método</option>
-          <option value="QR">Código QR</option>
-          <option value="tarjeta">Tarjeta</option>
-        </select>
+    <section id="fila-seccion">
+      <h2>Registrarse en Fila</h2>
+      <form id="form-fila">
+        <label for="fila-estacion">Selecciona gasolinera:</label>
+        <select id="fila-estacion"></select>
 
-        <div id="tarjeta-datos" style="display: none; margin-top: 1em;">
-          <label for="tarjeta-numero">Número de tarjeta:</label>
-          <input type="text" id="tarjeta-numero" required pattern="\d{16}" maxlength="16" />
-          <br>
-          <label for="tarjeta-nombre">Nombre en la tarjeta:</label>
-          <input type="text" id="tarjeta-nombre" required />
-          <br>
-          <label for="tarjeta-expiracion">Fecha de expiración (M/A):</label>
-          <input type="text" id="tarjeta-expiracion" required pattern="\d{2}/\d{2}" />
-          <br>
-          <label for="tarjeta-cvv">CVV:</label>
-          <input type="text" id="tarjeta-cvv" required pattern="\d{3}" maxlength="3" />
-        </div>
+        <label for="fila-placa">Número de placa:</label>
+        <input type="text" id="fila-placa" placeholder="ABC-1234" required />
 
-        <div id="qr-contenedor" style="margin-top: 15px; text-align: center;">
-          <img id="qr-imagen" alt="QR de pago" style="display: none; width: 200px; height: 200px;" />
-        </div>
+        <label for="fila-nombre">Nombre:</label>
+        <input type="text" id="fila-nombre" placeholder="Tu nombre" required />
 
-        <button type="submit" id="btn-pagar">Pagar</button>
+        <button type="submit" id="btn-registrar-fila">Registrar en Fila</button>
       </form>
-      <div id="pago-mensaje"></div>
+      <div id="fila-mensaje"></div>
     </section>
+
 
     <script type="module" src="./src/presenter.js"></script>
   </body>

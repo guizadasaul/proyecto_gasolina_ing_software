@@ -1409,5 +1409,22 @@
     },
     "coverage": 0,
     "test_count": 58
+  },
+  {
+    "sha": "0ad4050b85ce5037a00d42d3908dc05d45497d05",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-27T00:17:17.000Z",
+      "message": "style: para marcar que estas en fila",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/0ad4050b85ce5037a00d42d3908dc05d45497d05"
+    },
+    "stats": {
+      "total": 99,
+      "additions": 66,
+      "deletions": 33,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 58
   }
 ]
