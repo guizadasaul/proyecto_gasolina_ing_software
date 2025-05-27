@@ -310,7 +310,6 @@ document.getElementById('form-pago').addEventListener('submit', event => {
  mensajePago.className = 'success';
  actualizarComprobanteEnPantalla();
 
-
 });
 
 document.getElementById('btn-resetear').addEventListener('click', () => {

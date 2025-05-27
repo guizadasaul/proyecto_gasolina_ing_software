@@ -54,10 +54,15 @@
     <section id="pago-seccion">
       <section id="comprobante-seccion">
       <h2>Comprobante de Reserva</h2>
-      <div id="comprobante-contenido">
-      <p id="comprobante-mensaje">No se ha realizado ninguna reserva aún.</p>
-      </div>
+      <button id="btn-ver-historial">Ver Historial</button>
+
+      <section id="historial-seccion" style="display: none;">
+        <h2>Historial de Reservas</h2>
+        <ul id="historial-lista"></ul>
+      </section>
+      
     </section>
+      <br>
       <h2>Pagar Reserva</h2>
       <form id="form-pago">
         <label for="pago-metodo">Método de pago:</label>
