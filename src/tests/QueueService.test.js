@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { obtenerQueuePorEstacion } from '../utils/QueueService.js';
+import { agregarAFila, obtenerQueuePorEstacion } from '../utils/QueueService.js';
 
 describe('QueueService', () => {
   const ESTACION_A = 0;
@@ -14,5 +14,22 @@ describe('QueueService', () => {
 
   it('obtenerQueuePorEstacion debe devolver un array vacío cuando no hay registros', () => {
     expect(obtenerQueuePorEstacion(ESTACION_A)).toEqual([]);
+  });
+
+  it('agregarAFila debe añadir un registro y devolver la lista actualizada', () => {
+    const registros = agregarAFila(ESTACION_A, 'ABC-123', 'Juan Pérez');
+    expect(registros).toHaveLength(1);
+
+    const entry = registros[0];
+    expect(entry).toMatchObject({
+      placa: 'ABC-123',
+      nombre: 'Juan Pérez'
+    });
+    // La fecha debe ser una cadena ISO válida
+    expect(typeof entry.fecha).toBe('string');
+    expect(!isNaN(Date.parse(entry.fecha))).toBe(true);
+
+    // Además, obtenerQueuePorEstacion debe devolver lo mismo
+    expect(obtenerQueuePorEstacion(ESTACION_A)).toEqual(registros);
   });
 });

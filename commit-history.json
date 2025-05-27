@@ -1341,5 +1341,22 @@
     },
     "coverage": 0,
     "test_count": 54
+  },
+  {
+    "sha": "3b4e3048c9e3e93b1a5e9597025842aa5733d8fc",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-27T00:08:37.000Z",
+      "message": "feat: agregarAFila debe añadir un registro y devolver la lista actualizada",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/3b4e3048c9e3e93b1a5e9597025842aa5733d8fc"
+    },
+    "stats": {
+      "total": 35,
+      "additions": 34,
+      "deletions": 1,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 55
   }
 ]
