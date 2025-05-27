@@ -1528,5 +1528,22 @@
     },
     "coverage": 0,
     "test_count": 0
+  },
+  {
+    "sha": "96a1e409c5e6fea7bc0eaa46bd9cb80cf04bb256",
+    "author": "Luis Felipe Velasco Lopez",
+    "commit": {
+      "date": "2025-05-27T04:39:01.000Z",
+      "message": "corregimos errores de historial",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/96a1e409c5e6fea7bc0eaa46bd9cb80cf04bb256"
+    },
+    "stats": {
+      "total": 433,
+      "additions": 423,
+      "deletions": 10,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 58
   }
 ]

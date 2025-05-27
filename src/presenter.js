@@ -19,7 +19,7 @@ import {
   resetearGasolineras
 } from './components/storage.js';
 
-import { historialReservas, mostrarHistorial } from './components/historial.js';
+import { getHistorialReservas, mostrarHistorial } from './components/historial.js';
 
 let gasolinerasDatos = cargarGasolineras();
 let ultimaReserva = null;
@@ -224,7 +224,7 @@ function initReservation(selectId, tipoId, formId, messageId, onSuccess) {
         fecha: new Date().toISOString(),
         codigo: resultado.codigo
       };
-      historialReservas.push(ultimaReserva);
+      getHistorialReservas().push(ultimaReserva);
       localStorage.setItem('historialReservas', JSON.stringify(historialReservas));
       onSuccess();
     }

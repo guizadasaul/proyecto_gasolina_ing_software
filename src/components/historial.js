@@ -1,5 +1,13 @@
-export let historialReservas = JSON.parse(localStorage.getItem('historialReservas')) || [];
+let historialReservas = JSON.parse(localStorage.getItem('historialReservas')) || [];
 
+export function getHistorialReservas() {
+  return historialReservas;
+}
+
+export function setHistorialReservas(nuevoHistorial) {
+  historialReservas = nuevoHistorial;
+  localStorage.setItem('historialReservas', JSON.stringify(historialReservas));
+}
 
 export function mostrarHistorial() {
   const historialSeccion = document.getElementById('historial-seccion');
@@ -16,7 +24,9 @@ export function mostrarHistorial() {
 
   historialLista.innerHTML = '';
 
-  if (historialReservas.length === 0) {
+  const historial = getHistorialReservas();
+
+  if (historial.length === 0) {
     const li = document.createElement('li');
     li.textContent = 'No hay reservas registradas.';
     historialLista.appendChild(li);
@@ -24,7 +34,7 @@ export function mostrarHistorial() {
     return;
   }
 
-  historialReservas.forEach(reserva => {
+  historial.forEach(reserva => {
     const li = document.createElement('li');
     li.textContent = `${reserva.fecha.split('T')[0]} - ${reserva.litros}L de ${reserva.tipo} en ${reserva.estacion} con código: ${reserva.codigo}`;
     historialLista.appendChild(li);
@@ -34,8 +44,7 @@ export function mostrarHistorial() {
 }
 
 export function limpiarHistorial() {
-  historialReservas = [];
-  localStorage.removeItem('historialReservas');
+  setHistorialReservas([]);
   mostrarHistorial();
 }
 
