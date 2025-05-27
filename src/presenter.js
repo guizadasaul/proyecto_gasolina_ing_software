@@ -20,18 +20,18 @@ import {
 } from './components/storage.js';
 
 let gasolinerasDatos = cargarGasolineras();
-let ultimaReserva = null;
 
 import { initMap, clearMarkers } from './components/map.js';
 import {
   getEstacionesActivas,
   validarSeleccion,
-  procesarSeleccion,
+  procesarSeleccion
 } from './components/reservation.js';
-import { procesarPago } from './utils/PagoReserva.js';
-import { cargarComprobanteActual, guardarComprobanteActual } from './components/storage.js';
 
-
+import {
+  agregarAFila,
+  obtenerQueuePorEstacion
+} from './utils/QueueService.js';
 
 const listaGasolineras = document.getElementById('gasolineras-lista');
 const selectCombustible = document.getElementById('filtro-combustible');
@@ -151,22 +151,6 @@ function renderizarGasolineras(gasolineras) {
   });
 }
 
-function actualizarComprobanteEnPantalla() {
-  const contenedor = document.getElementById('comprobante-mensaje');
-  if (!ultimaReserva || !ultimaReserva.codigo) {
-    contenedor.textContent = 'No se ha realizado ninguna reserva aún.';
-  } else {
-    contenedor.innerHTML = `
-      <strong>Gasolinera:</strong> ${ultimaReserva.estacion}<br>
-      <strong>Tipo:</strong> ${ultimaReserva.tipo}<br>
-      <strong>Litros:</strong> ${ultimaReserva.litros}<br>
-      <strong>Fecha:</strong> ${new Date(ultimaReserva.fecha).toLocaleString()}<br>
-      <strong>Código de comprobante:</strong> <code>${ultimaReserva.codigo}</code>
-    `;
-  }
-}
-
-
 function aplicarFiltros() {
   let gasolinerasFiltradas = gasolinerasDatos;
   gasolinerasFiltradas = filtrarPorCombustible(gasolinerasFiltradas, selectCombustible.value);
@@ -226,91 +210,89 @@ function initReservation(selectId, tipoId, formId, messageId, onSuccess) {
     mensaje.className = resultado.valid ? 'success' : 'error';
     if (resultado.valid) {
       guardarGasolineras(gasolinerasDatos);
-      const comprobanteTexto = resultado.codigo
-        ? `\nCódigo de comprobante: ${resultado.codigo}`
-        : '';
-      mensaje.textContent = resultado.mensaje + comprobanteTexto;
-      mensaje.className = 'success';
-      ultimaReserva = {
-        estacion: estacion.nombre,
-        tipo,
-        litros,
-        mensaje: resultado.mensaje,
-        fecha: new Date().toISOString(),
-        codigo: resultado.codigo || null
-      };
-      guardarComprobanteActual(ultimaReserva);
-      actualizarComprobanteEnPantalla();
       onSuccess();
     }
   });
 }
 
+function initFila(selectId, formId, messageId) {
+  const selectEstacion = document.getElementById(selectId);
+  const form = document.getElementById(formId);
+  const mensaje = document.getElementById(messageId);
+  const inputPlaca = document.getElementById('fila-placa');
+  const inputNombre = document.getElementById('fila-nombre');
+
+  // Poblar el select con estaciones activas
+  selectEstacion.innerHTML = '';
+  const optionDefault = document.createElement('option');
+  optionDefault.value = '';
+  optionDefault.disabled = true;
+  optionDefault.selected = true;
+  optionDefault.textContent = 'Selecciona una estación';
+  selectEstacion.appendChild(optionDefault);
+
+  getEstacionesActivas().forEach(({ value, label }) => {
+    const opt = document.createElement('option');
+    opt.value = value;
+    opt.textContent = label;
+    selectEstacion.appendChild(opt);
+  });
+
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    const estacionIdx = selectEstacion.value;
+    const placa = inputPlaca.value.trim();
+    const nombre = inputNombre.value.trim();
+
+    // Validaciones básicas
+    if (estacionIdx === '') {
+      mensaje.textContent = 'Por favor selecciona una gasolinera.';
+      mensaje.className = 'error';
+      return;
+    }
+    if (!placa) {
+      mensaje.textContent = 'Ingresa un número de placa válido.';
+      mensaje.className = 'error';
+      return;
+    }
+    if (!nombre) {
+      mensaje.textContent = 'Ingresa tu nombre.';
+      mensaje.className = 'error';
+      return;
+    }
+
+    // Registrar en fila
+    const registros = agregarAFila(estacionIdx, placa, nombre);
+    const estacion = gasolinerasDatos[estacionIdx];
+    const posicion = estacion.fila + registros.length;
+
+    // Calcular capacidad según stock
+    const capacidad = calcularCapacidadDeAbastecimiento([estacion])[0].vehiculos;
+
+    // Determinar si alcanzará a cargar
+    const llegara = posicion <= capacidad;
+
+    mensaje.textContent = `
+      Autos en espera inicial: ${estacion.fila}.
+      Tu posición en la fila: ${posicion}.
+      Con stock actual, la estación puede atender hasta ${capacidad} vehículos.
+      ${llegara
+        ? '✅ Llegarás a cargar gasolina.'
+        : '⚠️ Es probable que no alcances a cargar gasolina.'}
+    `.replace(/\s+/g,' ');
+    mensaje.className = llegara ? 'success' : 'error';
+  });
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
   botonFiltrarCombustible.addEventListener('click', aplicarFiltros);
   botonFiltrarServicios.addEventListener('click', aplicarFiltros);
   renderizarGasolineras(gasolinerasDatos);
-  ultimaReserva = cargarComprobanteActual();
-  actualizarComprobanteEnPantalla();
   initReservation('reserva-estacion', 'reserva-tipo', 'form-reserva', 'reserva-mensaje', () => {
-  renderizarGasolineras(gasolinerasDatos);
-
+    renderizarGasolineras(gasolinerasDatos);
   });
-
-  const selectMetodo = document.getElementById('pago-metodo');
-  const tarjetaDatos = document.getElementById('tarjeta-datos');
-  const qrImagen = document.getElementById('qr-imagen');
-
-  selectMetodo.addEventListener('change', () => {
-    const metodo = selectMetodo.value;
-    if (metodo === 'tarjeta') {
-      tarjetaDatos.style.display = 'block';
-    } else {
-      tarjetaDatos.style.display = 'none';
-    }
-
-    if (metodo === 'QR' && ultimaReserva) {
-      const textoQR = `Pago para ${ultimaReserva.litros}L de ${ultimaReserva.tipo} en ${ultimaReserva.estacion}`;
-      qrImagen.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(textoQR)}`;
-      qrImagen.style.display = 'block';
-    } else {
-      qrImagen.style.display = 'none';
-    }
-
-  });
-});
-
-document.getElementById('form-pago').addEventListener('submit', event => {
-  event.preventDefault();
-
-  const metodo = document.getElementById('pago-metodo').value;
-  const mensajePago = document.getElementById('pago-mensaje');
-
-  if (!ultimaReserva) {
-    mensajePago.textContent = 'Primero debe realizar una reserva antes de pagar.';
-    mensajePago.className = 'error';
-    return;
-  }
-
-  if (!metodo) {
-    mensajePago.textContent = 'Por favor selecciona un método de pago.';
-    mensajePago.className = 'error';
-    return;
-  }
-
-  const resultadoPago = procesarPago(ultimaReserva, metodo);
-
-  if (!resultadoPago.exito) {
-    mensajePago.textContent = resultadoPago.error;
-    mensajePago.className = 'error';
-    return;
-  }
-
- mensajePago.textContent = `${resultadoPago.mensaje} para la reserva de ${ultimaReserva.litros}L de ${ultimaReserva.tipo} en ${ultimaReserva.estacion}. Código: ${ultimaReserva.codigo || 'N/A'}`;
- mensajePago.className = 'success';
- actualizarComprobanteEnPantalla();
-
-
+  initFila('fila-estacion', 'form-fila', 'fila-mensaje');
 });
 
 document.getElementById('btn-resetear').addEventListener('click', () => {

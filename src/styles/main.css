@@ -423,3 +423,58 @@ button#btn-aplicar-filtros:hover {
 #btn-pagar:hover {
   background-color: var(--color-rojo-claro);
 }
+
+/* Seccin de fila */
+#fila-seccion {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 40px;
+  background-color: var(--color-crema);
+  border-radius: var(--borde-redondeado);
+  box-shadow: var(--sombra-suave);
+}
+#fila-seccion h2 {
+  color: var(--color-rojo-apagado);
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+#form-fila {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: end;
+}
+#form-fila label {
+  color: var(--color-texto);
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+#form-fila select,
+#form-fila input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--color-gris-claro);
+  background-color: white;
+  font-family: inherit;
+}
+#btn-registrar-fila {
+  grid-column: span 2;
+  padding: 12px;
+  background-color: var(--color-rojo-apagado);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+#btn-registrar-fila:hover {
+  background-color: var(--color-rojo-claro);
+}
+#fila-mensaje {
+  grid-column: span 2;
+  margin-top: 20px;
+  font-weight: 500;
+}

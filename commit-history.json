@@ -1324,5 +1324,107 @@
     },
     "coverage": 0,
     "test_count": 53
+  },
+  {
+    "sha": "372320e71ae3748eeec70efb4847d762cfdf9dfb",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-27T00:06:24.000Z",
+      "message": "feat: obtenerQueuePorEstacion debe devolver un array vacío cuando no hay registros",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/372320e71ae3748eeec70efb4847d762cfdf9dfb"
+    },
+    "stats": {
+      "total": 1666,
+      "additions": 1485,
+      "deletions": 181,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 54
+  },
+  {
+    "sha": "3b4e3048c9e3e93b1a5e9597025842aa5733d8fc",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-27T00:08:37.000Z",
+      "message": "feat: agregarAFila debe añadir un registro y devolver la lista actualizada",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/3b4e3048c9e3e93b1a5e9597025842aa5733d8fc"
+    },
+    "stats": {
+      "total": 35,
+      "additions": 34,
+      "deletions": 1,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 55
+  },
+  {
+    "sha": "84b3d41663acc439f911a1eff63d2851d89d106d",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-27T00:13:26.000Z",
+      "message": "feat: agregarAFila debe acumular múltiples registros para la misma estación",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/84b3d41663acc439f911a1eff63d2851d89d106d"
+    },
+    "stats": {
+      "total": 30,
+      "additions": 30,
+      "deletions": 0,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 56
+  },
+  {
+    "sha": "d32fc7f03267d0278069d11f9eccd5d7da218155",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-27T00:14:55.000Z",
+      "message": "feat: mantiene colas separadas para distintas estaciones",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/d32fc7f03267d0278069d11f9eccd5d7da218155"
+    },
+    "stats": {
+      "total": 42,
+      "additions": 42,
+      "deletions": 0,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 57
+  },
+  {
+    "sha": "718b83bf4fdec379cc43a0a8e307eba9c9ec38d8",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-27T00:15:55.000Z",
+      "message": "feat: reinicia la cola si el JSON en localStorage es inválido",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/718b83bf4fdec379cc43a0a8e307eba9c9ec38d8"
+    },
+    "stats": {
+      "total": 31,
+      "additions": 31,
+      "deletions": 0,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 58
+  },
+  {
+    "sha": "0ad4050b85ce5037a00d42d3908dc05d45497d05",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-27T00:17:17.000Z",
+      "message": "style: para marcar que estas en fila",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/0ad4050b85ce5037a00d42d3908dc05d45497d05"
+    },
+    "stats": {
+      "total": 99,
+      "additions": 66,
+      "deletions": 33,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 58
   }
 ]
