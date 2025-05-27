@@ -1545,5 +1545,22 @@
     },
     "coverage": 0,
     "test_count": 58
+  },
+  {
+    "sha": "525cb11b5351d717bd2527175fff19fe10729954",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-27T05:56:15.000Z",
+      "message": "feat: debe devolver false si no hay reserva",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/525cb11b5351d717bd2527175fff19fe10729954"
+    },
+    "stats": {
+      "total": 73,
+      "additions": 72,
+      "deletions": 1,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 59
   }
 ]
