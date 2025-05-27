@@ -1579,5 +1579,22 @@
     },
     "coverage": 0,
     "test_count": 60
+  },
+  {
+    "sha": "c82a48327381ff22100e789e9669b02a7a399a3b",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-27T05:59:58.000Z",
+      "message": "feat: debe restaurar stock, llamar a guardarGasolineras y devolver true'",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/c82a48327381ff22100e789e9669b02a7a399a3b"
+    },
+    "stats": {
+      "total": 17,
+      "additions": 17,
+      "deletions": 0,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 62
   }
 ]

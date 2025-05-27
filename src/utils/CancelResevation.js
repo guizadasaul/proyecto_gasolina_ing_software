@@ -11,4 +11,7 @@ export function cancelarReserva(ultimaReserva, gasolinerasDatos) {
   ) {
     return false;
   }
+  estacion.stock[tipo] += litros;
+  guardarGasolineras(gasolinerasDatos);
+  return true;
 }
