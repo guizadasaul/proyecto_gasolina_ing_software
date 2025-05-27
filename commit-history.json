@@ -1562,5 +1562,22 @@
     },
     "coverage": 0,
     "test_count": 59
+  },
+  {
+    "sha": "33d5736a7b6f864bb1e8fa0a961e63bc08e37033",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-27T05:59:06.000Z",
+      "message": "feat: debe devolver false si el índice de estación es inválido",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/33d5736a7b6f864bb1e8fa0a961e63bc08e37033"
+    },
+    "stats": {
+      "total": 16,
+      "additions": 16,
+      "deletions": 0,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 60
   }
 ]

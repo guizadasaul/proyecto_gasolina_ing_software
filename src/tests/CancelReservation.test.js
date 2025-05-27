@@ -22,4 +22,9 @@ describe('cancelarReserva', () => {
   it('debe devolver false si no hay reserva', () => {
     expect(cancelarReserva(null, gasolinerasDatos)).toBe(false);
   });
+
+  it('debe devolver false si el índice de estación es inválido', () => {
+    const ultimaReserva = { estacionIndex: 1, tipo: 'magna', litros: 10 };
+    expect(cancelarReserva(ultimaReserva, gasolinerasDatos)).toBe(false);
+  });
 });
