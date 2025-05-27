@@ -510,3 +510,36 @@ button#btn-aplicar-filtros:hover {
 #btn-ver-historial:hover {
   background-color: var(--color-rojo-claro);
 }
+#btn-cancelar {
+  /* Visual */
+  background-color: #6a040f;    /* rojo intenso */
+  color: #fff;                  /* texto blanco */
+  border: none;                 /* sin borde */
+  border-radius: 0.5rem;        /* esquinas redondeadas */
+  padding: 0.75rem 1.5rem;      /* espacio interior vertical y horizontal */
+  font-size: 1rem;              /* tamaño de letra */
+  font-weight: 600;             /* texto semi-negrita */
+  
+  /* Espaciado y posición */
+  margin-top: 1rem;             /* separarlo de elementos anteriores */
+  display: none;                /* se muestra/oculta desde JS :contentReference[oaicite:0]{index=0} */
+  
+  /* Interacción */
+  cursor: pointer;              /* puntero al pasar por encima */
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#btn-cancelar:hover {
+  background-color: #c0392b;    /* rojo más oscuro al pasar el ratón */
+  transform: translateY(-1px);  /* ligero “elevado” */
+}
+
+#btn-cancelar:active {
+  background-color: #a93226;    /* aún más oscuro al hacer clic */
+  transform: translateY(0);     /* reposicionarse */
+}
+
+#btn-cancelar:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.5);  /* halo rojo semitransparente */
+}
