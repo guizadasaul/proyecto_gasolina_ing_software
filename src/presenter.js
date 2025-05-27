@@ -215,6 +215,27 @@ function initReservation(selectId, tipoId, formId, messageId, onSuccess) {
   });
 }
 
+function initFila(selectId, formId, messageId) {
+  const selectEstacion = document.getElementById(selectId);
+
+  // Poblar el select con estaciones activas
+  selectEstacion.innerHTML = '';
+  const optionDefault = document.createElement('option');
+  optionDefault.value = '';
+  optionDefault.disabled = true;
+  optionDefault.selected = true;
+  optionDefault.textContent = 'Selecciona una estación';
+  selectEstacion.appendChild(optionDefault);
+
+  getEstacionesActivas().forEach(({ value, label }) => {
+    const opt = document.createElement('option');
+    opt.value = value;
+    opt.textContent = label;
+    selectEstacion.appendChild(opt);
+  });
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
   botonFiltrarCombustible.addEventListener('click', aplicarFiltros);
   botonFiltrarServicios.addEventListener('click', aplicarFiltros);

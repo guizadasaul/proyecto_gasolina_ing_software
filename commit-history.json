@@ -1358,5 +1358,22 @@
     },
     "coverage": 0,
     "test_count": 55
+  },
+  {
+    "sha": "84b3d41663acc439f911a1eff63d2851d89d106d",
+    "author": "guizadasaul",
+    "commit": {
+      "date": "2025-05-27T00:13:26.000Z",
+      "message": "feat: agregarAFila debe acumular múltiples registros para la misma estación",
+      "url": "https://github.com/guizadasaul/proyecto_gasolina_ing_software/commit/84b3d41663acc439f911a1eff63d2851d89d106d"
+    },
+    "stats": {
+      "total": 30,
+      "additions": 30,
+      "deletions": 0,
+      "date": "2025-05-27"
+    },
+    "coverage": 0,
+    "test_count": 56
   }
 ]

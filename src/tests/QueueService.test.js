@@ -6,6 +6,7 @@ import { agregarAFila, obtenerQueuePorEstacion } from '../utils/QueueService.js'
 
 describe('QueueService', () => {
   const ESTACION_A = 0;
+  const ESTACION_B = 1;
 
   beforeEach(() => {
     // Limpiamos cualquier dato previo en localStorage
@@ -31,5 +32,13 @@ describe('QueueService', () => {
 
     // Además, obtenerQueuePorEstacion debe devolver lo mismo
     expect(obtenerQueuePorEstacion(ESTACION_A)).toEqual(registros);
+  });
+
+  it('agregarAFila debe acumular múltiples registros para la misma estación', () => {
+    agregarAFila(ESTACION_A, 'AAA-001', 'Ana');
+    const registros2 = agregarAFila(ESTACION_A, 'BBB-002', 'Luis');
+
+    expect(registros2).toHaveLength(2);
+    expect(registros2.map(r => r.placa)).toEqual(['AAA-001', 'BBB-002']);
   });
 });
